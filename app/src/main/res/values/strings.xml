@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Parashot_Manadieb</string>
+    <string name="title_dashboard">الرئيسية</string>
+    <!--<string name="google_maps_key">AIzaSyBYiC0IfcpWwEuGS-9y0xrBDVTUWq8i6dw</string>-->
+    <!--<string name="google_maps_key">AIzaSyBG17XsWDw65bc0KavRLkARmFghjY4Aaeo</string>-->
+    <string name="google_maps_key">AIzaSyA2o-ebQlH3rUXdt--NSWU4djOPsci0oEA</string>
+    <string name="storeplace">مكان المتجر</string>
+    <string name="storename">اسم المتجر</string>
+    <string name="refuse">رفض</string>
+    <string name="accept">قبول</string>
+    <string name="clientname">اسم العميل</string>
+    <string name="productname">اسم المنتج</string>
+    <string name="productprice">سعر المنتج</string>
+    <string name="paymentway">طريقة الدفع</string>
+    <string name="neworder">طلب جديد</string>
+    <string name="yourLocation">موقعك علي الخريطة</string>
+    <string name="mandob">اسم المندوب</string>
+    <string name="client">عميل</string>
+    <string name="moredetails">تفاصيل اكثر</string>
+    <string name="lessdetails">تفاصيل اقل</string>
+    <string name="addOfferSucess">تم اضافة عرضك بنجاح</string>
+    <string name="erroroccur">حدث خطأ حاول مرة اخري</string>
+    <string name="offer">اضافةعرض سعر</string>
+    <string name="save">حفظ</string>
+    <string name="complet">ادخل عرض سعر جديد</string>
+    <string name="tab_1">الرئيسية</string>
+    <string name="commplete">مكتملة</string>
+    <string name="ordernotfound">لا يوجد اي طلبات</string>
+    <string name="notcommplete">غير مكتملة</string>
+    <string name="start">بدأ الرحلة</string>
+
+    <string name="offernotfound">لا يوجد عروض لطلبك</string>
+    <string name="orderfromgoogle">طلبك من متاجر جوجل ولا يوجد منتجات بداخله</string>
+    <string name="waiting">انتظر ...</string>
+    <string name="procenotdetected">السعر غير محدد</string>
+    <string name="chating">الدردشة</string>
+    <string name="maping">الخريطة</string>
+    <string name="connected">متصل</string>
+</resources>

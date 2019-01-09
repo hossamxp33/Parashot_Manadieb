@@ -1,0 +1,158 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+        <include
+            android:id="@+id/orderheader"
+            layout="@layout/header_for_neworder"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.google.android.gms.maps.MapView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/mapView"
+            app:layout_constraintTop_toBottomOf="@+id/orderheader"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="150dp"
+            android:layout_height="0dp" />
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/mapView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+
+        >
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/back_home3"
+            android:paddingBottom="100dp"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="@string/moredetails"
+                    />
+
+                <include
+                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.95"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/first_card_in_new_order"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    layout="@layout/first_card_in_new_order"/>
+
+                <include
+                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.95"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/second_card_in_new_order"
+                    app:layout_constraintTop_toBottomOf="@+id/first_card_in_new_order"
+                    layout="@layout/second_card_in_new_order"/>
+
+                <include
+                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.95"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/third_card_in_new_order"
+                    app:layout_constraintTop_toBottomOf="@+id/second_card_in_new_order"
+                    layout="@layout/third_card_in_new_order"/>
+                <include
+                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.95"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/fourth_card_in_new_order"
+                    app:layout_constraintTop_toBottomOf="@+id/third_card_in_new_order"
+                    layout="@layout/fourth_card_in_new_order"/>
+
+
+                <TextView
+                    android:id="@+id/acceptorder"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fourth_card_in_new_order"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/accept_back"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toStartOf="@id/refuseorder"
+                    android:text="@string/accept"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.45" />
+
+                <TextView
+                    android:id="@+id/refuseorder"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:text="@string/refuse"
+                    app:layout_constraintTop_toBottomOf="@+id/fourth_card_in_new_order"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintWidth_percent="0.45"
+                    app:layout_constraintStart_toEndOf="@id/acceptorder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/refuse_back"
+                    />
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@+id/progress"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="@color/back_home3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
+

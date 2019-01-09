@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/productview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:layoutDirection="rtl"
+    android:background="@drawable/linear_background_for_subcat"
+    android:orientation="horizontal"
+    android:paddingBottom="7dp">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidlinevertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidlinehorizental5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidlinevertical3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidlinevertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidlinevertical4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        tools:listitem="@layout/third_subcategry_for_viewpager"
+        tools:itemCount="3"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewpager"
+        android:background="#D9D9D9"
+        />
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintHeight_percent="0.17"
+        app:layout_constraintStart_toStartOf="@id/guidlinevertical3"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/item_price"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="2"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toStartOf="@id/guidlinevertical4"
+        app:layout_constraintHeight_percent="0.16"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager"
+        app:layout_constraintWidth_percent="0.4" />
+
+
+    <RatingBar
+        android:id="@+id/rates"
+        style="@style/StarRatingBars"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
+        android:isIndicator="true"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/guidlinevertical3"
+        app:layout_constraintTop_toBottomOf="@+id/item_name" />
+
+    <TextView
+        android:id="@+id/ratecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/rates"
+        app:layout_constraintTop_toBottomOf="@+id/item_name" />
+
+
+    <TextView
+        android:id="@+id/productrate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/myorder_actions_back"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/guidlinevertical4"
+        app:layout_constraintTop_toBottomOf="@+id/item_price"
+        app:layout_constraintWidth_percent="0.4" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/productname"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/linear_background_for_new_order"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:padding="5dp"
+    android:layoutDirection="rtl"
+    android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/item_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="top"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/income" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="2dp"
+                android:layout_gravity="top"
+                app:layout_constraintStart_toEndOf="@id/item_img"
+                android:layout_height="35dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/colorPrimary"/>
+
+            <TextView
+                android:id="@+id/storename"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="3dp"
+                android:layout_marginStart="3dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@string/storename"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@id/view1" />
+
+            <TextView
+                android:id="@+id/store_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="متجر الاحلام للادوات المنزلية"
+                android:textColor="#969696"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/storename"
+                app:layout_constraintStart_toEndOf="@+id/view1"
+                app:layout_constraintTop_toBottomOf="@+id/storename" />
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:text="4كم"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.1" />
+
+
+            <TextView
+             android:id="@+id/storeplace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/black"
+            android:maxLines="2"
+            android:ellipsize="end"
+           app:layout_constraintTop_toBottomOf="@+id/store_name"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@id/view1"
+            android:text="@string/storeplace"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+
+            <TextView
+                android:id="@+id/store_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="ابراج المعادي ستار برج1ب الدور السادس شقة 9"
+                android:textColor="#969696"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@id/view1"
+                app:layout_constraintTop_toBottomOf="@+id/storeplace" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "469915841782",
+    "firebase_url": "https://parashote-mandoob.firebaseio.com",
+    "project_id": "parashote-mandoob",
+    "storage_bucket": "parashote-mandoob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469915841782:android:dbe6c3319d8e686e",
+        "android_client_info": {
+          "package_name": "com.hossam.codesroots.parashot_manadieb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469915841782-28bgsuqp2nbvsebla50n3lc201752grj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCakJhhUe7KxRKbvXKW8ryWZ45t8mAd24k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout android:id="@+id/ordercard"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="10dp"
+    android:layoutDirection="rtl"
+    android:weightSum="5"
+    android:background="@drawable/linear_background_for_subcat"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidhorizental"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidhorizental3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidhorizenta2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidhorizenta3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.72" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidvertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidvertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidvertical3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidvertical33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.42" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidvertical333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.71" />
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mobile"
+            app:layout_constraintHeight_percent="0.65"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guidhorizental"
+            app:layout_constraintWidth_percent="0.4" />
+
+
+        <RatingBar
+            android:id="@+id/rates"
+            style="@style/StarRatingBars"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:isIndicator="true"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/guidvertical1"
+            app:layout_constraintTop_toBottomOf="@+id/guidhorizenta3" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:lines="1"
+            android:visibility="gone"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toStartOf="@id/guidvertical3"
+            app:layout_constraintStart_toEndOf="@id/rates"
+            app:layout_constraintTop_toBottomOf="@+id/guidhorizenta3" />
+
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="2"
+            android:textColor="#4A4A4A"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidvertical3"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toEndOf="@id/guidvertical1"
+            app:layout_constraintTop_toBottomOf="@+id/item_img" />
+
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="2"
+            android:textColor="#4A4A4A"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/vieww"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintStart_toEndOf="@id/guidvertical2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/vieww"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#D9D9D9"
+            app:layout_constraintStart_toEndOf="@id/view"
+            app:layout_constraintTop_toBottomOf="@+id/guidhorizental3" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#D9D9D9"
+            app:layout_constraintEnd_toEndOf="@id/guidvertical2"
+            app:layout_constraintStart_toStartOf="@id/guidvertical3" />
+
+        <TextView
+            android:id="@+id/storename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text=" اسم المتجر : "
+            app:layout_constraintStart_toEndOf="@id/guidvertical2"
+            app:layout_constraintTop_toBottomOf="@+id/vieww" />
+
+        <TextView
+            android:id="@+id/storenamevalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            app:layout_constraintStart_toEndOf="@id/storename"
+            app:layout_constraintTop_toBottomOf="@+id/vieww" />
+
+        <TextView
+            android:id="@+id/clientname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="اسم العميل :  "
+            app:layout_constraintStart_toEndOf="@id/guidvertical2"
+            app:layout_constraintTop_toBottomOf="@+id/storename" />
+
+        <TextView
+            android:id="@+id/clientnamevalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            app:layout_constraintStart_toEndOf="@id/storename"
+            app:layout_constraintTop_toBottomOf="@+id/storename" />
+
+        <TextView
+            android:id="@+id/orderstatues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text=" حالة الطلب : "
+            app:layout_constraintStart_toEndOf="@id/guidvertical2"
+            app:layout_constraintTop_toBottomOf="@+id/clientname" />
+
+        <TextView
+            android:id="@+id/orderstatuesvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            app:layout_constraintStart_toEndOf="@id/storename"
+            app:layout_constraintTop_toBottomOf="@+id/clientname"
+          />
+
+
+        <TextView
+            android:id="@+id/orderdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="تاريخ الطلب :  "
+            app:layout_constraintStart_toEndOf="@id/guidvertical2"
+            app:layout_constraintTop_toBottomOf="@+id/orderstatues" />
+
+        <TextView
+            android:id="@+id/orderdatevalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            app:layout_constraintStart_toEndOf="@id/storename"
+            app:layout_constraintTop_toBottomOf="@+id/orderstatues" />
+
+
+        <TextView
+            android:id="@+id/delivery_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/myorder_actions_back"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="@string/start"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guidvertical33"
+            app:layout_constraintWidth_percent="0.4" />
+
+
+    </android.support.constraint.ConstraintLayout>
