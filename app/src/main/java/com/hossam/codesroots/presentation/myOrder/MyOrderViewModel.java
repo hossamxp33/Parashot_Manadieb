@@ -29,6 +29,8 @@ public class MyOrderViewModel extends ViewModel {
     MutableLiveData<MYOrdersModel> myOrders = new MutableLiveData<>();
     MutableLiveData<Throwable> myOrdersError = new MutableLiveData<>();
     MutableLiveData<FilterMyOrder> allMyOrders = new MutableLiveData<FilterMyOrder>();
+    public MutableLiveData<MYOrdersModel> DeliveryOrder = new MutableLiveData<>();
+
     public MutableLiveData<Boolean> editResult = new MutableLiveData<Boolean>();
     ApiInterface apiService;
     int user;
@@ -50,7 +52,19 @@ public class MyOrderViewModel extends ViewModel {
     {
         getObservableEditResult(order,statues).subscribeWith(getObserverEditResult());
     }
+    public void CheckForOrders (int deliverId)
+    {
+        getCheckForOrders(deliverId).subscribeWith(getObserverDelivery());
+    }
+    @SuppressLint("CheckResult")
+    public Observable<MYOrdersModel> getCheckForOrders(int deliverId) {
 
+        Observable<MYOrdersModel> myOrders = ApiClient.getClient().create(ApiInterface.class).getActiveDelivery(deliverId);
+        myOrders.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        return myOrders;
+    }
     @SuppressLint("CheckResult")
     public Observable<MYOrdersModel> getObservable( int deliverId) {
 
@@ -79,7 +93,23 @@ public class MyOrderViewModel extends ViewModel {
             }
         };
     }
+    public DisposableObserver<MYOrdersModel> getObserverDelivery() {
+        return new DisposableObserver<MYOrdersModel>() {
+            @Override
+            public void onNext(@io.reactivex.annotations.NonNull MYOrdersModel result) {
+                DeliveryOrder.postValue(result);
+            }
 
+            @Override
+            public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                e.printStackTrace();
+                //     myOrdersError.postValue(e.getCause());
+            }
+            @Override
+            public void onComplete() {
+            }
+        };
+    }
     @SuppressLint("CheckResult")
     public Observable<OrderEdit> getObservableEditResult( int orderid,int newStatues) {
 

@@ -1,14 +1,17 @@
 package com.hossam.codesroots.presentation.mainFragment;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.InflateException;
@@ -24,9 +27,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.helper.BroadcastHelper;
 import com.hossam.codesroots.helper.PreferenceHelper;
-import com.hossam.codesroots.delivery24.R;
+import com.hossam.codesroots.presentation.myOrder.MyOrderViewModel;
+import com.hossam.codesroots.presentation.myOrder.adapters.MyOrderAdapter;
 
 import java.util.Objects;
 
@@ -38,8 +44,11 @@ public class MainFragment extends Fragment implements OnMapReadyCallback,Locatio
     MapView mapView;
     GoogleMap map;
     MyReceiver mReceiver;
+    private MyOrderViewModel mViewModel;
+
     boolean isRegistered = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -53,7 +62,24 @@ public class MainFragment extends Fragment implements OnMapReadyCallback,Locatio
         } catch (InflateException e) {
             Log.e(TAG, "Inflate Map exception");
         }
+        mViewModel =  ViewModelProviders.of(this).get(MyOrderViewModel.class);
+        mViewModel.CheckForOrders(1); //PreferenceHelper.getDeliveryId()
 
+        mViewModel.DeliveryOrder.observe(this, myOrdersModel -> {
+            Log.i(TAG, "onCreateView: "+myOrdersModel);
+            if (myOrdersModel.getDataa() != null) {
+                myOrdersModel.getDataa().getOrderdetails().forEach((data) ->
+                        map.addMarker(new MarkerOptions()
+                                .position(new LatLng(data.getSmallstore().getLatitude(), data.getSmallstore().getLongitude()))
+                                .anchor(0.5f, 0.5f)
+                                .title(data.getSmallstore().getName())
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.mark))) );
+
+
+
+
+            }
+        });
         return view;
     }
 
