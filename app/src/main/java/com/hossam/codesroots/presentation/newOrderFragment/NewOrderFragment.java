@@ -15,6 +15,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -25,7 +27,6 @@ import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -36,40 +37,54 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.hossam.codesroots.entities.MYOrdersModel;
+import com.hossam.codesroots.entities.MyOrderData;
+import com.hossam.codesroots.entities.Orderdetail;
 import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.helper.directionhelpers.FetchURL;
 import com.hossam.codesroots.helper.directionhelpers.TaskLoadedCallback;
-import com.hossam.codesroots.parashot_manadieb.R;
-
+import com.hossam.codesroots.delivery24.R;
+import com.hossam.codesroots.presentation.myOrder.MyOrderFragment;
+import com.hossam.codesroots.presentation.newOrderFragment.adapter.newOrderFragmentAdapter;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Objects;
-
 import static android.content.ContentValues.TAG;
 
 
 @SuppressLint("ValidFragment")
-public class NewOrderFragment extends Fragment implements OnMapReadyCallback,TaskLoadedCallback,LocationListener,View.OnClickListener {
+public class NewOrderFragment extends Fragment implements
+        OnMapReadyCallback,TaskLoadedCallback,LocationListener,View.OnClickListener {
 
     MapView mapView;
     GoogleMap map;
     private MarkerOptions placemandoib, placeuser,placestor;
     String uname,sname,ulat,ulong,uaddress,saddress,productname,price,slat,slong;
-    int deliveryId =1,orderId,userid;
+    int deliveryId = 1,orderId,userid;
     TextView txtuname,txtsname,txtuaddress,txtsaddress,txtproductname,txtprice,slideTitle,accept,refuse;
     private BottomSheetBehavior mBottomSheetBehaviour;
     NestedScrollView nestedScrollView;
     NewOrderViewModel newOrderViewModel;
+    MYOrdersModel data;
     private FrameLayout progress;
+    private RecyclerView recycelView_main;
+    newOrderFragmentAdapter myOrderAdapter;
+    List<Orderdetail> orderdetailsBeans;
 
     public NewOrderFragment() {
     }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.firstneworder, container, false);
+
         newOrderViewModel = ViewModelProviders.of(this).get(NewOrderViewModel.class);
+        recycelView_main = view.findViewById(R.id.recycelView_main);
+
+
+
+
         newOrderViewModel.newoffer.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -78,8 +93,10 @@ public class NewOrderFragment extends Fragment implements OnMapReadyCallback,Tas
                     Toast.makeText(getActivity(),getText(R.string.addOfferSucess),Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getActivity(),getText(R.string.erroroccur),Toast.LENGTH_SHORT).show();
+
             }
         });
+
         findFromXml(view);
         if (getArguments()!=null)
         setDataInFields(getArguments());
@@ -106,41 +123,56 @@ public class NewOrderFragment extends Fragment implements OnMapReadyCallback,Tas
                 }
             }
         });
-
         return view;
     }
 
     private void setDataInFields(Bundle arguments) {
         DecimalFormat decimalFormat = new DecimalFormat("#.#####");
-        // uname= getArguments().getString("user_name");
-        uname= "osama";
-        ulat= arguments.getString("user_lat");
-        ulong= arguments.getString("user_long");
-        uaddress= arguments.getString("user_address");
-        slat= arguments.getString("stor_lat");
-        slong= arguments.getString("stor_long");
-        sname= arguments.getString("store_name");
-        price= arguments.getString("price");
-        productname= arguments.getString("productname");
-        saddress= arguments.getString("storeaddress");
-        orderId= arguments.getInt("id",0);
-        userid= arguments.getInt("userid",0);
+        uname= getArguments().getString("user_name");
+        //uname= "osama";
+        data = arguments.getParcelable("data");
+        myOrderAdapter = new newOrderFragmentAdapter(getActivity(),data.getData().get(0).getOrderdetails());
+        recycelView_main.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        recycelView_main.setAdapter(myOrderAdapter);
+//        ulat= arguments.getString("user_lat");
+//        ulong= arguments.getString("user_long");
+//        uaddress= arguments.getString("user_address");
+//        slat= arguments.getString("stor_lat");
+//        slong= arguments.getString("stor_long");
+//        sname= arguments.getString("store_name");
+//        price= arguments.getString("price");
+//        productname= arguments.getString("productname");
+//        saddress= arguments.getString("storeaddress");
+       orderId= data.getData().get(0).getId();
+       userid = data.getData().get(0).getUserID();
 
-        ulat="31.013056";
-        ulong="32.013056";
-        txtuname.setText(uname);
-        txtsname.setText(sname);
-        txtuaddress.setText(uaddress);
-        txtsaddress.setText(saddress);
-        txtproductname.setText(productname);
-        txtprice.setText(price);
-        placemandoib = new MarkerOptions().
-                position(new LatLng(Double.valueOf(PreferenceHelper.getCURRENTLAT()), Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
-                title(PreferenceHelper.getUserName());
-        placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(ulat),Double.valueOf(ulong))).title(uname);
-        placestor = new MarkerOptions().position(new LatLng(Double.valueOf(slat),Double.valueOf(slong))).title(sname);
 
-    }
+//        ulat="31.013056";
+//        ulong="32.013056";
+
+//        if (ulat.length()>10)
+//        ulat = ulat.substring(0,10);
+//        if (ulong.length()>10)
+//        ulong = ulong.substring(0,10);
+
+
+//        txtuname.setText(uname);
+//        txtsname.setText(sname);
+//        txtuaddress.setText(uaddress);
+//        txtsaddress.setText(saddress);
+//        txtproductname.setText(productname);
+//        txtprice.setText(price);
+
+//        placemandoib = new MarkerOptions().
+//                position(new LatLng(Double.valueOf(PreferenceHelper.getCURRENTLAT()),
+//                        Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
+//                title(" موقعك ");
+//
+       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(uname);
+        for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
+            placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
+        }
+}
 
     @Override
     public void onResume() {
@@ -241,17 +273,11 @@ public class NewOrderFragment extends Fragment implements OnMapReadyCallback,Tas
     }
 
     private String getUrl(LatLng origin, LatLng dest, String directionMode) {
-        // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-        // Destination of route
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-        // Mode
         String mode = "mode=" + directionMode;
-        // Building the parameters to the web service
         String parameters = str_origin + "&" + str_dest + "&" + mode;
-        // Output format
         String output = "json";
-        // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.google_maps_key);
         return url;
     }
@@ -261,6 +287,7 @@ public class NewOrderFragment extends Fragment implements OnMapReadyCallback,Tas
         Polyline currentPolyline = map.addPolyline((PolylineOptions) values[0]);
         currentPolyline.setColor(R.color.colorPrimary);
         currentPolyline.setWidth(11);
+
     }
 
     @Override
@@ -292,10 +319,11 @@ public class NewOrderFragment extends Fragment implements OnMapReadyCallback,Tas
                 if (storagetxt.getText().toString().matches(""))
                     storagetxt.setError(getResources().getString(R.string.complet));
                 else {
-
                     newOrderViewModel.addOffer(orderId,userid,deliveryId,storagetxt.getText().toString());
                     progress.setVisibility(View.VISIBLE);
                     alertDialog.dismiss();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,new MyOrderFragment()).addToBackStack(null).
+                            setCustomAnimations(R.anim.animation_new_order,R.anim.animation_new_order2).commit();
                 }
             }
         });

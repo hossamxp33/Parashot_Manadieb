@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#860154</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#272727</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="white">#ffffffff</color>
@@ -20,7 +20,7 @@
     <color name="text_numbers">#DC214C</color>
     <color name="colortwo">#DC214C</color>
     <color name="colorbackinorderconf">#D91368</color>
-    <color name="maptextcolor">#D91368</color>
+    <color name="maptextcolor">#D93E13</color>
     <color name="darkgrey">#514F4F</color>
     <color name="lightPurple">#D482DF</color>
     <color name="chatbackforsender">#E7EBEE</color>
@@ -30,4 +30,5 @@
     <color name="backinsendmessage">#E6EAEB</color>
     <color name="lightergrey">#E6EAEB</color>
     <color name="green">#00FF00</color>
+    <color name="textcolor_inneworder">#4A4A4A</color>
 </resources>

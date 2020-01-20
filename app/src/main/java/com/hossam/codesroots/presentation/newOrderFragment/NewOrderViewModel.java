@@ -45,7 +45,6 @@ public class NewOrderViewModel extends ViewModel {
                     newoffer.postValue(false);
             }
 
-
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.d(TAG, "Error" + e);

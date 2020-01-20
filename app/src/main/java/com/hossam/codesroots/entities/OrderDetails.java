@@ -51,6 +51,10 @@ public class OrderDetails implements Parcelable {
         }
     };
 
+
+    public String get() {
+        return storename;
+    }
     public String getStorename() {
         return storename;
     }

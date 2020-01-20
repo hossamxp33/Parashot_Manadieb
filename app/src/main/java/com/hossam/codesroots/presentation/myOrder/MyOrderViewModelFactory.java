@@ -26,16 +26,12 @@ public class MyOrderViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 
-
          if (modelClass == MyOrderViewModel.class)
         {
             return (T) new MyOrderViewModel(getMyOrderRepositry(userid));
         }
-
         throw new IllegalArgumentException("Invalid view model class type");
     }
-
-
 
 
     @NonNull

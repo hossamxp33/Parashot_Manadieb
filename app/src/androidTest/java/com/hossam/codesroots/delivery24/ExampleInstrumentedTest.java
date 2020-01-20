@@ -1,4 +1,4 @@
-package com.hossam.codesroots.parashot_manadieb;
+package com.hossam.codesroots.delivery24;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

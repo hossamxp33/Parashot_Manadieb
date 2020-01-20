@@ -6,8 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.hossam.codesroots.entities.MYOrdersModel;
-import com.hossam.codesroots.parashot_manadieb.R;
+
+import com.hossam.codesroots.entities.Orderdetail;
+import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.allProductInsideOrderFragment.adapter.ProductsInsideOrderAdapter;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ProductsInsideOrderFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ProductsInsideOrderAdapter productsInsideOrderAdapter;
-    List<MYOrdersModel.DataBean.OrderdetailsBean> orderdetailsBeans;
+    List<Orderdetail> orderdetailsBeans;
     public ProductsInsideOrderFragment() {
     }
 
@@ -32,7 +33,7 @@ public class ProductsInsideOrderFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_product_inside_orders, container, false);
-        recyclerView = view.findViewById(R.id.recylerview);
+        recyclerView = view.findViewById(R.id.recylerviewInside);
 
         assert getArguments() != null;
         orderdetailsBeans =  getArguments().getParcelableArrayList("allProduct");

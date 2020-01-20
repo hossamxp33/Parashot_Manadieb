@@ -91,7 +91,9 @@ public class GpsTracker extends Service implements LocationListener {
                 if (isGPSEnabled) {
                     if (location == null) {
                         //check the network permission
-                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                                && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                        {
                             ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
                         }
                         locationManager.requestLocationUpdates(
@@ -116,8 +118,9 @@ public class GpsTracker extends Service implements LocationListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        PreferenceHelper.setCURRENTLAT(String.valueOf(location.getLatitude()));
-        PreferenceHelper.setCURRENTLONG(String.valueOf(location.getLongitude()));
+
+//        PreferenceHelper.setCURRENTLAT(String.valueOf(location.getLatitude()));
+//        PreferenceHelper.setCURRENTLONG(String.valueOf(location.getLongitude()));
         return location;
     }
 
@@ -202,6 +205,7 @@ public class GpsTracker extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+        Log.d("sdflocation",location.getLatitude()+"");
     }
 
     @Override

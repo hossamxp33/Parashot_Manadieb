@@ -26,15 +26,15 @@ public class ChatingRepository {
     private Consumer<Throwable> onErrorChatList;
     private Consumer<Boolean> loading;
 
-
     public ChatingRepository(ApiInterface apiService1) {
         apiService = apiService1;
 
     }
 
-    public void chatMessages(int userid,int userto) {
+
+    public void chatMessages(int page,int orderid) {
         try {
-            apiService.getChatData(userid,userto).enqueue(new Callback<chatmessages>() {
+            apiService.getChatData(page,orderid).enqueue(new Callback<chatmessages>() {
                 @Override
                 public void onResponse(Call<chatmessages> call, final Response<chatmessages> response) {
                     if (response.body() != null) {
@@ -98,16 +98,21 @@ public class ChatingRepository {
         }
     }
 
-    public void addMessage(int userto,int userfrom,String mesg, MultipartBody.Part part) {
+    public void addMessage(int userid,int orderid ,String roomid,String mesg, MultipartBody.Part part) {
         try {
-            apiService.addmessages(createPartFromString(String.valueOf(userto)),createPartFromString(String.valueOf(userfrom)),
-                    createPartFromString(mesg),part).enqueue(new Callback<AddMessage>() {
+            apiService.addmessages(createPartFromString(String.valueOf(userid)),createPartFromString(String.valueOf(orderid))
+                    ,createPartFromString(String.valueOf(roomid)),
+                    createPartFromString(mesg),createPartFromString("delivries"),part).enqueue(new Callback<AddMessage>() {
                 @Override
                 public void onResponse(Call<AddMessage> call, final Response<AddMessage> response) {
                     if (response.body() != null) {
                         if (onSuccessAdd != null) {
                             onSuccessAdd.accept(response.body());
                         }
+                    }
+                    else {
+                        if (onError != null)
+                            onError.accept(new Exception());
                     }
                 }
 

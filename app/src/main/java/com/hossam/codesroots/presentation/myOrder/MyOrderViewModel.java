@@ -8,13 +8,14 @@ import android.util.Log;
 import com.hossam.codesroots.dataLayer.apiData.ApiClient;
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface;
 import com.hossam.codesroots.entities.MYOrdersModel;
+import com.hossam.codesroots.entities.MyOrderData;
+import com.hossam.codesroots.entities.OrderEdit;
 import java.util.ArrayList;
 import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-
 import static com.hossam.codesroots.helper.MyApplication.TAG;
 
 public class MyOrderViewModel extends ViewModel {
@@ -22,12 +23,13 @@ public class MyOrderViewModel extends ViewModel {
 
     int deliveryId = 1;
     public MyOrderViewModel() {
-        getObservable(deliveryId).subscribeWith(getObserver());
+        getData();
     }
 
     MutableLiveData<MYOrdersModel> myOrders = new MutableLiveData<>();
     MutableLiveData<Throwable> myOrdersError = new MutableLiveData<>();
     MutableLiveData<FilterMyOrder> allMyOrders = new MutableLiveData<FilterMyOrder>();
+    public MutableLiveData<Boolean> editResult = new MutableLiveData<Boolean>();
     ApiInterface apiService;
     int user;
     public MyOrderViewModel(ApiInterface apiService1, int userid) {
@@ -38,6 +40,16 @@ public class MyOrderViewModel extends ViewModel {
     public MyOrderViewModel(MyOrderViewModel myOrderRepositry) {
     }
 
+
+    public void getData ()
+    {
+        getObservable(deliveryId).subscribeWith(getObserver());
+    }
+
+    public void editResult(int order,int statues)
+    {
+        getObservableEditResult(order,statues).subscribeWith(getObserverEditResult());
+    }
 
     @SuppressLint("CheckResult")
     public Observable<MYOrdersModel> getObservable( int deliverId) {
@@ -65,25 +77,50 @@ public class MyOrderViewModel extends ViewModel {
             @Override
             public void onComplete() {
             }
+        };
+    }
 
+    @SuppressLint("CheckResult")
+    public Observable<OrderEdit> getObservableEditResult( int orderid,int newStatues) {
+
+        Observable<OrderEdit> myOrders = ApiClient.getClient().create(ApiInterface.class).editOrderStatuesData(orderid,newStatues);
+        myOrders.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        return myOrders;
+    }
+
+    public DisposableObserver<OrderEdit> getObserverEditResult() {
+        return new DisposableObserver<OrderEdit>() {
+            @Override
+            public void onNext(@NonNull OrderEdit responseBody) {
+                if (responseBody.isEditorder())
+                    editResult.postValue(true);
+                else
+                    editResult.postValue(false);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.d(TAG, "Error" + e);
+                editResult.postValue(false);
+            }
+            @Override
+            public void onComplete() {
+            }
         };
     }
 
     private FilterMyOrder filterData(MYOrdersModel body) {
-
-        List<MYOrdersModel.DataBean> commpleteOrderData=new ArrayList<>();
-        List<MYOrdersModel.DataBean> notCommpleteOrderData=new ArrayList<>();
-
+        List<MyOrderData> commpleteOrderData=new ArrayList<>();
+        List<MyOrderData> notCommpleteOrderData=new ArrayList<>();
         for (int i=0;i<body.getData().size();i++)
         {
-            if (body.getData().get(i).getOrder_status().matches("3"))
+
+            if (body.getData().get(i).getOrderStatus().matches("4"))
                 commpleteOrderData.add(body.getData().get(i));
             else
                 notCommpleteOrderData.add(body.getData().get(i));
-
         }
-
         return new FilterMyOrder(commpleteOrderData,notCommpleteOrderData);
     }
-
 }

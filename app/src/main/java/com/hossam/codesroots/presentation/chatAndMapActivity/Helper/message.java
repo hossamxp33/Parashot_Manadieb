@@ -5,13 +5,20 @@ import android.os.Parcel;
 public class message {
 
 
-        String message,imageuri,time;
+        String message,imageuri,time,groupid;
         int from,to;
 
 
     public message() {
     }
 
+    public String getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid(String groupid) {
+        this.groupid = groupid;
+    }
 
     public String getTime() {
         return time;

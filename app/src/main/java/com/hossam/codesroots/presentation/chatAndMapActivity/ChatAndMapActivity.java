@@ -2,13 +2,14 @@ package com.hossam.codesroots.presentation.chatAndMapActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import com.hossam.codesroots.parashot_manadieb.R;
+import android.widget.TextView;
+
+import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.chat.ChatingFragment;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.map.MapingFragment;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -17,6 +18,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class ChatAndMapActivity extends AppCompatActivity {
     ViewPager mViewPager;
     SectionsPagerAdapter mSectionsPagerAdapter;
+    TextView title;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -27,11 +29,31 @@ public class ChatAndMapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chatwithmap);
-        mViewPager =  findViewById(R.id.container);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        title = findViewById(R.id.title);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("orderid", getIntent().getIntExtra("orderid", 0));
+        bundle.putString("roomId", getIntent().getStringExtra("roomId"));
+        bundle.putString("notes", getIntent().getStringExtra("notes"));
+        Fragment fragment = new ChatingFragment();
+        Fragment fragment1 = new MapingFragment();
+        fragment.setArguments(bundle);
+        fragment1.setArguments(bundle);
+
+        if (getIntent().getStringExtra("chatormap").matches("chat")) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment).addToBackStack(null).commit();
+            title.setText(getResources().getString(R.string.chating));
+        }
+        else  if (getIntent().getStringExtra("chatormap").matches("map")) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment1).addToBackStack(null).commit();
+            title.setText(getResources().getString(R.string.orderdelivery));
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -55,6 +77,7 @@ public class ChatAndMapActivity extends AppCompatActivity {
             // Show 2 total pages.
             return 2;
         }
+
 
         @Override
         public CharSequence getPageTitle(int position) {

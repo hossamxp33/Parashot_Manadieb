@@ -5,7 +5,7 @@ public class AddMessage {
 
     /**
      * success : true
-     * chat : {"too":1,"fromm":2,"post":"hello ahmed","photo":"http://manadeeb.codesroots.com/library/chat/1545471495533423308.png","message_id":1,"name":"osama","created":"2018-12-22T12:38:15+0300","modified":"2018-12-22T12:38:15+0300","id":489}
+     * chat : {"user_id":129,"room_id":"11","post":"hello ahmed","photo":"","name":"err4443eedd","created":"2019-01-14T19:52:18+0300","modified":"2019-01-14T19:52:18+0300","id":1839}
      */
 
     private String success;
@@ -29,41 +29,39 @@ public class AddMessage {
 
     public static class ChatBean {
         /**
-         * too : 1
-         * fromm : 2
+         * user_id : 129
+         * room_id : 11
          * post : hello ahmed
-         * photo : http://manadeeb.codesroots.com/library/chat/1545471495533423308.png
-         * message_id : 1
-         * name : osama
-         * created : 2018-12-22T12:38:15+0300
-         * modified : 2018-12-22T12:38:15+0300
-         * id : 489
+         * photo :
+         * name : err4443eedd
+         * created : 2019-01-14T19:52:18+0300
+         * modified : 2019-01-14T19:52:18+0300
+         * id : 1839
          */
 
-        private int too;
-        private int fromm;
+        private int user_id;
+        private String room_id;
         private String post;
         private String photo;
-        private int message_id;
         private String name;
         private String created;
         private String modified;
         private int id;
 
-        public int getToo() {
-            return too;
+        public int getUser_id() {
+            return user_id;
         }
 
-        public void setToo(int too) {
-            this.too = too;
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
         }
 
-        public int getFromm() {
-            return fromm;
+        public String getRoom_id() {
+            return room_id;
         }
 
-        public void setFromm(int fromm) {
-            this.fromm = fromm;
+        public void setRoom_id(String room_id) {
+            this.room_id = room_id;
         }
 
         public String getPost() {
@@ -80,14 +78,6 @@ public class AddMessage {
 
         public void setPhoto(String photo) {
             this.photo = photo;
-        }
-
-        public int getMessage_id() {
-            return message_id;
-        }
-
-        public void setMessage_id(int message_id) {
-            this.message_id = message_id;
         }
 
         public String getName() {

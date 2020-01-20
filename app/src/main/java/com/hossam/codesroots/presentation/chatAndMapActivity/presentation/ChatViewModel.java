@@ -62,25 +62,22 @@ public class ChatViewModel extends ViewModel {
             addMessageLiveDataValue.postValue(addMessage);
         });
 
-
         this.chatingRepository = repository;
     }
 
-    public void addMessaege(int userto,int userFrom ,String mesg, MultipartBody.Part part)
+    public void addMessaege(int userid,int orderid,String roomid ,String mesg, MultipartBody.Part part)
     {
-        chatingRepository.addMessage(userto,userFrom,mesg,part);
+        chatingRepository.addMessage(userid,orderid,roomid,mesg,part);
     }
 
-    public void getChatData(int user,int to)
+    public void getChatData(int page,int orderid)
     {
-        chatingRepository.chatMessages(user,to);
+        chatingRepository.chatMessages(page,orderid);
     }
-
 
     public void getChaListtData(int userid)
     {
         chatingRepository.chatList(userid);
     }
-
 
 }

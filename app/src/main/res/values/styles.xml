@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -16,6 +16,7 @@
     <style name="StarRatingBars" parent="@android:style/Widget.RatingBar">
         <item name="android:indeterminateDrawable">@drawable/ub__stars</item>
         <item name="android:progressDrawable">@drawable/ub__stars</item>
+        <item name="colorControlNormal">#FFC107</item>
     </style>
 
 </resources>

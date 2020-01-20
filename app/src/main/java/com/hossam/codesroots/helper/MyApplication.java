@@ -8,7 +8,7 @@ import android.util.Log;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
 import com.crashlytics.android.Crashlytics;
 import com.github.nkzawa.emitter.Emitter;
-import com.hossam.codesroots.parashot_manadieb.R;
+import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.MainActivity;
 
 import io.fabric.sdk.android.Fabric;
@@ -26,7 +26,7 @@ public class MyApplication extends Application {
         Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
         mInstance = this;
         context = getApplicationContext();
-
+        PreferenceHelper preferenceHelper = new PreferenceHelper(this);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/JF-Flat-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
@@ -64,8 +64,8 @@ public class MyApplication extends Application {
 //        return mRequestQueue;
 //    }
 //
-//    public void setConnectivityListener(NetworkChangeReceiver.ConnectivityReceiverListener listener) {
-//        NetworkChangeReceiver.connectivityReceiverListener = listener;
-//    }
+    public void setConnectivityListener(NetworkChangeReceiver.ConnectivityReceiverListener listener) {
+        NetworkChangeReceiver.connectivityReceiverListener = listener;
+    }
 }
 

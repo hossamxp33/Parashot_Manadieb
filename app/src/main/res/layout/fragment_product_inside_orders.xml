@@ -15,7 +15,7 @@
             android:layout_marginLeft="4dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             android:layout_marginTop="10dp"
-            android:id="@+id/recylerview">
+            android:id="@+id/recylerviewInside">
 
         </android.support.v7.widget.RecyclerView>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Parashot_Manadieb</string>
+    <string name="app_name">Delivery24</string>
     <string name="title_dashboard">الرئيسية</string>
     <!--<string name="google_maps_key">AIzaSyBYiC0IfcpWwEuGS-9y0xrBDVTUWq8i6dw</string>-->
     <!--<string name="google_maps_key">AIzaSyBG17XsWDw65bc0KavRLkARmFghjY4Aaeo</string>-->
@@ -27,8 +27,7 @@
     <string name="commplete">مكتملة</string>
     <string name="ordernotfound">لا يوجد اي طلبات</string>
     <string name="notcommplete">غير مكتملة</string>
-    <string name="start">بدأ الرحلة</string>
-
+    <string name="start">بدء الرحلة</string>
     <string name="offernotfound">لا يوجد عروض لطلبك</string>
     <string name="orderfromgoogle">طلبك من متاجر جوجل ولا يوجد منتجات بداخله</string>
     <string name="waiting">انتظر ...</string>
@@ -36,4 +35,49 @@
     <string name="chating">الدردشة</string>
     <string name="maping">الخريطة</string>
     <string name="connected">متصل</string>
+    <string name="orderdetails">تفاصيل الطلبات</string>
+    <string name="banky">بطاقة إئتمانية</string>
+    <string name="card">تحويل بنكي</string>
+    <string name="waitstart">بانتظار بدء الرحلة</string>
+    <string name="startnow1">ابدأ الان</string>
+    <string name="gotoclient">بانتظار الذهاب للعميل</string>
+    <string name="gotoclientnow">الذهاب الان</string>
+    <string name="waitdeliver">بانتظار التسليم</string>
+    <string name="gotoclientway">في الطريق للعميل</string>
+    <string name="orderdelivery">متابعة الطلب</string>
+    <string name="recievied">تم التسليم</string>
+    <string name="clientt">العميل</string>
+    <string name="stor">المتجر</string>
+    <string name="myAccount">حسابي</string>
+    <string name="menu">القائمة</string>
+    <string name="myOrder">طلباتي</string>
+    <string name="notificatin">اشعارات</string>
+    <string name="username"><font size="16">اسم المستخدم</font></string>
+    <string name="register">تسجيل</string>
+    <string name="register_in_login">التسجيل</string>
+    <string name="forgetpassword">نسيت كلمة المرور؟</string>
+    <string name="registerfb">continue with facebook</string>
+    <string name="password"><font size="16"> كلمة المرور</font></string>
+    <string name="usererror">اسم المستخدم او كلمة المرور غير صحيحة</string>
+    <string name="login">دخول</string>
+    <string name="loginsuccess">تم تسجيل الدخول بنجاح</string>
+    <string name="commpletefileds">الرجاء اكمال البيانات</string>
+    <string name="available_banks">البنوك المتاحة</string>
+    <string name="error_add">حدث خطا, حاول مرة أخري</string>
+    <string name="bank_name">  اسم البنك : </string>
+    <string name="account_num">  رقم الحساب : </string>
+    <string name="iban_num">رقم IBAN :  </string>
+    <string name="account_owner">اسم صاحب الحساب</string>
+    <string name="phone_num">رقم الجوال</string>
+    <string name="client_bank">بنك السواق</string>
+    <string name="birthdate">تاريخ الميلاد</string>
+    <string name="pay_img">اضافة صورة الايصال</string>
+    <string name="send">ارسال</string>
+    <string name="paymentinfo">معلومات الدفع</string>
+    <string name="addusername">أدخل اسم صاحب الحساب</string>
+    <string name="addphone">أدخل رقم الجوال</string>
+    <string name="addbank">أدخل اسم البنك</string>
+    <string name="addpayimg">أضف صورة الايصال</string>
+    <string name="addinfosuccess">تم اضافة معلوماتك بنجاح</string>
+    <string name="no_notification">لا يوجد اشعارات لديك</string>
 </resources>

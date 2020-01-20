@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hossam.codesroots.helper.PreferenceHelper;
-import com.hossam.codesroots.parashot_manadieb.R;
+import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.ChatList;
 
 import java.text.ParseException;

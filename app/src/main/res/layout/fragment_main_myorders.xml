@@ -1,88 +1,113 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/orderstatues"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="9dp"
-        android:background="@drawable/linear_background_for_order_statues"
-        android:orientation="horizontal"
-        android:weightSum="2"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/layout_reduis"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/progress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.5">
+        app:layout_constraintVertical_bias="0.0">
 
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/ordernotcommplet"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@drawable/order_type_notcommplete_selector"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="@string/notcommplete"
-            android:textColor="@color/order_type_text_selector"
-            android:textSize="16sp" />
+        <RadioGroup
+            android:id="@+id/orderstatues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout">
 
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary" />
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/ordernotcommplet"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:padding="8dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/order_type_notcommplete_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/notcommplete"
+                android:textColor="@color/order_type_text_selector"
+                android:textSize="16sp" />
 
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/ordercommplet"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/order_type_selector"
-            android:button="@null"
-            android:layout_marginEnd="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:gravity="center"
-            android:text="@string/commplete"
-            android:textColor="@color/order_type_text_selector" />
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/ordercommplet"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:padding="8dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/order_type_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/commplete"
+                android:textColor="@color/order_type_text_selector" />
 
-    </RadioGroup>
+        </RadioGroup>
 
+
+
+
+    </android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/txtnotfound"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/ordernotfound"
         android:textSize="24sp"
-        android:visibility="gone" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recylerview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginRight="7dp"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orderstatues" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/refreshLayout_user" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout_user"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        android:layout_marginTop="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recylerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="7dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderstatues"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <FrameLayout
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

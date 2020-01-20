@@ -26,7 +26,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hossam.codesroots.helper.BroadcastHelper;
 import com.hossam.codesroots.helper.PreferenceHelper;
-import com.hossam.codesroots.parashot_manadieb.R;
+import com.hossam.codesroots.delivery24.R;
 
 import java.util.Objects;
 
@@ -39,7 +39,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback,Locatio
     GoogleMap map;
     MyReceiver mReceiver;
     boolean isRegistered = false;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -96,6 +95,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback,Locatio
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

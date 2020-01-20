@@ -58,7 +58,7 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:text="هاتف اونر 7 سي . ثنائي الشريحة . 32 جيجا . رام 3 جيجا . الجيل  "
-        android:textColor="#969696"
+        android:textColor="@color/textcolor_inneworder"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view1"
