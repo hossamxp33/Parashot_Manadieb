@@ -38,8 +38,8 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
     public static com.github.nkzawa.socketio.client.Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://parashotescoket.codesroots.com:2800");
-      //    mSocket = IO.socket("http://192.168.1.2:2800");
+          //  mSocket = IO.socket("http://parashotescoket.codesroots.com:2800");
+          mSocket = IO.socket("http://192.168.1.2:2800");
         }
         catch (URISyntaxException e) {
         }
@@ -125,6 +125,27 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
 
             Log.d("sdfa", (String) args[0]);
         });
+        mSocket.on("accept_offer", args -> {
+            Gson g = new Gson();
+            MYOrdersModel p = g.fromJson(String.valueOf((JSONObject) args[0]), (Type) MYOrdersModel.class);
+
+
+            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent1.putExtra("name", "ss");
+            try {
+                JSONObject jsonObject = (JSONObject) args[1];
+                intent1.putExtra("new_order", 1);
+                intent1.putExtra("data",p);
+            }
+            catch (Exception e) {
+                Log.d("asdf",e.getMessage());
+            }
+            startActivity(intent1);
+
+            Log.d("sdfa", (String) args[0]);
+        });
+
     }
 
 
@@ -183,5 +204,6 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
             }
         mSocket.disconnect();
     }
+
 
 }
