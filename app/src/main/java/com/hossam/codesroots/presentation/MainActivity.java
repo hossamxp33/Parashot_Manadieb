@@ -254,8 +254,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
     }
-
-
     private void setupNavigation() {
         bottomNavigation = findViewById(R.id.bottom_navigation);
         online_statues = findViewById(R.id.online_statues);
