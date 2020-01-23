@@ -151,7 +151,10 @@ public class MainActivity extends AppCompatActivity {
         if (new_order == 1) {
             gotoNewOrderFragment(intent);
         }
-
+        int last_order = intent.getIntExtra("last_order", 0);
+        if (new_order == 1) {
+            gotoLastOrderFragment(intent);
+        }
         String action = intent.getStringExtra("action");
         if (action!=null) {
             if (action.matches("connect")) {
@@ -172,7 +175,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        startService(new Intent(this, MyService.class));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, MyService.class));
+        } else {
+            startService(new Intent(this, MyService.class));
+        }
         if (isGooglePlayServicesAvailable()) {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             startCurrentLocationUpdates();
@@ -292,5 +299,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
     }
+    private void gotoLastOrderFragment(Intent intent) {
+        MYOrdersModel data = intent.getParcelableExtra("data");
 
+        Fragment fragment = new MainFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data",data);
+
+        fragment.setArguments(bundle);
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
+                setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
+    }
 }

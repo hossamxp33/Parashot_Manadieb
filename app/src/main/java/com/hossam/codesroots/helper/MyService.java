@@ -134,8 +134,7 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
             intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent1.putExtra("name", "ss");
             try {
-                JSONObject jsonObject = (JSONObject) args[1];
-                intent1.putExtra("new_order", 1);
+                intent1.putExtra("last_order", 1);
                 intent1.putExtra("data",p);
             }
             catch (Exception e) {
@@ -143,7 +142,6 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
             }
             startActivity(intent1);
 
-            Log.d("sdfa", (String) args[0]);
         });
 
     }
@@ -199,9 +197,10 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
     public void onDestroy() {
         super.onDestroy();
         if (mReceiver != null)
-            if (isRegistered) {
+          //  if (isRegistered) {
                 unregisterReceiver(mReceiver);
-            }
+
+         //   }
         mSocket.disconnect();
     }
 
