@@ -3,37 +3,16 @@
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/productname"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:layout_marginTop="5dp"
-    android:background="@drawable/linear_background_for_new_order"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:padding="5dp"
     android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/item_img"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:padding="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:layout_gravity="top"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/income" />
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="2dp"
-        android:layout_gravity="top"
-        app:layout_constraintStart_toEndOf="@id/item_img"
-        android:layout_height="35dp"
-        android:layout_marginStart="5dp"
-        android:background="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/storename"
@@ -41,27 +20,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="3dp"
-        android:layout_marginStart="3dp"
-        android:maxLines="2"
         android:ellipsize="end"
+        android:maxLines="2"
         android:text="@string/productname"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/view1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/product_name"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:maxLines="2"
         android:ellipsize="end"
+        android:maxLines="3"
         android:text="هاتف اونر 7 سي . ثنائي الشريحة . 32 جيجا . رام 3 جيجا . الجيل  "
+        android:textAlignment="center"
         android:textColor="@color/textcolor_inneworder"
-        android:textSize="15dp"
+        android:textSize="13dp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storename" />
 
 </android.support.constraint.ConstraintLayout>

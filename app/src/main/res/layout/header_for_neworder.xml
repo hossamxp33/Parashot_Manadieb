@@ -26,30 +26,14 @@
         android:layoutDirection="rtl"
         android:weightSum="7">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="23dp"
-            android:layout_weight="2.5"
-            android:layout_gravity="center"
-            android:src="@drawable/view1"
-            />
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/neworder"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textSize="16dp"
+            android:text="@string/neworder"
             android:textColor="@color/black"
-            android:layout_weight="2"/>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="23dp"
-            android:layout_weight="2.5"
-            android:layout_gravity="center"
-            android:src="@drawable/view2"
-            />
+            android:textSize="16dp" />
 
     </LinearLayout>
     <ImageView

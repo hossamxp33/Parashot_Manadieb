@@ -7,9 +7,9 @@
     <string name="storeplace">مكان المتجر</string>
     <string name="storename">اسم المتجر</string>
     <string name="refuse">رفض</string>
-    <string name="accept">قبول</string>
-    <string name="clientname">اسم العميل</string>
-    <string name="productname">اسم المنتج</string>
+    <string name="accept">إرسال العرض</string>
+    <string name="clientname">موقع التسليم</string>
+    <string name="productname">موقع الإستلام</string>
     <string name="productprice">سعر المنتج</string>
     <string name="paymentway">طريقة الدفع</string>
     <string name="neworder">طلب جديد</string>

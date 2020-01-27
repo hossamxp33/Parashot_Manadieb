@@ -64,7 +64,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback,Locatio
             Log.e(TAG, "Inflate Map exception");
         }
         mViewModel =  ViewModelProviders.of(this).get(MyOrderViewModel.class);
- if (getArguments().getParcelable("data") != null) {
+        if (getArguments() != null) {
      MYOrdersModel dataa = getArguments().getParcelable("data");
      if (dataa != null) {
 

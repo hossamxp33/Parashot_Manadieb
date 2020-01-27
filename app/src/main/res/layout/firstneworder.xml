@@ -1,7 +1,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layoutDirection="rtl"
     android:orientation="vertical">
@@ -18,18 +18,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/orderheader" />
 
 
     <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mapView">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mapView"
+        app:layout_constraintWidth_percent="0.9">
+
 
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
@@ -37,43 +40,25 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
             android:background="@color/back_home3"
-            android:paddingBottom="100dp"
+            android:paddingBottom="120dp"
             app:layout_behavior="@string/bottom_sheet_behavior"
-            app:layout_constraintHeight_percent="0.2">
+            app:layout_constraintHeight_percent="1">
 
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="@string/moredetails"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toTopOf="@+id/recycelView_main"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycelView_main"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
+                <ImageView
+                    android:id="@+id/rightmarker"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/income"
                     app:layout_constraintBottom_toTopOf="@+id/second_card_in_new_order"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title"
-                    app:layout_constraintWidth_percent="0.95"
-                    app:reverseLayout="true"></android.support.v7.widget.RecyclerView>
+                    app:layout_constraintEnd_toEndOf="@+id/second_card_in_new_order"
+                    app:layout_constraintStart_toStartOf="@+id/second_card_in_new_order"
+
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--                <include-->
                 <!--                    android:layout_marginTop="10dp"-->
                 <!--                    android:layout_width="0dp"-->
@@ -90,65 +75,86 @@
                     layout="@layout/second_card_in_new_order"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recycelView_main"
-                    app:layout_constraintWidth_percent="0.95" />
+                    app:layout_constraintTop_toBottomOf="@+id/rightmarker"
+                    app:layout_constraintWidth_percent="0.4" />
+
+                <ImageView
+                    android:id="@+id/leftmarker"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/income"
+                    app:layout_constraintBottom_toTopOf="@+id/third_card_in_new_order"
+                    app:layout_constraintEnd_toEndOf="@+id/third_card_in_new_order"
+                    app:layout_constraintStart_toStartOf="@+id/third_card_in_new_order"
+
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <include
                     android:id="@+id/third_card_in_new_order"
                     layout="@layout/third_card_in_new_order"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/second_card_in_new_order"
-                    app:layout_constraintWidth_percent="0.95" />
+                    app:layout_constraintTop_toBottomOf="@+id/leftmarker"
+                    app:layout_constraintWidth_percent="0.48" />
 
-                <include
-                    android:id="@+id/fourth_card_in_new_order"
-                    layout="@layout/fourth_card_in_new_order"
+                <!--                <include-->
+                <!--                    android:id="@+id/fourth_card_in_new_order"-->
+                <!--                    layout="@layout/fourth_card_in_new_order"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/third_card_in_new_order"-->
+                <!--                    app:layout_constraintWidth_percent="0.95" />-->
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycelView_main"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/acceptorder"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/third_card_in_new_order"
-                    app:layout_constraintWidth_percent="0.95" />
+                    app:layout_constraintWidth_percent="0.95"
+                    app:reverseLayout="true">
 
+                </android.support.v7.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/offerprice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#00030303"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="@+id/acceptorder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycelView_main"
+                    app:layout_constraintWidth_percent="0.8" />
 
                 <TextView
                     android:id="@+id/acceptorder"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/accept_back"
+                    android:background="#524F4F"
                     android:gravity="center"
                     android:text="@string/accept"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/refuseorder"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fourth_card_in_new_order"
-                    app:layout_constraintWidth_percent="0.45" />
-
-                <TextView
-                    android:id="@+id/refuseorder"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/refuse_back"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:text="@string/refuse"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/acceptorder"
-                    app:layout_constraintTop_toBottomOf="@+id/fourth_card_in_new_order"
-                    app:layout_constraintWidth_percent="0.45" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycelView_main"
+                    app:layout_constraintWidth_percent="1" />
+
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v4.widget.NestedScrollView>

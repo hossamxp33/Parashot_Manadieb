@@ -20,7 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"
         app:layout_constraintHeight_percent="0.20"
-        android:src="@drawable/logosmall"
         app:layout_constraintWidth_percent="0.8"
         />
 

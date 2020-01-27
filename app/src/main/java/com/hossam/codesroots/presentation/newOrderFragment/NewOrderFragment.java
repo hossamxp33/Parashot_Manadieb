@@ -109,20 +109,20 @@ public class NewOrderFragment extends Fragment implements
             Log.e(TAG, "Inflate map exception");
         }
 
-        slideTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mBottomSheetBehaviour.getState()==BottomSheetBehavior.STATE_EXPANDED) {
-                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    slideTitle.setText(R.string.moredetails);
-                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
-                }
-                else {
-                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-                    slideTitle.setText(R.string.lessdetails);
-                }
-            }
-        });
+//        slideTitle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mBottomSheetBehaviour.getState()==BottomSheetBehavior.STATE_EXPANDED) {
+//                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//                    slideTitle.setText(R.string.moredetails);
+//                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
+//                }
+//                else {
+//                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
+//                    slideTitle.setText(R.string.lessdetails);
+//                }
+//            }
+//        });
         return view;
     }
 
@@ -196,7 +196,7 @@ public class NewOrderFragment extends Fragment implements
     {
         txtuname = view.findViewById(R.id.username);
         txtsname = view.findViewById(R.id.store_name);
-        txtuaddress = view.findViewById(R.id.userplace);
+       // txtuaddress = view.findViewById(R.id.userplace);
         txtsaddress = view.findViewById(R.id.store_place);
         txtproductname = view.findViewById(R.id.product_name);
         txtprice = view.findViewById(R.id.productPrice);
@@ -204,7 +204,7 @@ public class NewOrderFragment extends Fragment implements
         accept = view.findViewById(R.id.acceptorder);
         refuse = view.findViewById(R.id.refuseorder);
         accept.setOnClickListener(this);
-        refuse.setOnClickListener(this);
+//        refuse.setOnClickListener(this);
         nestedScrollView = view.findViewById(R.id.nestedScrollView);
         mBottomSheetBehaviour = BottomSheetBehavior.from(nestedScrollView);
         mBottomSheetBehaviour.setHideable(false);
@@ -212,25 +212,25 @@ public class NewOrderFragment extends Fragment implements
         progress = view.findViewById(R.id.progress);
 
         // set the peek height
-        mBottomSheetBehaviour.setPeekHeight(270);
+   //     mBottomSheetBehaviour.setPeekHeight(270);
 
-        mBottomSheetBehaviour.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View view, int new_status) {
-                if (new_status==BottomSheetBehavior.STATE_EXPANDED) {
-                    slideTitle.setText(R.string.lessdetails);
-                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
-                }
-                else {
-                    slideTitle.setText(R.string.moredetails);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View view, float v) {
-              //  slideTitle.animate().scaleX(100).scaleY(10).setDuration(0).start();
-            }
-        });
+//        mBottomSheetBehaviour.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+//            @Override
+//            public void onStateChanged(@NonNull View view, int new_status) {
+//                if (new_status==BottomSheetBehavior.STATE_EXPANDED) {
+//                    slideTitle.setText(R.string.lessdetails);
+//                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
+//                }
+//                else {
+//                    slideTitle.setText(R.string.moredetails);
+//                }
+//            }
+//
+//            @Override
+//            public void onSlide(@NonNull View view, float v) {
+//              //  slideTitle.animate().scaleX(100).scaleY(10).setDuration(0).start();
+//            }
+//        });
     }
 
     @Override

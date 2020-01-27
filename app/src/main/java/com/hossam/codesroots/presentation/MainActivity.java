@@ -79,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         callPermission();
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MainFragment()).commit();
-        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
+        Fragment fragment = new NewOrderFragment();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
+                setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
         notification();
         setupNavigation();
         bottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
@@ -175,11 +177,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, MyService.class));
-        } else {
-            startService(new Intent(this, MyService.class));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(new Intent(this, MyService.class));
+//        } else {
+//            startService(new Intent(this, MyService.class));
+//        }
         if (isGooglePlayServicesAvailable()) {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             startCurrentLocationUpdates();
