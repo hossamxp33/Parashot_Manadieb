@@ -7,14 +7,11 @@ import kotlinx.android.parcel.RawValue
 
 
 @Parcelize
-
 data class MYOrdersModel (
         val data: List<MyOrderData>? = null,
-        val id: Int? = null, val dataa: MyOrderData? = null)   : Parcelable {
+        val id: Int? = null, val dataa: MyOrderData? = null)   : Parcelable
 
 
-
-}
 
 @Parcelize
 data class MyOrderData (

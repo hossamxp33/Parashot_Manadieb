@@ -6,11 +6,6 @@
     android:layoutDirection="rtl"
     android:orientation="vertical">
 
-        <include
-            android:id="@+id/orderheader"
-            layout="@layout/header_for_neworder"
-            app:layout_constraintTop_toTopOf="parent"
-            />
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
@@ -19,145 +14,301 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/orderheader" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mapView"
-        app:layout_constraintWidth_percent="0.9">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.7"
+        >
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:id="@+id/nestedScrool"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.75"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:background="@color/back_home3"
-            android:paddingBottom="120dp"
-            app:layout_behavior="@string/bottom_sheet_behavior"
-            app:layout_constraintHeight_percent="1">
+            android:id="@+id/details"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content">
 
-
-            <android.support.constraint.ConstraintLayout
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/red"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:text="@string/moredetails"
+                />
 
-                <ImageView
-                    android:id="@+id/rightmarker"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/income"
-                    app:layout_constraintBottom_toTopOf="@+id/second_card_in_new_order"
-                    app:layout_constraintEnd_toEndOf="@+id/second_card_in_new_order"
-                    app:layout_constraintStart_toStartOf="@+id/second_card_in_new_order"
-
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--                <include-->
-                <!--                    android:layout_marginTop="10dp"-->
-                <!--                    android:layout_width="0dp"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    app:layout_constraintWidth_percent="0.95"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintStart_toStartOf="parent"-->
-                <!--                    android:id="@+id/first_card_in_new_order"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/title"-->
-                <!--                    layout="@layout/first_card_in_new_order"/>-->
-
-                <include
-                    android:id="@+id/second_card_in_new_order"
-                    layout="@layout/second_card_in_new_order"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rightmarker"
-                    app:layout_constraintWidth_percent="0.4" />
-
-                <ImageView
-                    android:id="@+id/leftmarker"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/income"
-                    app:layout_constraintBottom_toTopOf="@+id/third_card_in_new_order"
-                    app:layout_constraintEnd_toEndOf="@+id/third_card_in_new_order"
-                    app:layout_constraintStart_toStartOf="@+id/third_card_in_new_order"
-
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <include
-                    android:id="@+id/third_card_in_new_order"
-                    layout="@layout/third_card_in_new_order"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/leftmarker"
-                    app:layout_constraintWidth_percent="0.48" />
-
-                <!--                <include-->
-                <!--                    android:id="@+id/fourth_card_in_new_order"-->
-                <!--                    layout="@layout/fourth_card_in_new_order"-->
-                <!--                    android:layout_width="0dp"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="10dp"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintStart_toStartOf="parent"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/third_card_in_new_order"-->
-                <!--                    app:layout_constraintWidth_percent="0.95" />-->
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycelView_main"
-                    android:layout_width="0dp"
+            <View
+                    android:id="@+id/delimeter"
+                    android:layout_width="2dp"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toTopOf="@id/acceptorder"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.4"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    android:background="@color/pink"
+                android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/delimeter2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/third_card_in_new_order"
-                    app:layout_constraintWidth_percent="0.95"
-                    app:reverseLayout="true">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
 
-                </android.support.v7.widget.RecyclerView>
 
-                <TextView
-                    android:id="@+id/offerprice"
+            <View
+                android:id="@+id/delimeter2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toTopOf="@+id/delivery_distance"
+                android:background="@color/pink"
+                app:layout_constraintBottom_toBottomOf="@+id/delivery_distance"
+                app:layout_constraintStart_toEndOf="@+id/recieve_distance"
+                app:layout_constraintEnd_toStartOf="@+id/delivery_distance"
+                />
+
+
+            <TextView
+                    android:id="@+id/recieve_loc_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#00030303"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toTopOf="@+id/acceptorder"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/delimeter"
+                    android:text="موقع الاستلام "
+                    android:textStyle="bold"
+                    android:drawableTint="@color/red"
+                    android:drawableStart="@drawable/location"
+                    android:gravity="center"
+                    android:textSize="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+
+                android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recycelView_main"
-                    app:layout_constraintWidth_percent="0.8" />
+                    app:layout_constraintEnd_toStartOf="@+id/delimeter"
+                    />
+
+            <TextView
+                android:id="@+id/recieve_loc"
+                android:layout_width="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/recieve_loc_title"
+                android:text=" الطرطوشي عروة المدينة المنورة السعودية 34666  "
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/delimeter"
+                />
+
+
+            <TextView
+                android:id="@+id/recieve_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintWidth_percent="0.3"
+                android:background="@drawable/distance_back"
+                app:layout_constraintTop_toBottomOf="@+id/recieve_loc"
+                android:text=" 6.67 كم  "
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/delimeter"
+                />
+
+            <TextView
+                android:id="@+id/delivery_loc_title"
+                android:layout_width="0dp"
+                app:layout_constraintTop_toTopOf="@+id/delimeter"
+                android:layout_height="wrap_content"
+                android:text="موقع التسليم  "
+                android:textStyle="bold"
+                android:drawableTint="@color/red"
+                android:drawableStart="@drawable/location"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/delimeter"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+            <TextView
+                android:id="@+id/delivery_loc"
+                android:layout_width="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_loc_title"
+                android:text=" الطرطوشي عروة المدينة المنورة السعودية 34666  "
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/gray"
+                app:layout_constraintStart_toEndOf="@+id/delimeter"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+            <TextView
+                android:id="@+id/delivery_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintWidth_percent="0.3"
+                android:background="@drawable/distance_back"
+                app:layout_constraintTop_toBottomOf="@+id/recieve_loc"
+                android:text=" 6.67 كم  "
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/delimeter"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stor_title"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_distance"
+                android:text="المتاجر في هذا الطلب "
+                />
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/rv_stores"
+                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:itemCount="2"
+                tools:listitem="@layout/store_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/vieww"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/stor_title"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/vieww"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_stores"
+                android:background="@color/gray"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="تكلفة التوصيل "
+                android:gravity="center"
+                android:id="@+id/cost_title"
+                android:textColor="@color/gray"
+                android:textSize="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/vieww"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:id="@+id/cost_value"
+                android:text="65"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.75"
+                app:layout_constraintTop_toBottomOf="@+id/cost_title"
+                android:background="@drawable/linear_background_for_cost"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/total"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/cost_value"
+                >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سوف تستلم من العميل "
+                />
 
                 <TextView
-                    android:id="@+id/acceptorder"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#524F4F"
-                    android:gravity="center"
-                    android:text="@string/accept"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recycelView_main"
-                    app:layout_constraintWidth_percent="1" />
+                    android:id="@+id/total_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text=" 60  رس  "
+                    />
+            </LinearLayout>
 
-            </android.support.constraint.ConstraintLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/send"
+                android:text="ارسال الطلب "
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.85"
+                app:layout_constraintTop_toBottomOf="@+id/total"
+                android:background="@color/gray"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
 
-        </android.support.v4.widget.NestedScrollView>
+        </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+        <!--        <ImageView-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:src="@drawable/location"-->
+<!--            android:padding="15dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:id="@+id/recieve_image"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/details"-->
+<!--            android:background="@drawable/circle_back_for_loc"-->
+<!--            />-->
+
+    </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
     </android.support.design.widget.CoordinatorLayout>
 
     <FrameLayout

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/round_shadow"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/stor_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/burger"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/stor_name"
+        app:layout_constraintStart_toEndOf="@+id/stor_img"
+        app:layout_constraintTop_toTopOf="@+id/stor_img"
+        android:layout_marginTop="8dp"
+        android:text="برجر كنج "
+        app:layout_constraintEnd_toStartOf="@+id/time"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/stor_des"
+        app:layout_constraintStart_toEndOf="@+id/stor_img"
+        app:layout_constraintTop_toBottomOf="@+id/stor_name"
+        android:layout_marginTop="8dp"
+        android:text=" هذا النص هو مثال لنص يمكن ان يستبدل  "
+        android:textSize="12dp"
+        android:layout_marginStart="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/time"
+        app:layout_constraintTop_toTopOf="@+id/stor_img"
+        android:layout_marginEnd="10dp"
+        android:text="10 دقيقة "
+        android:layout_marginTop="10dp"
+        />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guid1"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guid2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guid3"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guid4"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/my_location"
+        app:layout_constraintStart_toStartOf="@+id/guid1"
+        android:src="@drawable/location"
+        android:layout_marginTop="10dp"
+        android:tint="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/stor_img"
+        />
+
+    <TextView
+        android:id="@+id/txt_my_location"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/my_location"
+        app:layout_constraintEnd_toEndOf="@+id/my_location"
+        app:layout_constraintTop_toBottomOf="@+id/my_location"
+        android:textSize="12dp"
+        android:layout_height="wrap_content"
+        android:text="أنا"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distance1"
+        app:layout_constraintStart_toEndOf="@+id/my_location"
+        app:layout_constraintTop_toTopOf="@+id/my_location"
+        app:layout_constraintBottom_toBottomOf="@+id/my_location"
+        app:layout_constraintEnd_toStartOf="@+id/recieve_location"
+        android:text="4.5 كم "
+        />
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/recieve_location"
+        app:layout_constraintStart_toStartOf="@+id/guid2"
+        android:src="@drawable/location"
+        android:layout_marginTop="10dp"
+        android:tint="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/stor_img"
+        />
+
+    <TextView
+        android:id="@+id/txt_recieve_location"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/recieve_location"
+        app:layout_constraintEnd_toEndOf="@+id/recieve_location"
+        app:layout_constraintTop_toBottomOf="@+id/recieve_location"
+        android:textSize="12dp"
+        android:layout_height="wrap_content"
+        android:text="موقع التسليم"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distance2"
+        app:layout_constraintStart_toEndOf="@+id/recieve_location"
+        app:layout_constraintTop_toTopOf="@+id/my_location"
+        app:layout_constraintBottom_toBottomOf="@+id/recieve_location"
+        app:layout_constraintEnd_toStartOf="@+id/delivery_location"
+        android:text="4.5 كم "
+        />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/delivery_location"
+        app:layout_constraintStart_toStartOf="@+id/guid4"
+        android:src="@drawable/location"
+        android:layout_marginTop="10dp"
+        android:tint="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/stor_img"
+        />
+
+    <TextView
+        android:id="@+id/txt_delivery_location"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/delivery_location"
+        app:layout_constraintEnd_toEndOf="@+id/delivery_location"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_location"
+        android:textSize="12dp"
+        android:layout_height="wrap_content"
+        android:text="موقع التسليم"
+        />
+
+</android.support.constraint.ConstraintLayout>

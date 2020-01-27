@@ -45,6 +45,7 @@ import com.hossam.codesroots.helper.directionhelpers.FetchURL;
 import com.hossam.codesroots.helper.directionhelpers.TaskLoadedCallback;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.myOrder.MyOrderFragment;
+import com.hossam.codesroots.presentation.newOrderFragment.adapter.StoreAdapter;
 import com.hossam.codesroots.presentation.newOrderFragment.adapter.newOrderFragmentAdapter;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -67,8 +68,9 @@ public class NewOrderFragment extends Fragment implements
     NewOrderViewModel newOrderViewModel;
     MYOrdersModel data;
     private FrameLayout progress;
-    private RecyclerView recycelView_main;
+    private RecyclerView rv_stores;
     newOrderFragmentAdapter myOrderAdapter;
+    StoreAdapter storeAdapter;
     List<Orderdetail> orderdetailsBeans;
 
     public NewOrderFragment() {
@@ -80,10 +82,11 @@ public class NewOrderFragment extends Fragment implements
         View view = inflater.inflate(R.layout.firstneworder, container, false);
 
         newOrderViewModel = ViewModelProviders.of(this).get(NewOrderViewModel.class);
-        recycelView_main = view.findViewById(R.id.recycelView_main);
+        rv_stores = view.findViewById(R.id.rv_stores);
 
+        storeAdapter = new StoreAdapter(getActivity());
 
-
+        rv_stores.setAdapter(storeAdapter);
 
         newOrderViewModel.newoffer.observe(this, new Observer<Boolean>() {
             @Override
@@ -109,20 +112,20 @@ public class NewOrderFragment extends Fragment implements
             Log.e(TAG, "Inflate map exception");
         }
 
-//        slideTitle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mBottomSheetBehaviour.getState()==BottomSheetBehavior.STATE_EXPANDED) {
-//                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//                    slideTitle.setText(R.string.moredetails);
-//                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
-//                }
-//                else {
-//                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-//                    slideTitle.setText(R.string.lessdetails);
-//                }
-//            }
-//        });
+        slideTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mBottomSheetBehaviour.getState()==BottomSheetBehavior.STATE_EXPANDED) {
+                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    slideTitle.setText(R.string.moredetails);
+                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
+                }
+                else {
+                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    slideTitle.setText(R.string.lessdetails);
+                }
+            }
+        });
         return view;
     }
 
@@ -132,8 +135,7 @@ public class NewOrderFragment extends Fragment implements
         //uname= "osama";
         data = arguments.getParcelable("data");
         myOrderAdapter = new newOrderFragmentAdapter(getActivity(),data.getData().get(0).getOrderdetails());
-        recycelView_main.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
-        recycelView_main.setAdapter(myOrderAdapter);
+
 //        ulat= arguments.getString("user_lat");
 //        ulong= arguments.getString("user_long");
 //        uaddress= arguments.getString("user_address");
@@ -194,60 +196,63 @@ public class NewOrderFragment extends Fragment implements
 
     private  void findFromXml(View view)
     {
-        txtuname = view.findViewById(R.id.username);
-        txtsname = view.findViewById(R.id.store_name);
-       // txtuaddress = view.findViewById(R.id.userplace);
-        txtsaddress = view.findViewById(R.id.store_place);
-        txtproductname = view.findViewById(R.id.product_name);
-        txtprice = view.findViewById(R.id.productPrice);
+//        txtuname = view.findViewById(R.id.username);
+//        txtsname = view.findViewById(R.id.store_name);
+//       // txtuaddress = view.findViewById(R.id.userplace);
+//        txtsaddress = view.findViewById(R.id.store_place);
+//        txtproductname = view.findViewById(R.id.product_name);
+//        txtprice = view.findViewById(R.id.productPrice);
         slideTitle = view.findViewById(R.id.title);
-        accept = view.findViewById(R.id.acceptorder);
-        refuse = view.findViewById(R.id.refuseorder);
-        accept.setOnClickListener(this);
-//        refuse.setOnClickListener(this);
-        nestedScrollView = view.findViewById(R.id.nestedScrollView);
+//        accept = view.findViewById(R.id.acceptorder);
+//        refuse = view.findViewById(R.id.refuseorder);
+//        accept.setOnClickListener(this);
+////        refuse.setOnClickListener(this);
+       nestedScrollView = view.findViewById(R.id.nestedScrool);
         mBottomSheetBehaviour = BottomSheetBehavior.from(nestedScrollView);
         mBottomSheetBehaviour.setHideable(false);
         mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        progress = view.findViewById(R.id.progress);
+//        progress = view.findViewById(R.id.progress);
 
         // set the peek height
-   //     mBottomSheetBehaviour.setPeekHeight(270);
+        mBottomSheetBehaviour.setPeekHeight(500);
 
-//        mBottomSheetBehaviour.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View view, int new_status) {
-//                if (new_status==BottomSheetBehavior.STATE_EXPANDED) {
-//                    slideTitle.setText(R.string.lessdetails);
-//                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
-//                }
-//                else {
-//                    slideTitle.setText(R.string.moredetails);
-//                }
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View view, float v) {
-//              //  slideTitle.animate().scaleX(100).scaleY(10).setDuration(0).start();
-//            }
-//        });
+        mBottomSheetBehaviour.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View view, int new_status) {
+                if (new_status==BottomSheetBehavior.STATE_EXPANDED) {
+                    slideTitle.setText(R.string.lessdetails);
+                    nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
+                }
+                else {
+                    slideTitle.setText(R.string.moredetails);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
+              //  slideTitle.animate().scaleX(100).scaleY(10).setDuration(0).start();
+            }
+        });
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        placestor = new MarkerOptions().position(new LatLng(29.9603988, 31.270689)).title("موقع الاستلام ");
+        placeuser = new MarkerOptions().position(new LatLng(30.0326172, 31.3032935)).title("موقع التسليم  ");
+
         try {
             map.addMarker(placestor);
-            map.addMarker(placemandoib);
+          //  map.addMarker(placemandoib);
             map.addMarker(placeuser);
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             builder.include(placestor.getPosition());
-            builder.include(placemandoib.getPosition());
+           // builder.include(placemandoib.getPosition());
             builder.include(placeuser.getPosition());
             LatLngBounds bounds = builder.build();
             map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
-            new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placeuser.getPosition(), "driving"), "driving");
-            new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placestor.getPosition(), "driving"), "driving");
+           // new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placeuser.getPosition(), "driving"), "driving");
+            new FetchURL(NewOrderFragment.this).execute(getUrl(placeuser.getPosition(), placestor.getPosition(), "driving"), "driving");
 
         }
         catch (Exception e)

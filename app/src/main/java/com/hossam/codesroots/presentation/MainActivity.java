@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottom_navigation);
         online_statues = findViewById(R.id.online_statues);
         // Create items
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.register, R.drawable.more, R.color.gray);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.register, R.drawable.notificatio, R.color.gray);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.notificatin, R.drawable.notificatio, R.color.gray);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.myOrder, R.drawable.noun_order, R.color.gray);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.home, R.color.gray);

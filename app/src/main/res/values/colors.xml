@@ -31,4 +31,9 @@
     <color name="lightergrey">#E6EAEB</color>
     <color name="green">#00FF00</color>
     <color name="textcolor_inneworder">#4A4A4A</color>
+
+    <color name="shadow_hack_level_1">#E7E7E7</color>
+    <color name="shadow_hack_level_2">#D4D7DA</color>
+    <color name="shadow_hack_level_3">#D4D8DB</color>
+
 </resources>
