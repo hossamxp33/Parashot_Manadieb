@@ -80,4 +80,7 @@
     <string name="addpayimg">أضف صورة الايصال</string>
     <string name="addinfosuccess">تم اضافة معلوماتك بنجاح</string>
     <string name="no_notification">لا يوجد اشعارات لديك</string>
+    <string name="writemsg">Write your message</string>
+    <string name="ordernumber">Order number</string>
+
 </resources>

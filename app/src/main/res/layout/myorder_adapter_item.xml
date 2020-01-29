@@ -265,12 +265,14 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
 
-                <ImageView
-                    android:id="@+id/chating"
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
-                    app:layout_constraintEnd_toStartOf="@id/action"
-                    app:layout_constraintTop_toTopOf="@+id/action" />
+        <ImageView
+            android:id="@+id/chating"
+            android:layout_width="35dp"
+
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toStartOf="@id/action"
+            app:layout_constraintTop_toTopOf="@+id/action"
+            app:srcCompat="@drawable/chat" />
 
                 <ImageView
                     android:id="@+id/delivery_view"
@@ -278,6 +280,8 @@
                     android:layout_height="30dp"
                     app:layout_constraintEnd_toStartOf="@id/chating"
                     app:layout_constraintTop_toTopOf="@+id/action" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>

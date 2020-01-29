@@ -45,7 +45,9 @@ android {
                                 onesignal_google_project_number: "469915841782"]
         /////////////////////Notifiction
     }
-
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -95,6 +97,7 @@ dependencies {
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.8@aar') {
         transitive = true;

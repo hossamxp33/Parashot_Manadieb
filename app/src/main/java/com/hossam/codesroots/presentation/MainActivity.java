@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         callPermission();
         Fragment fragment = new NewOrderFragment();
+          startService(new Intent(this, MyService.class));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);

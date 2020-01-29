@@ -90,8 +90,8 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         PreferenceHelper.setOrderId(orderId);
         notes = getArguments().getString("notes");
         ordercost = getArguments().getString("ordercost");
-        send.setOnClickListener(v -> sendmessage());
-        getimage.setOnClickListener(v -> addimage(view));
+//        send.setOnClickListener(v -> sendmessage());
+//        getimage.setOnClickListener(v -> addimage(view));
         //mSocket.on("typing", onNewTyping);
         chatViewModel = ViewModelProviders.of(this, getViewModelFactory()).get(ChatViewModel.class);
 
@@ -146,21 +146,21 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
                 }
         );
 
-        etMessage.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                enableSubmitIfReady();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // mSocket.emit("typing", roomId);
-            }
-        });
+//        etMessage.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void afterTextChanged(Editable arg0) {
+//                enableSubmitIfReady();
+//            }
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                // mSocket.emit("typing", roomId);
+//            }
+//        });
 
         return view;
     }
@@ -173,18 +173,18 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         deliveryCall = view.findViewById(R.id.call);
         storeCall = view.findViewById(R.id.call2);
         deliveryCall.setOnClickListener(this);
-        storeCall.setOnClickListener(this);
+//        storeCall.setOnClickListener(this);
         progress = view.findViewById(R.id.progress);
-        getimage = view.findViewById(R.id.ivPhoto);
-        send = view.findViewById(R.id.ivSend);
-        typing = view.findViewById(R.id.typing);
-        recyclerView = view.findViewById(R.id.chatrecycle);
-        etMessage = view.findViewById(R.id.etMessage);
+//        getimage = view.findViewById(R.id.ivPhoto);
+//        send = view.findViewById(R.id.ivSend);
+//        typing = view.findViewById(R.id.typing);
+    recyclerView = view.findViewById(R.id.rvList);
+//        etMessage = view.findViewById(R.id.etMessage);
         storeLocation = view.findViewById(R.id.stor_location); //action
         userLocation = view.findViewById(R.id.user_location);  //action
         user_location = view.findViewById(R.id.user_location_txt); // text
         store_location = view.findViewById(R.id.store_location);//text
-        send.setEnabled(false);
+//        send.setEnabled(false);
     }
 
 
