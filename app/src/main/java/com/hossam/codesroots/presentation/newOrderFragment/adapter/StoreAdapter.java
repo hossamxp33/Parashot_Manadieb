@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.entities.Orderdetail;
+import com.hossam.codesroots.entities.Smallstore;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
 
     Context mcontext;
-    List<Orderdetail> productData;
+    List<Smallstore> storesData;
 
 
     public StoreAdapter(FragmentActivity activity) {
@@ -34,6 +35,12 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.store_item, parent, false);
         return new StoreAdapter.ViewHolder(view);
+    }
+
+    public void setData(List<Smallstore> data)
+    {
+        storesData = data;
+        notifyDataSetChanged();
     }
 
     @Override

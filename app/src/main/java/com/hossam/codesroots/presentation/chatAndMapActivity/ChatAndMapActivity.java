@@ -29,8 +29,8 @@ public class ChatAndMapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chatwithmap);
-        title = findViewById(R.id.title);
-
+        title = findViewById(R.id.chat_title);
+        title.setText("الدردشة");
         Bundle bundle = new Bundle();
         bundle.putInt("orderid", getIntent().getIntExtra("orderid", 0));
         bundle.putString("roomId", getIntent().getStringExtra("roomId"));

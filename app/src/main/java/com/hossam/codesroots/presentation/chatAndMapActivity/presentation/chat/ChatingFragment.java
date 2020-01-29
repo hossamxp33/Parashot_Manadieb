@@ -59,13 +59,13 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
     private chatmessages allData;
     EditText etMessage;
     private static final int LOAD_IMG_REQUEST_CODE = 123;
-    ImageView send, getimage;
+    ImageView  getimage;
     ChatViewModel chatViewModel;
     FrameLayout progress;
-    TextView typing;
+    TextView typing,send;
     String roomId;
-    TextView userName, storeName, ordernumber, cost, store_location, user_location;
-    ImageView storeCall, deliveryCall, storeLocation, userLocation;
+    TextView userName,storeName,ordernumber, cost, store_location, user_location;
+    ImageView storeCall,deliveryCall,storeLocation, userLocation;
     int orderId;
     String ordercost,notes;
 
@@ -90,8 +90,8 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         PreferenceHelper.setOrderId(orderId);
         notes = getArguments().getString("notes");
         ordercost = getArguments().getString("ordercost");
-//        send.setOnClickListener(v -> sendmessage());
-//        getimage.setOnClickListener(v -> addimage(view));
+        send.setOnClickListener(v -> sendmessage());
+        getimage.setOnClickListener(v -> addimage(view));
         //mSocket.on("typing", onNewTyping);
         chatViewModel = ViewModelProviders.of(this, getViewModelFactory()).get(ChatViewModel.class);
 
@@ -115,10 +115,10 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
                             storeName.setText(chatmessages.getOrder().get(0).getSmallstore().getName());
                             store_location.setText(chatmessages.getOrder().get(0).getSmallstore().getAddress());
                         }
-                        userName.setText(chatmessages.getOrder().get(0).getUser().getUsername());
-                        ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
-                        cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
-                            user_location.setText(chatmessages.getOrder().get(0).getUser_address());
+//                        userName.setText(chatmessages.getOrder().get(0).getUser().getUsername());
+  //                      ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
+                      //  cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
+                        //    user_location.setText(chatmessages.getOrder().get(0).getUser_address());
                     }
                     recyclerView.setLayoutManager(mLayoutManager);
                     recyclerView.setAdapter(chatListAdapter);
@@ -175,11 +175,11 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         deliveryCall.setOnClickListener(this);
 //        storeCall.setOnClickListener(this);
         progress = view.findViewById(R.id.progress);
-//        getimage = view.findViewById(R.id.ivPhoto);
-//        send = view.findViewById(R.id.ivSend);
+        getimage = view.findViewById(R.id.cam);
+        send = view.findViewById(R.id.send);
 //        typing = view.findViewById(R.id.typing);
     recyclerView = view.findViewById(R.id.rvList);
-//        etMessage = view.findViewById(R.id.etMessage);
+        etMessage = view.findViewById(R.id.chatMSG);
         storeLocation = view.findViewById(R.id.stor_location); //action
         userLocation = view.findViewById(R.id.user_location);  //action
         user_location = view.findViewById(R.id.user_location_txt); // text

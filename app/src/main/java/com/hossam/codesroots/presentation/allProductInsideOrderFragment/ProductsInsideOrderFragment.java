@@ -10,13 +10,15 @@ import android.view.ViewGroup;
 import com.hossam.codesroots.entities.Orderdetail;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.allProductInsideOrderFragment.adapter.ProductsInsideOrderAdapter;
+import com.hossam.codesroots.presentation.newOrderFragment.adapter.StoreAdapter;
+
 import java.util.List;
 
 
 public class ProductsInsideOrderFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private ProductsInsideOrderAdapter productsInsideOrderAdapter;
+    private StoreAdapter storeAdapter;
     List<Orderdetail> orderdetailsBeans;
     public ProductsInsideOrderFragment() {
     }
@@ -37,8 +39,9 @@ public class ProductsInsideOrderFragment extends Fragment {
 
         assert getArguments() != null;
         orderdetailsBeans =  getArguments().getParcelableArrayList("allProduct");
-        productsInsideOrderAdapter = new ProductsInsideOrderAdapter(getActivity(),orderdetailsBeans);
-        recyclerView.setAdapter(productsInsideOrderAdapter);
+        storeAdapter = new StoreAdapter(getActivity());
+       // storeAdapter.setData(orderdetailsBeans.get(0).s);
+        recyclerView.setAdapter(storeAdapter);
         return view;
     }
 

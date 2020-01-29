@@ -85,22 +85,16 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
         else
             Glide.with(context).load(orderData.get(position).getOrderdetails()).into(holder.item_img);
 
-//        if (orderData.get(position).getOrderdetails().get(0).getSmallstore() != null)
-//            holder.store_name.setText(orderData.get(position).getOrderdetails().get(0).getStoreName());
-//        else
-//            holder.store_name.setText(orderData.get(position).getOrderdetails().get(0).getStoreName());
-
-
-//    holder.clientName.setText(orderData.get(position).getUser().getUsername());
-       // if (orderData.get(position).getCreated() != null)
-         //   holder.orderDate.setText(getdate(orderData.get(position).getCreated()));
+        holder.clientName.setText(orderData.get(position).getUser().getUsername());
+        holder.orderId.setText(orderData.get(position).getId().toString());
+        if (orderData.get(position).getCreated() != null)
+            holder.orderDate.setText(getDate(orderData.get(position).getCreated()));
 
         if (orderData.get(position).getOrderdetails().size() > 0) {
-          holder.store_name.setText(orderData.get(position).getUser().getUsername());
-      //   holder.productPrice.setText(orderData.get(position).getOrderdetails().get(0).getPrice() + " ريال ");
+         holder.orderCost.setText(orderData.get(position).getOrderdetails().get(0).getPrice() + " ريال ");
         } else {
-            holder.productPrice.setText(context.getText(R.string.procenotdetected));
-            holder.productName.setText(orderData.get(position).getNotes());
+            holder.orderCost.setText(context.getText(R.string.procenotdetected));
+            holder.orderCost.setText(orderData.get(position).getNotes());
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -160,7 +154,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
     }
 
     class CustomView extends RecyclerView.ViewHolder {
-        TextView store_name, clientName, orderStatues, productName, productPrice, action;
+        TextView  clientName, orderStatues, action,orderId,orderCost,orderDate;
         ImageView item_img, chat, map;
         public final View mView;
 
@@ -168,11 +162,12 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
 
             super(itemView);
             mView = itemView;
-            store_name = mView.findViewById(R.id.storenamevalue);
+            orderId = mView.findViewById(R.id.orderIdvalue);
             clientName = mView.findViewById(R.id.clientnamevalue);
             orderStatues = mView.findViewById(R.id.orderstatuesvalue);
+            orderCost = mView.findViewById(R.id.order_costvalue);
+            orderDate = mView.findViewById(R.id.order_datevalue);
             item_img = mView.findViewById(R.id.item_img);
-            productName = mView.findViewById(R.id.item_description);
             action = mView.findViewById(R.id.action);
             map = mView.findViewById(R.id.delivery_view);
             chat = mView.findViewById(R.id.chating);

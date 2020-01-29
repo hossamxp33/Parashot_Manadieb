@@ -6,7 +6,7 @@
     android:layoutDirection="rtl">
 
     <include
-        layout="@layout/header_for_chat"
+        layout="@layout/parashot_header"
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
