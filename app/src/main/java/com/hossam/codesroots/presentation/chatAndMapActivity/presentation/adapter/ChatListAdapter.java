@@ -41,7 +41,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
 
             if (viewType == 1)
                 view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_item_chat_send, parent, false);
+                .inflate(R.layout.list_chat, parent, false);
 
             else
                 view = LayoutInflater.from(parent.getContext())

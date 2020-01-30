@@ -40,6 +40,7 @@ import com.hossam.codesroots.presentation.myAccount.MyAccountFragment;
 import com.hossam.codesroots.presentation.myOrder.MyOrderFragment;
 import com.hossam.codesroots.presentation.newOrderFragment.NewOrderFragment;
 import com.hossam.codesroots.presentation.notifications.NotificationsFragment;
+import com.hossam.codesroots.presentation.settings.Settings;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new NotificationsFragment()).addToBackStack(null).commit();
             }
             else if (position == 0) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new LoginFragment()).addToBackStack(null).commit();
-            }
+                Intent intent = new Intent(this, Settings.class);
+                startActivity(intent)  ;          }
             return true;
         });
 

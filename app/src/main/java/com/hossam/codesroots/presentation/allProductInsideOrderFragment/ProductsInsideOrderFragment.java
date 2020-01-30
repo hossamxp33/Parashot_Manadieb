@@ -39,7 +39,7 @@ public class ProductsInsideOrderFragment extends Fragment {
 
         assert getArguments() != null;
         orderdetailsBeans =  getArguments().getParcelableArrayList("allProduct");
-        storeAdapter = new StoreAdapter(getActivity());
+        storeAdapter = new StoreAdapter(getActivity(),orderdetailsBeans);
        // storeAdapter.setData(orderdetailsBeans.get(0).s);
         recyclerView.setAdapter(storeAdapter);
         return view;

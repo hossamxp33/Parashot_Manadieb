@@ -82,5 +82,16 @@
     <string name="no_notification">لا يوجد اشعارات لديك</string>
     <string name="writemsg">Write your message</string>
     <string name="ordernumber">Order number</string>
+    <string name="editprofile">Edit profile</string>
+    <string name="help">Help</string>
+    <string name="generalSettings">General settings</string>
+    <string name="language">Language settings</string>
+    <string name="usage">Usage policy</string>
+    <string name="rateapp">Rate app</string>
+    <string name="contactus">Contact us</string>
+    <string name="aboutapp">About the app</string>
+    <string name="howitwork">How delivery24 works</string>
+    <string name="logout">Logout</string>
+    <string name="terms">Terms and conditions</string>
 
 </resources>

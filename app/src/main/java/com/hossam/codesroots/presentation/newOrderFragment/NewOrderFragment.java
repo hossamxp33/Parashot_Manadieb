@@ -84,9 +84,7 @@ public class NewOrderFragment extends Fragment implements
         newOrderViewModel = ViewModelProviders.of(this).get(NewOrderViewModel.class);
         rv_stores = view.findViewById(R.id.rv_stores);
 
-        storeAdapter = new StoreAdapter(getActivity());
 
-        rv_stores.setAdapter(storeAdapter);
 
         newOrderViewModel.newoffer.observe(this, new Observer<Boolean>() {
             @Override
@@ -134,8 +132,9 @@ public class NewOrderFragment extends Fragment implements
         uname= getArguments().getString("user_name");
         //uname= "osama";
         data = arguments.getParcelable("data");
-        myOrderAdapter = new newOrderFragmentAdapter(getActivity(),data.getData().get(0).getOrderdetails());
+        storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
 
+        rv_stores.setAdapter(storeAdapter);
 //        ulat= arguments.getString("user_lat");
 //        ulong= arguments.getString("user_long");
 //        uaddress= arguments.getString("user_address");
