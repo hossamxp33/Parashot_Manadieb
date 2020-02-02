@@ -38,8 +38,8 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
     public static com.github.nkzawa.socketio.client.Socket mSocket;
     {
         try {
-          //  mSocket = IO.socket("http://parashotescoket.codesroots.com:2800");
-          mSocket = IO.socket("http://192.168.1.2:2800");
+               mSocket = IO.socket("http://parashotescoket.codesroots.com:2800");
+            // mSocket = IO.socket("http://192.168.1.2:2800");
         }
         catch (URISyntaxException e) {
         }

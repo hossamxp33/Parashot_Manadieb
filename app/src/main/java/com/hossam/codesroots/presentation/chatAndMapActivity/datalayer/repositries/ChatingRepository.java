@@ -102,7 +102,7 @@ public class ChatingRepository {
         try {
             apiService.addmessages(createPartFromString(String.valueOf(userid)),createPartFromString(String.valueOf(orderid))
                     ,createPartFromString(String.valueOf(roomid)),
-                    createPartFromString(mesg),createPartFromString("delivries"),part).enqueue(new Callback<AddMessage>() {
+                    createPartFromString(mesg),createPartFromString("1"),part).enqueue(new Callback<AddMessage>() {
                 @Override
                 public void onResponse(Call<AddMessage> call, final Response<AddMessage> response) {
                     if (response.body() != null) {

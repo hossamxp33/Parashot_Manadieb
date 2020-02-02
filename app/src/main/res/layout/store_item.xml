@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout
-    xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
     >
 
     <data>
@@ -12,12 +14,11 @@
             type="com.hossam.codesroots.entities.OrderDetails"/>
 
     </data>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="@drawable/round_shadow"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/round_shadow">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"

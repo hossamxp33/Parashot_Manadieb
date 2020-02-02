@@ -21,9 +21,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.nkzawa.emitter.Emitter;
 import com.google.gson.Gson;
 import com.hossam.codesroots.helper.FileUtils;
@@ -59,7 +61,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
     private chatmessages allData;
     EditText etMessage;
     private static final int LOAD_IMG_REQUEST_CODE = 123;
-    ImageView  getimage;
+    ImageView  getimage,userImage;
     ChatViewModel chatViewModel;
     FrameLayout progress;
     TextView typing,send;
@@ -68,7 +70,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
     ImageView storeCall,deliveryCall,storeLocation, userLocation;
     int orderId;
     String ordercost,notes;
-
+    ProgressBar progressBarload;
     public ChatingFragment() {
         // Required empty public constructor
     }
@@ -99,13 +101,9 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
 
         chatViewModel.chatMessages.observe(this, chatmessages ->
                 {
+                    progressBarload.setVisibility(View.GONE);
                     allData = chatmessages;
                     allMessage = chatmessages.getMyChat();
-                   // if ()
-                    if (chatmessages.getOrder().get(0).getNotes()!=null)
-                        chatmessages.getMyChat().add(new chatmessages.MyChatBean(chatmessages.getOrder().get(0).getNotes(),
-                                0, "", "", 2));
-
                     chatListAdapter = new ChatListAdapter(getActivity(), chatmessages.getMyChat());
                     recyclerView.setAdapter(chatListAdapter);
                     LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -115,8 +113,16 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
                             storeName.setText(chatmessages.getOrder().get(0).getSmallstore().getName());
                             store_location.setText(chatmessages.getOrder().get(0).getSmallstore().getAddress());
                         }
-//                        userName.setText(chatmessages.getOrder().get(0).getUser().getUsername());
-  //                      ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
+                        try {
+                            userName.setText(chatmessages.getOrder().get(0).getUser().getUsername());
+                            Glide.with(getContext()).load(chatmessages.getOrder().get(0).getUser().getPhoto()).into(userImage);
+
+                        }
+                     catch (Exception e)
+                     {
+                         Log.d("exception ",e.getMessage());
+                     }
+                        //                      ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
                       //  cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
                         //    user_location.setText(chatmessages.getOrder().get(0).getUser_address());
                     }
@@ -166,7 +172,8 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
     }
 
     private void findFromXml(View view) {
-        userName = view.findViewById(R.id.user_name);
+        userName = view.findViewById(R.id.Delname);
+        userImage = view.findViewById(R.id.userImage);
         storeName = view.findViewById(R.id.storname);
         ordernumber = view.findViewById(R.id.order_num);
         cost = view.findViewById(R.id.delivery_cost);
@@ -184,6 +191,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         userLocation = view.findViewById(R.id.user_location);  //action
         user_location = view.findViewById(R.id.user_location_txt); // text
         store_location = view.findViewById(R.id.store_location);//text
+        progressBarload = view.findViewById(R.id.progressBarload);//text
 //        send.setEnabled(false);
     }
 

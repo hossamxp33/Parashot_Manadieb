@@ -95,7 +95,7 @@ public interface ApiInterface {
             @Part("order_id") RequestBody order_id,
             @Part("room_id") RequestBody room_id,
             @Part("post") RequestBody post,
-            @Part("type") RequestBody type,
+            @Part("seen") RequestBody seen,
             @Part  MultipartBody.Part photo
     );
 

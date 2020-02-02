@@ -41,11 +41,11 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
 
             if (viewType == 1)
                 view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_chat, parent, false);
+                .inflate(R.layout.list_chat_right, parent, false);
 
             else
                 view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.recycler_item_chat_recievied, parent, false);
+                        .inflate(R.layout.list_chat, parent, false);
 
 
         return new ChatListAdapter.CustomView(view);
@@ -67,17 +67,16 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
 
         if (!allMessage.get(position).getPost().matches("")) {
             holder.message.setText(allMessage.get(position).getPost());
-            holder.cardwithimage.setVisibility(View.GONE);
-            holder.cardwithmessage.setVisibility(View.VISIBLE);
+            holder.itemImage.setVisibility(View.GONE);
+            holder.message.setVisibility(View.VISIBLE);
             holder.time.setText(getTime(allMessage.get(position).getCreated()));
         }
         else if (!allMessage.get(position).getPhoto().matches(""))
         {
-            holder.cardwithimage.setVisibility(View.VISIBLE);
-            holder.cardwithmessage.setVisibility(View.GONE);
+            holder.itemImage.setVisibility(View.VISIBLE);
+            holder.message.setVisibility(View.GONE);
             Glide.with(context).load(allMessage.get(position).getPhoto()).into(holder.itemImage);
             holder.time.setText(getTime(allMessage.get(position).getCreated()));
-            holder.timeimg.setText(getTime(allMessage.get(position).getCreated()));
         }
 
         if (allMessage.get(position).getUser().getUser_group_id()==1)
@@ -85,13 +84,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
         else  if (allMessage.get(position).getUser().getUser_group_id()==3)
             holder.sender.setText(R.string.stor);
 
-        holder.itemImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,ImageViewActivity.class);
-                intent.putExtra("imageUrl",allMessage.get(position).getPhoto());
-                context.startActivity(intent);
-            }
+        holder.itemImage.setOnClickListener(v -> {
+            Intent intent = new Intent(context,ImageViewActivity.class);
+            intent.putExtra("imageUrl",allMessage.get(position).getPhoto());
+            context.startActivity(intent);
         });
     }
 
@@ -103,11 +99,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
      class CustomView extends RecyclerView.ViewHolder {
 
         private final View mView;
-        private ImageView itemImage;
+        private ImageView itemImage,logo;
         private TextView message,time,timeimg,sender;
         LinearLayout cardwithimage;
         CardView cardwithmessage;
-
 
         private CustomView(View view) {
             super(view);
@@ -115,9 +110,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
 
             message=mView.findViewById(R.id.tvMessage);
             time=mView.findViewById(R.id.tvTime);
-            itemImage=mView.findViewById(R.id.image);
-            cardwithmessage=mView.findViewById(R.id.cardmessage);
-            cardwithimage=mView.findViewById(R.id.cardforimage);
+            itemImage=mView.findViewById(R.id.mesege_image);
+            logo=mView.findViewById(R.id.logo);
+     //       cardwithmessage=mView.findViewById(R.id.cardmessage);
+       //     cardwithimage=mView.findViewById(R.id.cardforimage);
             timeimg=mView.findViewById(R.id.tvTimeomages);
             sender=mView.findViewById(R.id.sender);
         }
