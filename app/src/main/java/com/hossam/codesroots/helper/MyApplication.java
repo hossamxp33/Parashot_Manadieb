@@ -3,7 +3,7 @@ package com.hossam.codesroots.helper;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 import android.util.Log;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
 import com.crashlytics.android.Crashlytics;

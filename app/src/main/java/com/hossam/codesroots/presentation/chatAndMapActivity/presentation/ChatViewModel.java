@@ -1,7 +1,7 @@
 package com.hossam.codesroots.presentation.chatAndMapActivity.presentation;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.hossam.codesroots.presentation.chatAndMapActivity.datalayer.repositries.ChatingRepository;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.AddMessage;

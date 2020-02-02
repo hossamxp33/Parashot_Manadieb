@@ -1,9 +1,9 @@
 package com.hossam.codesroots.presentation.chatAndMapActivity.presentation;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.hossam.codesroots.dataLayer.apiData.ApiClient;
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface;

@@ -1,8 +1,8 @@
 package com.hossam.codesroots.presentation.newOrderFragment.adapter;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.entities.Orderdetail;
-import com.hossam.codesroots.entities.Smallstore;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
 
     public StoreAdapter(FragmentActivity activity,List<Orderdetail> storedata) {
-        mcontext=activity;
+          mcontext=activity;
           storesData = storedata;
 
     }
@@ -47,6 +46,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final StoreAdapter.ViewHolder holder, final int position)
     {
+        holder.name.setText( storesData.get(position).getStoreName());
+        holder.descrip.setText( storesData.get(position).getNotes());
+        Glide.with(mcontext).load(storesData.get(position).getNotes()).into(holder.item_img);
+
 
     }
     @Override

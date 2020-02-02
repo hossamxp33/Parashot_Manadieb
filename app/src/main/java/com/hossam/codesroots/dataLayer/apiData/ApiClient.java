@@ -1,6 +1,6 @@
 package com.hossam.codesroots.dataLayer.apiData;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.schedulers.Schedulers;

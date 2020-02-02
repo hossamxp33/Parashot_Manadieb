@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/delivery_info"
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/line1"
@@ -93,8 +93,8 @@
             app:layout_constraintEnd_toStartOf="@id/user_location"
             app:layout_constraintTop_toTopOf="@+id/person_img" />
 
-    </android.support.constraint.ConstraintLayout>
-    <android.support.constraint.ConstraintLayout
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:id="@+id/stor_info"
         android:layout_marginTop="10dp"
@@ -155,9 +155,9 @@
             app:layout_constraintTop_toBottomOf="@+id/storname"
             android:isIndicator="true"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:id="@+id/order_info"
         app:layout_constraintTop_toBottomOf="@+id/stor_info"
@@ -201,7 +201,7 @@
             />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
             app:layout_constraintGuide_percent="0.98"
             />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <ImageView
@@ -221,4 +221,4 @@
         app:layout_constraintTop_toBottomOf="@+id/order_info" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
 package com.hossam.codesroots.presentation.chatAndMapActivity.datalayer.repositries;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.Consumer;
+import androidx.annotation.NonNull;
+import androidx.core.util.Consumer;
 import android.util.Log;
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.AddMessage;

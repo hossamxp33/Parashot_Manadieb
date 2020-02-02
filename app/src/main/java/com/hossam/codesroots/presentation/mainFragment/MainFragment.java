@@ -1,6 +1,6 @@
 package com.hossam.codesroots.presentation.mainFragment;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +9,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -33,7 +33,6 @@ import com.hossam.codesroots.entities.MYOrdersModel;
 import com.hossam.codesroots.helper.BroadcastHelper;
 import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.presentation.myOrder.MyOrderViewModel;
-import com.hossam.codesroots.presentation.myOrder.adapters.MyOrderAdapter;
 
 import java.util.Objects;
 

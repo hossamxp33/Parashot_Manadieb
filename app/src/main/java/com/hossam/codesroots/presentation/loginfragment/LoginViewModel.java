@@ -1,8 +1,8 @@
 package com.hossam.codesroots.presentation.loginfragment;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.support.v4.util.Consumer;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.core.util.Consumer;
 import com.hossam.codesroots.dataLayer.repositries.LoginRepository;
 import com.hossam.codesroots.entities.LoginResponseModel;
 import com.hossam.codesroots.entities.User;

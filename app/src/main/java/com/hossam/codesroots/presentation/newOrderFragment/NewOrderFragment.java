@@ -3,20 +3,19 @@ package com.hossam.codesroots.presentation.newOrderFragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import androidx.fragment.app.Fragment;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -38,9 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.hossam.codesroots.entities.MYOrdersModel;
-import com.hossam.codesroots.entities.MyOrderData;
 import com.hossam.codesroots.entities.Orderdetail;
-import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.helper.directionhelpers.FetchURL;
 import com.hossam.codesroots.helper.directionhelpers.TaskLoadedCallback;
 import com.hossam.codesroots.delivery24.R;
@@ -60,9 +57,9 @@ public class NewOrderFragment extends Fragment implements
     MapView mapView;
     GoogleMap map;
     private MarkerOptions placemandoib, placeuser,placestor;
-    String uname,sname,ulat,ulong,uaddress,saddress,productname,price,slat,slong;
+    String delivery_distancetext,delivery_loctext,recieve_distanctexte,unametext,sname,ulat,ulong,uaddress,saddress,productname,price,slat,slong;
     int deliveryId = 1,orderId,userid;
-    TextView txtuname,txtsname,txtuaddress,txtsaddress,txtproductname,txtprice,slideTitle,accept,refuse;
+    TextView delivery_distance,delivery_loc,recieve_distance, txtuname,txtsname,txtuaddress,txtsaddress,txtproductname,txtprice,slideTitle,accept,refuse;
     private BottomSheetBehavior mBottomSheetBehaviour;
     NestedScrollView nestedScrollView;
     NewOrderViewModel newOrderViewModel;
@@ -129,7 +126,7 @@ public class NewOrderFragment extends Fragment implements
 
     private void setDataInFields(Bundle arguments) {
         DecimalFormat decimalFormat = new DecimalFormat("#.#####");
-        uname= getArguments().getString("user_name");
+        sname= getArguments().getString("user_name");
         //uname= "osama";
         data = arguments.getParcelable("data");
         storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
@@ -137,19 +134,19 @@ public class NewOrderFragment extends Fragment implements
         rv_stores.setAdapter(storeAdapter);
 //        ulat= arguments.getString("user_lat");
 //        ulong= arguments.getString("user_long");
-//        uaddress= arguments.getString("user_address");
+       uaddress= arguments.getString("user_address");
 //        slat= arguments.getString("stor_lat");
 //        slong= arguments.getString("stor_long");
 //        sname= arguments.getString("store_name");
 //        price= arguments.getString("price");
 //        productname= arguments.getString("productname");
-//        saddress= arguments.getString("storeaddress");
-       orderId= data.getData().get(0).getId();
-       userid = data.getData().get(0).getUserID();
+        delivery_distancetext = arguments.getString("storeaddress");
+       orderId = data.getData().get(0).getId();
+       userid  = data.getData().get(0).getUserID();
 
 
-//        ulat="31.013056";
-//        ulong="32.013056";
+        ulat =  "31.013056";
+        ulong = "32.013056";
 
 //        if (ulat.length()>10)
 //        ulat = ulat.substring(0,10);
@@ -159,8 +156,8 @@ public class NewOrderFragment extends Fragment implements
 
 //        txtuname.setText(uname);
 //        txtsname.setText(sname);
-//        txtuaddress.setText(uaddress);
-//        txtsaddress.setText(saddress);
+        delivery_loc.setText(uaddress);
+       txtsaddress.setText(delivery_loctext);
 //        txtproductname.setText(productname);
 //        txtprice.setText(price);
 
@@ -169,7 +166,7 @@ public class NewOrderFragment extends Fragment implements
 //                        Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
 //                title(" موقعك ");
 //
-       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(uname);
+       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(sname);
         for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
             placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
         }
@@ -198,7 +195,13 @@ public class NewOrderFragment extends Fragment implements
 //        txtuname = view.findViewById(R.id.username);
 //        txtsname = view.findViewById(R.id.store_name);
 //       // txtuaddress = view.findViewById(R.id.userplace);
-//        txtsaddress = view.findViewById(R.id.store_place);
+        txtsaddress = view.findViewById(R.id.recieve_loc);
+        recieve_distance =  view.findViewById(R.id.recieve_distance);
+
+
+
+        delivery_loc = view.findViewById(R.id.delivery_loc);
+        delivery_distance =   view.findViewById(R.id.delivery_distance);
 //        txtproductname = view.findViewById(R.id.product_name);
 //        txtprice = view.findViewById(R.id.productPrice);
         slideTitle = view.findViewById(R.id.title);

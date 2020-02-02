@@ -1,13 +1,12 @@
 package com.hossam.codesroots.presentation.notifications;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.hossam.codesroots.dataLayer.apiData.ApiClient;
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface;
-import com.hossam.codesroots.presentation.myAccount.MyAccountViewModel;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
     private Application application;

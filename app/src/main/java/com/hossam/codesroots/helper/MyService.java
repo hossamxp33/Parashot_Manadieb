@@ -5,24 +5,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.location.Location;
-import android.location.LocationListener;
-import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.hossam.codesroots.entities.MYOrdersModel;
-import com.hossam.codesroots.entities.MyOrderData;
 import com.hossam.codesroots.entities.UserInfo;
 import com.hossam.codesroots.presentation.MainActivity;
-import com.hossam.codesroots.presentation.mainFragment.MainViewModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;

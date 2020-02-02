@@ -2,9 +2,9 @@
 package com.hossam.codesroots.presentation.notifications;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface;
 import com.hossam.codesroots.entities.Notifications;

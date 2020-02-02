@@ -7,11 +7,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -29,27 +29,22 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.hossam.codesroots.entities.MYOrdersModel;
-import com.hossam.codesroots.entities.MyOrderData;
 import com.hossam.codesroots.helper.GpsTracker;
 import com.hossam.codesroots.helper.MyService;
 import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.delivery24.R;
-import com.hossam.codesroots.presentation.loginfragment.LoginFragment;
 import com.hossam.codesroots.presentation.mainFragment.MainFragment;
 import com.hossam.codesroots.presentation.myAccount.MyAccountFragment;
 import com.hossam.codesroots.presentation.myOrder.MyOrderFragment;
 import com.hossam.codesroots.presentation.newOrderFragment.NewOrderFragment;
 import com.hossam.codesroots.presentation.notifications.NotificationsFragment;
 import com.hossam.codesroots.presentation.settings.Settings;
-import com.onesignal.OSNotification;
-import com.onesignal.OSNotificationOpenResult;
-import com.onesignal.OneSignal;
+
 import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import static com.hossam.codesroots.helper.MyService.mSocket;
-import static com.onesignal.OneSignal.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -85,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
-        notification();
+      //  notification();
         setupNavigation();
         bottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
             // Do something cool here...
@@ -231,40 +226,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //////////////////Notification
-    private void notification() {
-        startInit(this)
-                .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
-                .setNotificationReceivedHandler(new ExampleNotificationrecieved ())
-                .init();
-        enableSound(true);
-        sendTag("id","237");
-       // sendTag("id",String.valueOf(PreferenceHelper.getUserId()));
-        OneSignal.setInFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification);
-        //  OneSignal.sendTag("user_group_id", String.valueOf(PreferenceHelper.getUSER_GROUP_ID()));
-    }
-
-
-    private class ExampleNotificationOpenedHandler implements NotificationOpenedHandler {
-        @Override
-        public void notificationOpened(OSNotificationOpenResult result) {
-            Log.d("result", result.toString());
-            JSONObject additionalData = result.notification.payload.additionalData;
-        }
-    }
-
-
-    private class ExampleNotificationrecieved implements NotificationReceivedHandler {
-        @Override
-        public void notificationReceived(OSNotification notification) {
-
-          notification.shown=false;
-         JSONObject jsonObject =  notification.toJSONObject();
-            Log.d("asdf",notification.toString());
-            notification.isAppInFocus=false;
-            notification.shown = false;
-            return;
-        }
-    }
+//    private void notification() {
+//        startInit(this)
+//                .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
+//                .setNotificationReceivedHandler(new ExampleNotificationrecieved ())
+//                .init();
+//        enableSound(true);
+//        sendTag("id","237");
+//       // sendTag("id",String.valueOf(PreferenceHelper.getUserId()));
+//        OneSignal.setInFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification);
+//        //  OneSignal.sendTag("user_group_id", String.valueOf(PreferenceHelper.getUSER_GROUP_ID()));
+//    }
+//
+//
+//    private class ExampleNotificationOpenedHandler implements NotificationOpenedHandler {
+//        @Override
+//        public void notificationOpened(OSNotificationOpenResult result) {
+//            Log.d("result", result.toString());
+//            JSONObject additionalData = result.notification.payload.additionalData;
+//        }
+//    }
+//
+//
+//    private class ExampleNotificationrecieved implements NotificationReceivedHandler {
+//        @Override
+//        public void notificationReceived(OSNotification notification) {
+//
+//          notification.shown=false;
+//         JSONObject jsonObject =  notification.toJSONObject();
+//            Log.d("asdf",notification.toString());
+//            notification.isAppInFocus=false;
+//            notification.shown = false;
+//            return;
+//        }
+//    }
     private void setupNavigation() {
         bottomNavigation = findViewById(R.id.bottom_navigation);
         online_statues = findViewById(R.id.online_statues);
