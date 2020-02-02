@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         callPermission();
-        Fragment fragment = new NewOrderFragment();
+      //  Fragment fragment = new NewOrderFragment();
           startService(new Intent(this, MyService.class));
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
-                setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
+      //  getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
+          //      setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
       //  notification();
         setupNavigation();
         bottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
@@ -291,10 +291,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new NewOrderFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable("data",data);
-
         fragment.setArguments(bundle);
-
-        
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
     }
