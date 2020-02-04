@@ -11,8 +11,6 @@ data class MYOrdersModel (
         val data: List<MyOrderData>? = null,
         val id: Int? = null, val dataa: MyOrderData? = null)   : Parcelable
 
-
-
 @Parcelize
 data class MyOrderData (
         val id: Int? = null,
@@ -38,10 +36,10 @@ data class MyOrderData (
         val deliveryPrice: Long? = null,
 
         @SerializedName("user_lat")
-        val userLat: String? = null,
+        val userLat: Double? = null,
 
         @SerializedName("user_long")
-        val userLong: String? = null,
+        val userLong: Double? = null,
 
         @SerializedName("delivery_time")
         val deliveryTime: String? = null,
@@ -125,10 +123,10 @@ data class Orderdetail (
         val photo: @RawValue Any? = null,
 
         @SerializedName("store_lat")
-        val storeLat: String? = null,
+        val storeLat: Double? = null,
 
         @SerializedName("store_lng")
-        val storeLng: String? = null,
+        val storeLng: Double? = null,
 
         @SerializedName("store_name")
         val storeName: String? = null,

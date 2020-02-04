@@ -101,7 +101,6 @@ public class MyService extends Service implements  NetworkChangeReceiver.Connect
             Gson g = new Gson();
             MYOrdersModel p = g.fromJson(String.valueOf((JSONObject) args[1]), (Type) MYOrdersModel.class);
 
-
             Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
             intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent1.putExtra("name", "ss");

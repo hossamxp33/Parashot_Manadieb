@@ -1,5 +1,6 @@
 package com.hossam.codesroots.presentation.newOrderFragment.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,20 +14,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.entities.Orderdetail;
+import com.hossam.codesroots.helper.PreferenceHelper;
+import com.hossam.codesroots.helper.Utils;
 
 import java.util.List;
 
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
 
-    Context mcontext;
-    List<Orderdetail> storesData;
-
+    private Context mcontext;
+    private List<Orderdetail> storesData;
 
     public StoreAdapter(FragmentActivity activity,List<Orderdetail> storedata) {
           mcontext=activity;
           storesData = storedata;
-
     }
 
     @Override
@@ -43,38 +44,46 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final StoreAdapter.ViewHolder holder, final int position)
     {
-        holder.name.setText( storesData.get(position).getStoreName());
-        holder.descrip.setText( storesData.get(position).getNotes());
-        Glide.with(mcontext).load(storesData.get(position).getNotes()).into(holder.item_img);
-
-
+        holder.name.setText(storesData.get(position).getStoreName());
+        if (storesData.get(position).getNotes()!=null)
+        holder.descrip.setText(storesData.get(position).getNotes());
+        Glide.with(mcontext).load(storesData.get(position).getPhoto()).into(holder.item_img);
+        holder.distance1.setText(Utils.calculateDistance(storesData.get(position).getStoreLat(),
+                storesData.get(position).getStoreLng(),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
+        holder.distance2.setText(Utils.calculateDistance(storesData.get(position).getStoreLat(), storesData.get(position).getStoreLng(),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
     }
+
+
     @Override
     public int getItemCount() {
-//        if (productData!= null)
-//            return  productData.size();
-//        else
+        if (storesData!= null)
+            return  storesData.size();
+        else
             return storesData.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         public final View mView;
         RecyclerView recyclerViewImages;
-        TextView name,price, storePlace,productrate,descrip;
+        TextView name,price, storePlace,productrate,descrip,distance1,distance2;
         RatingBar ratingBar;
         ImageView item_img;
         public ViewHolder(View v) {
             super(v);
             mView=v;
-            name =mView.findViewById(R.id.store_name);
+            name =mView.findViewById(R.id.stor_name);
             storePlace =mView.findViewById(R.id.store_place);
-            ratingBar =mView.findViewById(R.id.rates);
-            item_img = mView.findViewById(R.id.item_img);
-            productrate =mView.findViewById(R.id.productrate);
-            descrip =mView.findViewById(R.id.shop_description);
+            descrip =mView.findViewById(R.id.stor_des);
+            item_img = mView.findViewById(R.id.stor_img);
+            distance1 =mView.findViewById(R.id.distance1);
+            distance2 =mView.findViewById(R.id.distance2);
         }
     }
 }

@@ -3,19 +3,25 @@ package com.hossam.codesroots.presentation.newOrderFragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import androidx.fragment.app.Fragment;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -26,6 +32,7 @@ import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -51,31 +58,32 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
+
 import static android.content.ContentValues.TAG;
 
 
 @SuppressLint("ValidFragment")
 public class NewOrderFragment extends Fragment implements
-        OnMapReadyCallback,TaskLoadedCallback,LocationListener,View.OnClickListener {
+        OnMapReadyCallback, TaskLoadedCallback, LocationListener, View.OnClickListener {
 
     MapView mapView;
     GoogleMap map;
-    private MarkerOptions placemandoib, placeuser,placestor;
+    private MarkerOptions placemandoib, placeuser, placestor;
     String delivery_distancetext;
     String delivery_loctext;
     String recieve_distanctexte;
     String unametext;
     String sname;
-    String ulat;
-    String ulong;
+    double ulat;
+    double ulong;
     String uaddress;
     String saddress;
     String productname;
     String price;
-    Long slat;
-    Long slong;
-    int deliveryId = 1,orderId,userid;
-    TextView delivery_distance,delivery_loc,recieve_distance, txtuname,txtsname,txtuaddress,txtsaddress,txtproductname,txtprice,slideTitle,accept,refuse;
+    double slat;
+    double slong;
+    int deliveryId = 1, orderId, userid;
+    TextView delivery_distance, delivery_loc, recieve_distance, txtuname, txtsname, txtuaddress, txtsaddress, txtproductname, txtprice, slideTitle, accept, refuse;
     private BottomSheetBehavior mBottomSheetBehaviour;
     NestedScrollView nestedScrollView;
     NewOrderViewModel newOrderViewModel;
@@ -88,6 +96,7 @@ public class NewOrderFragment extends Fragment implements
 
     public NewOrderFragment() {
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -98,22 +107,20 @@ public class NewOrderFragment extends Fragment implements
         rv_stores = view.findViewById(R.id.rv_stores);
 
 
-
         newOrderViewModel.newoffer.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
                 progress.setVisibility(View.GONE);
                 if (aBoolean)
-                    Toast.makeText(getActivity(),getText(R.string.addOfferSucess),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getText(R.string.addOfferSucess), Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getActivity(),getText(R.string.erroroccur),Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getActivity(), getText(R.string.erroroccur), Toast.LENGTH_SHORT).show();
             }
         });
 
         findFromXml(view);
-        if (getArguments()!=null)
-        setDataInFields(getArguments());
+        if (getArguments() != null)
+            setDataInFields(getArguments());
         try {
             MapsInitializer.initialize(Objects.requireNonNull(getActivity()));
             mapView = view.findViewById(R.id.mapView);
@@ -126,12 +133,11 @@ public class NewOrderFragment extends Fragment implements
         slideTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mBottomSheetBehaviour.getState()==BottomSheetBehavior.STATE_EXPANDED) {
+                if (mBottomSheetBehaviour.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     slideTitle.setText(R.string.moredetails);
                     nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
-                }
-                else {
+                } else {
                     mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
                     slideTitle.setText(R.string.lessdetails);
                 }
@@ -140,59 +146,39 @@ public class NewOrderFragment extends Fragment implements
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
     private void setDataInFields(Bundle arguments) {
         DecimalFormat decimalFormat = new DecimalFormat("#.#####");
-        sname= "osama";
+
+        try {
+
         data = arguments.getParcelable("data");
-        storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
+        storeAdapter = new StoreAdapter(getActivity(), data.getData().get(0).getOrderdetails());
 
         rv_stores.setAdapter(storeAdapter);
-        ulat= data.getData().get(0).getUserLat();
-//        sname= data.getData().get(0).getUser().getUsername();
+        ulat = data.getData().get(0).getUserLat();
 
         ulong = data.getData().get(0).getUserLong();
-       uaddress = arguments.getString("user_address");
-      slat = data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude();
-       slong = data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude();
-//        sname = arguments.getString("store_name");
-//        price = arguments.getString("price");
-//        productname = arguments.getString("productname");
+        uaddress = data.getData().get(0).getUserAddress();
+        slat = data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude();
+        slong = data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude();
+        txtsaddress.setText(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getAddress());
+        delivery_loc.setText(data.getData().get(0).getUserAddress());
+
+        addLocations(slat,slong,ulat,ulong);
         delivery_distancetext = arguments.getString("storeaddress");
-       orderId = data.getData().get(0).getId();
-       userid  = data.getData().get(0).getUserID();
+        orderId = data.getData().get(0).getId();
+        userid = data.getData().get(0).getUserID();
 
+        recieve_distance.setText(Utils.calculateDistance(slat, slong,
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
+        delivery_distance.setText(Utils.calculateDistance(ulat, ulong,
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
 
-        ulat =  "31.013056";
-        ulong = "32.013056";
-
-        if (ulat.length()>10)
-        ulat = ulat.substring(0,10);
-        if (ulong.length()>10)
-        ulong = ulong.substring(0,10);
-
-
-     //   txtuname.setText(uname);
-        txtsname.setText(sname);
-        delivery_loc.setText(uaddress);
-       txtsaddress.setText(delivery_loctext);
-
-        recieve_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(slat), Double.valueOf(slong),
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
-        delivery_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(ulat), Double.valueOf(ulong),
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
-        txtproductname.setText(productname);
-        txtprice.setText(price);
-
-        placemandoib = new MarkerOptions().
-                position(new LatLng(Double.valueOf(PreferenceHelper.getCURRENTLAT()),
-                        Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
-                title(" موقعك ");
-
-       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(sname);
-        for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
-            placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
         }
-}
+        catch (Exception e)
+        {}
+    }
 
     @Override
     public void onResume() {
@@ -212,18 +198,16 @@ public class NewOrderFragment extends Fragment implements
         mapView.onLowMemory();
     }
 
-    private  void findFromXml(View view)
-    {
+    private void findFromXml(View view) {
 //        txtuname = view.findViewById(R.id.username);
 //        txtsname = view.findViewById(R.id.store_name);
 //       // txtuaddress = view.findViewById(R.id.userplace);
         txtsaddress = view.findViewById(R.id.recieve_loc);
-        recieve_distance =  view.findViewById(R.id.recieve_distance);
-
+        recieve_distance = view.findViewById(R.id.recieve_distance);
 
 
         delivery_loc = view.findViewById(R.id.delivery_loc);
-        delivery_distance =   view.findViewById(R.id.delivery_distance);
+        delivery_distance = view.findViewById(R.id.delivery_distance);
 //        txtproductname = view.findViewById(R.id.product_name);
 //        txtprice = view.findViewById(R.id.productPrice);
         slideTitle = view.findViewById(R.id.title);
@@ -231,7 +215,7 @@ public class NewOrderFragment extends Fragment implements
 //        refuse = view.findViewById(R.id.refuseorder);
 //        accept.setOnClickListener(this);
 ////        refuse.setOnClickListener(this);
-       nestedScrollView = view.findViewById(R.id.nestedScrool);
+        nestedScrollView = view.findViewById(R.id.nestedScrool);
         mBottomSheetBehaviour = BottomSheetBehavior.from(nestedScrollView);
         mBottomSheetBehaviour.setHideable(false);
         mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -243,52 +227,52 @@ public class NewOrderFragment extends Fragment implements
         mBottomSheetBehaviour.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View view, int new_status) {
-                if (new_status==BottomSheetBehavior.STATE_EXPANDED) {
+                if (new_status == BottomSheetBehavior.STATE_EXPANDED) {
                     slideTitle.setText(R.string.lessdetails);
                     nestedScrollView.fullScroll(ScrollView.FOCUS_UP);
-                }
-                else {
+                } else {
                     slideTitle.setText(R.string.moredetails);
                 }
             }
 
             @Override
             public void onSlide(@NonNull View view, float v) {
-              //  slideTitle.animate().scaleX(100).scaleY(10).setDuration(0).start();
+                //  slideTitle.animate().scaleX(100).scaleY(10).setDuration(0).start();
             }
         });
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        placestor = new MarkerOptions().position(new LatLng(29.9603988, 31.270689)).title("موقع الاستلام ");
-        placeuser = new MarkerOptions().position(new LatLng(30.0326172, 31.3032935)).title("موقع التسليم  ");
+    }
 
+    public void addLocations( double d1, double d2, double d3, double d4) {
+        placestor = new MarkerOptions().position(new LatLng(d1, d2)).title("موقع الاستلام ");
+        placeuser = new MarkerOptions().position(new LatLng(d3, d4)).title("موقع التسليم  ");
         try {
             map.addMarker(placestor);
-          //  map.addMarker(placemandoib);
+            //  map.addMarker(placemandoib);
             map.addMarker(placeuser);
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             builder.include(placestor.getPosition());
-           // builder.include(placemandoib.getPosition());
+            // builder.include(placemandoib.getPosition());
             builder.include(placeuser.getPosition());
             LatLngBounds bounds = builder.build();
             map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
-           // new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placeuser.getPosition(), "driving"), "driving");
+            // new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placeuser.getPosition(), "driving"), "driving");
             new FetchURL(NewOrderFragment.this).execute(getUrl(placeuser.getPosition(), placestor.getPosition(), "driving"), "driving");
 
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
         }
-        catch (Exception e)
-        {
-          Log.d(TAG,e.getMessage());
-        }
-
-     }
+    }
 
     @Override
     public void onLocationChanged(Location location) {
     }
+
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
@@ -321,39 +305,34 @@ public class NewOrderFragment extends Fragment implements
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.acceptorder:
                 openDialogForAddStorage();
                 break;
         }
     }
 
-    private void openDialogForAddStorage(){
+    private void openDialogForAddStorage() {
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.alert_add_price_offer, null);
         dialogBuilder.setView(dialogView);
-        final EditText storagetxt =  dialogView.findViewById(R.id.dialogEditText);
+        final EditText storagetxt = dialogView.findViewById(R.id.dialogEditText);
         TextView save;
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
         alertDialog.show();
-        save =dialogView.findViewById(R.id.save);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (storagetxt.getText().toString().matches(""))
-                    storagetxt.setError(getResources().getString(R.string.complet));
-                else {
-                    newOrderViewModel.addOffer(orderId,userid,deliveryId,storagetxt.getText().toString());
-                    progress.setVisibility(View.VISIBLE);
-                    alertDialog.dismiss();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,new MyOrderFragment()).addToBackStack(null).
-                            setCustomAnimations(R.anim.animation_new_order,R.anim.animation_new_order2).commit();
-                }
+        save = dialogView.findViewById(R.id.save);
+        save.setOnClickListener(v -> {
+            if (storagetxt.getText().toString().matches(""))
+                storagetxt.setError(getResources().getString(R.string.complet));
+            else {
+                newOrderViewModel.addOffer(orderId, userid, deliveryId, storagetxt.getText().toString());
+                progress.setVisibility(View.VISIBLE);
+                alertDialog.dismiss();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MyOrderFragment()).addToBackStack(null).
+                        setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
             }
         });
     }

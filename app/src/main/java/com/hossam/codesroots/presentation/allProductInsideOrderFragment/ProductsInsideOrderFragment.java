@@ -16,7 +16,6 @@ import java.util.List;
 
 public class ProductsInsideOrderFragment extends Fragment {
 
-    private RecyclerView recyclerView;
     private StoreAdapter storeAdapter;
     List<Orderdetail> orderdetailsBeans;
     public ProductsInsideOrderFragment() {
@@ -34,7 +33,7 @@ public class ProductsInsideOrderFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_product_inside_orders, container, false);
-        recyclerView = view.findViewById(R.id.recylerviewInside);
+        RecyclerView recyclerView = view.findViewById(R.id.recylerviewInside);
 
         assert getArguments() != null;
         orderdetailsBeans =  getArguments().getParcelableArrayList("allProduct");

@@ -89,7 +89,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/delivery_distance"
                 />
 
-
             <TextView
                     android:id="@+id/recieve_loc_title"
                     android:layout_width="0dp"

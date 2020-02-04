@@ -84,12 +84,12 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
             // Do something cool here...
             if (position == 3) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MyOrderFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MainFragment()).addToBackStack(null).commit();
                 bottomNavigation.setNotification("", 3);
             } else if (position == 4) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MyAccountFragment()).addToBackStack(null).commit();
             } else if (position == 2) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MainFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MyOrderFragment()).addToBackStack(null).commit();
             }
             else if (position == 1) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new NotificationsFragment()).addToBackStack(null).commit();
@@ -153,9 +153,9 @@ public class MainActivity extends AppCompatActivity {
             gotoNewOrderFragment(intent);
         }
         int last_order = intent.getIntExtra("last_order", 0);
-        if (new_order == 1) {
-            gotoLastOrderFragment(intent);
-        }
+//        if (new_order == 1) {
+//            gotoLastOrderFragment(intent);
+//        }
         String action = intent.getStringExtra("action");
         if (action!=null) {
             if (action.matches("connect")) {
