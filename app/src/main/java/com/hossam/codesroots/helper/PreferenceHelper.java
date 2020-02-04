@@ -23,6 +23,21 @@ public class PreferenceHelper {
 	private final static String USER_NAME = "USERNAME";
 	private final static String ROOM_ID = "ROOMID";
 	private static String OrderId = "OrderId";
+	private final String OrderDetails = "OrderDetails";
+	private final String DeliveryLocation = "DeliveryLocation";
+	private final String DurationRequest = "DurationRequest";
+	private final String ImageUri = "ImageUri";
+	private final String FirstTime = "FirstTime";
+	private final String UserID = "UserID";
+	private final String AccessToken = "AccessToken";
+	private final String Email = "Email";
+	private final String FirstName = "FirstName";
+	private final String LastName = "LastName";
+	private final String Phone = "Phone";
+	private final String Gender = "Gender";
+	private final String Password = "Password";
+	private final String language = "Language";
+	private final String SocketId = "SocketId";
 
 	private static Context context;
 
@@ -172,15 +187,179 @@ public class PreferenceHelper {
 }
 
 
-    public void Logout(){
-		setToken(null);
-		setUserId(0);
-		setphoto(null);
-
-	}
 
 	public void clearRequestData() {
 
  	}
 
+	public String getsokcetId() {
+		return app_prefs.getString(SocketId, null);
+	}
+
+	public void setsokcetId(String sokcetid) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(SocketId, sokcetid);
+		edit.apply();
+	}
+	public String getlanguage() {
+		return app_prefs.getString(language, null);
+	}
+
+	public void setlanguage(String API_language) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(language, API_language);
+		edit.apply();
+	}
+	public String getGender() {
+		return app_prefs.getString(Gender, null);
+	}
+
+	public void setGender(String API_Gender) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(Gender, API_Gender);
+		edit.apply();
+	}
+
+	public String getPassword() {
+		return app_prefs.getString(Password, null);
+	}
+
+	public void setPassword(String API_Password) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(Password, API_Password);
+		edit.apply();
+	}
+
+	public String getPhone() {
+		return app_prefs.getString(Phone, null);
+	}
+
+	public void setPhone(String API_Phone) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(Phone, API_Phone);
+		edit.apply();
+	}
+
+	public String getLastName() {
+		return app_prefs.getString(LastName, null);
+	}
+
+	public void setLastName(String API_LastName) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(LastName, API_LastName);
+		edit.apply();
+	}
+
+	public String getFirstName() {
+		return app_prefs.getString(FirstName, null);
+	}
+
+	public void setFirstName(String API_FirstName) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(FirstName, API_FirstName);
+		edit.apply();
+	}
+
+	public String getEmail() {
+		return app_prefs.getString(Email, null);
+	}
+
+	public void setEmail(String API_Email) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(Email, API_Email);
+		edit.apply();
+	}
+
+	public String getFirstTime() {
+		return app_prefs.getString(FirstTime, null);
+	}
+
+	public void setFirstTime(String API_FirstTime) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(FirstTime, API_FirstTime);
+		edit.apply();
+	}
+
+	public String getUserID() {
+		return app_prefs.getString(UserID, null);
+	}
+
+	public void setUserID(String API_UserID) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(UserID, API_UserID);
+		edit.apply();
+	}
+
+	public String getAccessToken() {
+		return app_prefs.getString(AccessToken, null);
+	}
+
+	public void setAccessToken(String API_AccessToken) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(AccessToken, API_AccessToken);
+		edit.apply();
+	}
+
+	public String getOrderDetails() {
+		return app_prefs.getString(OrderDetails, null);
+	}
+
+	public void setOrderDetails(String API_OrderDetails) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(OrderDetails, API_OrderDetails);
+		edit.apply();
+	}
+
+	public String getDeliveryLocation() {
+		return app_prefs.getString(DeliveryLocation, null);
+	}
+
+	public void setDeliveryLocation(String API_DeliveryLocation) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(DeliveryLocation, API_DeliveryLocation);
+		edit.apply();
+	}
+
+
+	public String getDurationRequest() {
+		return app_prefs.getString(DurationRequest, null);
+	}
+
+	public void setDurationRequest(String API_DurationRequest) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(DurationRequest, API_DurationRequest);
+		edit.apply();
+	}
+
+	public String getImageUri() {
+		return app_prefs.getString(ImageUri, null);
+	}
+
+	public void setImageUri(String API_ImageUri) {
+		SharedPreferences.Editor edit = app_prefs.edit();
+		edit.putString(ImageUri, API_ImageUri);
+		edit.apply();
+	}
+
+	public void ClearOrder() {
+		setOrderDetails(null);
+		setDeliveryLocation(null);
+		setImageUri(null);
+		setDurationRequest(null);
+	}
+
+	public void Logout(){
+		setOrderDetails(null);
+		setDeliveryLocation(null);
+		setImageUri(null);
+		setDurationRequest(null);
+		setAccessToken(null);
+		setFirstName(null);
+		setLastName(null);
+		setUserID(null);
+		setGender(null);
+		setPassword(null);
+		setEmail(null);
+		setPhone(null);
+	}
 }

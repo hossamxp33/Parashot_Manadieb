@@ -185,5 +185,27 @@ data class Smallstore (
 
 }
 
+class RegisterResponse {
+
+        /**
+         * success : true
+         * data : {"id":270,"code":200,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MCwiZXhwIjoxNTc4MjI5Mjg0fQ.IwRc2_V5b6sWtkavzanihIEtt6aj8i7wsAZ5itjYSEc"}
+         */
+
+        var isSuccess: Boolean = false
+        var data: DataBean? = null
+
+        class DataBean {
+                /**
+                 * id : 270
+                 * code : 200
+                 * token : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MCwiZXhwIjoxNTc4MjI5Mjg0fQ.IwRc2_V5b6sWtkavzanihIEtt6aj8i7wsAZ5itjYSEc
+                 */
+
+                var id: Int = 0
+                var code: Int = 0
+                var token: String? = null
+        }
+}
 
 

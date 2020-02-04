@@ -38,12 +38,16 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.hossam.codesroots.entities.MYOrdersModel;
 import com.hossam.codesroots.entities.Orderdetail;
+import com.hossam.codesroots.helper.PreferenceHelper;
+import com.hossam.codesroots.helper.Utils;
 import com.hossam.codesroots.helper.directionhelpers.FetchURL;
 import com.hossam.codesroots.helper.directionhelpers.TaskLoadedCallback;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.myOrder.MyOrderFragment;
 import com.hossam.codesroots.presentation.newOrderFragment.adapter.StoreAdapter;
 import com.hossam.codesroots.presentation.newOrderFragment.adapter.newOrderFragmentAdapter;
+
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +61,19 @@ public class NewOrderFragment extends Fragment implements
     MapView mapView;
     GoogleMap map;
     private MarkerOptions placemandoib, placeuser,placestor;
-    String delivery_distancetext,delivery_loctext,recieve_distanctexte,unametext,sname,ulat,ulong,uaddress,saddress,productname,price,slat,slong;
+    String delivery_distancetext;
+    String delivery_loctext;
+    String recieve_distanctexte;
+    String unametext;
+    String sname;
+    String ulat;
+    String ulong;
+    String uaddress;
+    String saddress;
+    String productname;
+    String price;
+    Long slat;
+    Long slong;
     int deliveryId = 1,orderId,userid;
     TextView delivery_distance,delivery_loc,recieve_distance, txtuname,txtsname,txtuaddress,txtsaddress,txtproductname,txtprice,slideTitle,accept,refuse;
     private BottomSheetBehavior mBottomSheetBehaviour;
@@ -125,28 +141,29 @@ public class NewOrderFragment extends Fragment implements
     }
 
     private void setDataInFields(Bundle arguments) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.#####");
-        sname= getArguments().getString("user_name");
-        //uname= "osama";
-        data = arguments.getParcelable("data");
-        storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
-
-        rv_stores.setAdapter(storeAdapter);
-//        ulat= arguments.getString("user_lat");
-//        ulong= arguments.getString("user_long");
-       uaddress= arguments.getString("user_address");
-//        slat= arguments.getString("stor_lat");
-//        slong= arguments.getString("stor_long");
-//        sname= arguments.getString("store_name");
-//        price= arguments.getString("price");
-//        productname= arguments.getString("productname");
-        delivery_distancetext = arguments.getString("storeaddress");
-       orderId = data.getData().get(0).getId();
-       userid  = data.getData().get(0).getUserID();
-
-
-        ulat =  "31.013056";
-        ulong = "32.013056";
+//        DecimalFormat decimalFormat = new DecimalFormat("#.#####");
+//        sname= "osama";
+//        data = arguments.getParcelable("data");
+//        storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
+//
+//        rv_stores.setAdapter(storeAdapter);
+//        ulat= data.getData().get(0).getUserLat();
+////        sname= data.getData().get(0).getUser().getUsername();
+//
+//        ulong= data.getData().get(0).getUserLong();
+//       uaddress= arguments.getString("user_address");
+//      slat= data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude();
+//       slong= data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude();
+////        sname= arguments.getString("store_name");
+////        price= arguments.getString("price");
+////        productname= arguments.getString("productname");
+//        delivery_distancetext = arguments.getString("storeaddress");
+//       orderId = data.getData().get(0).getId();
+//       userid  = data.getData().get(0).getUserID();
+//
+//
+//        ulat =  "31.013056";
+//        ulong = "32.013056";
 
 //        if (ulat.length()>10)
 //        ulat = ulat.substring(0,10);
@@ -156,8 +173,13 @@ public class NewOrderFragment extends Fragment implements
 
 //        txtuname.setText(uname);
 //        txtsname.setText(sname);
-        delivery_loc.setText(uaddress);
-       txtsaddress.setText(delivery_loctext);
+//        delivery_loc.setText(uaddress);
+//       txtsaddress.setText(delivery_loctext);
+//
+//        recieve_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(slat), Double.valueOf(slong),
+//                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
+//        delivery_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(ulat), Double.valueOf(ulong),
+//                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
 //        txtproductname.setText(productname);
 //        txtprice.setText(price);
 
@@ -166,10 +188,10 @@ public class NewOrderFragment extends Fragment implements
 //                        Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
 //                title(" موقعك ");
 //
-       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(sname);
-        for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
-            placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
-        }
+//       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(sname);
+//        for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
+//            placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
+//        }
 }
 
     @Override
@@ -247,19 +269,19 @@ public class NewOrderFragment extends Fragment implements
             map.addMarker(placestor);
           //  map.addMarker(placemandoib);
             map.addMarker(placeuser);
-            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            builder.include(placestor.getPosition());
-           // builder.include(placemandoib.getPosition());
-            builder.include(placeuser.getPosition());
-            LatLngBounds bounds = builder.build();
-            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+//            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//            builder.include(placestor.getPosition());
+//           // builder.include(placemandoib.getPosition());
+//            builder.include(placeuser.getPosition());
+//            LatLngBounds bounds = builder.build();
+//            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
            // new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placeuser.getPosition(), "driving"), "driving");
-            new FetchURL(NewOrderFragment.this).execute(getUrl(placeuser.getPosition(), placestor.getPosition(), "driving"), "driving");
+         //   new FetchURL(NewOrderFragment.this).execute(getUrl(placeuser.getPosition(), placestor.getPosition(), "driving"), "driving");
 
         }
         catch (Exception e)
         {
-          //  Log.d(TAG,e.getMessage());
+          Log.d(TAG,e.getMessage());
         }
 
      }

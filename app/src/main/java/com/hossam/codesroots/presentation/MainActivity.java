@@ -75,11 +75,10 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         callPermission();
-      //  Fragment fragment = new NewOrderFragment();
-          startService(new Intent(this, MyService.class));
+        Fragment fragment = new NewOrderFragment();
 
-      //  getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
-          //      setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
+                setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
       //  notification();
         setupNavigation();
         bottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
@@ -97,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (position == 0) {
                 Intent intent = new Intent(this, Settings.class);
-                startActivity(intent)  ;          }
+                startActivity(intent)  ;
+            }
             return true;
         });
 
@@ -131,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
         if (new_order == 1) {
             gotoNewOrderFragment(getIntent());
         }
+        startService(new Intent(this, MyService.class));
+
     }
 
     private void addPadgetoNavigation(String text, int position) {
@@ -268,15 +270,13 @@ public class MainActivity extends AppCompatActivity {
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.notificatin, R.drawable.notificatio, R.color.gray);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.myOrder, R.drawable.noun_order, R.color.gray);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.home, R.color.gray);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.myAccount, R.drawable.noun_userr, R.color.gray);
 
         // Add items
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
-        bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
-        bottomNavigation.addItem(item5);
-        bottomNavigation.setCurrentItem(2);
+        bottomNavigation.addItem(item3);
+        bottomNavigation.setCurrentItem(1);
 
         bottomNavigation.setAccentColor(Color.parseColor("#ef1919"));
         bottomNavigation.setInactiveColor(Color.parseColor("#ff808080"));
@@ -286,12 +286,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gotoNewOrderFragment(Intent intent) {
-        MYOrdersModel data = intent.getParcelableExtra("data");
+      //  MYOrdersModel data = intent.getParcelableExtra("data");
 
-        Fragment fragment = new NewOrderFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("data",data);
-        fragment.setArguments(bundle);
+      Fragment fragment = new NewOrderFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelable("data",data);
+//        fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
     }

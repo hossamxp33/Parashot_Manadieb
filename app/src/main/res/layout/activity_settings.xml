@@ -22,7 +22,88 @@
                 android:text="@string/generalSettings"
                 android:textColor="@color/cardRed"
                 android:textStyle="bold" />
+            <RelativeLayout
+                android:id="@+id/TotalBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/BalaARRO"
+                    android:text="TotalBalance" />
+
+                <TextView
+                    android:id="@+id/BalaARRO"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+
+                    android:rotation="180" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/gray" />
+            <RelativeLayout
+                android:id="@+id/OrderCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/OrderCountarrow"
+                    android:text="OrderCount" />
+
+                <TextView
+                    android:id="@+id/OrderCountarrow"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="180" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/gray" />
+            <RelativeLayout
+                android:id="@+id/OrderCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/OrderCostarrow"
+                    android:text="OrderCost" />
+
+                <TextView
+                    android:id="@+id/OrderCostarrow"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="180" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/gray" />
             <RelativeLayout
                 android:id="@+id/editProfile"
                 android:layout_width="match_parent"

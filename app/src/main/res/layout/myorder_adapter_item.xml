@@ -6,11 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ordercard"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="160dp"
     android:layout_margin="10dp"
-    android:paddingBottom="5dp"
     android:background="@drawable/layout_reduis"
     android:layoutDirection="rtl"
+    android:paddingBottom="5dp"
     android:weightSum="5">
 
 
@@ -132,21 +132,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_weight="2"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="2"
         android:ellipsize="end"
         android:gravity="center"
         android:lines="2"
-        tools:text="fddfgdfsd"
         android:textColor="@color/black"
         android:textSize="14dp"
-        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guidvertical3"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toEndOf="@id/guidvertical1"
-        app:layout_constraintTop_toBottomOf="@+id/order_cost" />
+        app:layout_constraintTop_toBottomOf="@+id/order_cost"
+        tools:text="fddfgdfsd" />
 
 
     <TextView

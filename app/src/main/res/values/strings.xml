@@ -53,7 +53,7 @@
     <string name="myOrder">طلباتي</string>
     <string name="notificatin">اشعارات</string>
     <string name="username"><font size="16">اسم المستخدم</font></string>
-    <string name="register">تسجيل</string>
+    <string name="register">حسابي</string>
     <string name="register_in_login">التسجيل</string>
     <string name="forgetpassword">نسيت كلمة المرور؟</string>
     <string name="registerfb">continue with facebook</string>
@@ -92,6 +92,30 @@
     <string name="aboutapp">About the app</string>
     <string name="howitwork">How delivery24 works</string>
     <string name="logout">Logout</string>
+    <string name="message">Message</string>
+    <string name="enteryourmsg">Enter your message</string>
+    <string name="arabic">العربية</string>
+    <string name="english">English</string>
     <string name="terms">Terms and conditions</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="enterphone">Enter phone number</string>
+    <string name="fullname">Full name</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="signup">Sign up</string>
+    <string name="enterfullname">Please enter full name</string>
+    <string name="enteremail">Please enter your email</string>
+    <string name="enterpassword">Please enter your password</string>
+    <string name="selectgender">Please select gender</string>
+    <string name="phone">Phone</string>
+    <string name="faceLogin">Login with facebook</string>
+    <string name="check">Check</string>
+    <string name="enterusername">Please enter username</string>
+    <string name="gmailLogin">Login with Gmail</string>
+    <string name="or">Or</string>
+    <string name="smslogin">Login with Phone number</string>
+    <string name="bylogin">By loging in you agree on</string>
+    <string name="saveinfo">Save info</string>
 
 </resources>

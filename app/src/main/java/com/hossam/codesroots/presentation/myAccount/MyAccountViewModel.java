@@ -25,7 +25,7 @@ public class MyAccountViewModel extends ViewModel {
     }
 
 
-    MutableLiveData<MyAccount> myAccountMutableLiveData = new MutableLiveData<>();
+  public   MutableLiveData<MyAccount> myAccountMutableLiveData = new MutableLiveData<>();
     MutableLiveData<Throwable> errorAccount = new MutableLiveData<>();
     ApiInterface apiInterface;
 
