@@ -141,57 +141,57 @@ public class NewOrderFragment extends Fragment implements
     }
 
     private void setDataInFields(Bundle arguments) {
-//        DecimalFormat decimalFormat = new DecimalFormat("#.#####");
-//        sname= "osama";
-//        data = arguments.getParcelable("data");
-//        storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
-//
-//        rv_stores.setAdapter(storeAdapter);
-//        ulat= data.getData().get(0).getUserLat();
-////        sname= data.getData().get(0).getUser().getUsername();
-//
-//        ulong= data.getData().get(0).getUserLong();
-//       uaddress= arguments.getString("user_address");
-//      slat= data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude();
-//       slong= data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude();
-////        sname= arguments.getString("store_name");
-////        price= arguments.getString("price");
-////        productname= arguments.getString("productname");
-//        delivery_distancetext = arguments.getString("storeaddress");
-//       orderId = data.getData().get(0).getId();
-//       userid  = data.getData().get(0).getUserID();
-//
-//
-//        ulat =  "31.013056";
-//        ulong = "32.013056";
+        DecimalFormat decimalFormat = new DecimalFormat("#.#####");
+        sname= "osama";
+        data = arguments.getParcelable("data");
+        storeAdapter = new StoreAdapter(getActivity(),data.getData().get(0).getOrderdetails());
 
-//        if (ulat.length()>10)
-//        ulat = ulat.substring(0,10);
-//        if (ulong.length()>10)
-//        ulong = ulong.substring(0,10);
+        rv_stores.setAdapter(storeAdapter);
+        ulat= data.getData().get(0).getUserLat();
+//        sname= data.getData().get(0).getUser().getUsername();
+
+        ulong = data.getData().get(0).getUserLong();
+       uaddress = arguments.getString("user_address");
+      slat = data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude();
+       slong = data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude();
+//        sname = arguments.getString("store_name");
+//        price = arguments.getString("price");
+//        productname = arguments.getString("productname");
+        delivery_distancetext = arguments.getString("storeaddress");
+       orderId = data.getData().get(0).getId();
+       userid  = data.getData().get(0).getUserID();
 
 
-//        txtuname.setText(uname);
-//        txtsname.setText(sname);
-//        delivery_loc.setText(uaddress);
-//       txtsaddress.setText(delivery_loctext);
-//
-//        recieve_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(slat), Double.valueOf(slong),
-//                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
-//        delivery_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(ulat), Double.valueOf(ulong),
-//                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
-//        txtproductname.setText(productname);
-//        txtprice.setText(price);
+        ulat =  "31.013056";
+        ulong = "32.013056";
 
-//        placemandoib = new MarkerOptions().
-//                position(new LatLng(Double.valueOf(PreferenceHelper.getCURRENTLAT()),
-//                        Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
-//                title(" موقعك ");
-//
-//       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(sname);
-//        for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
-//            placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
-//        }
+        if (ulat.length()>10)
+        ulat = ulat.substring(0,10);
+        if (ulong.length()>10)
+        ulong = ulong.substring(0,10);
+
+
+     //   txtuname.setText(uname);
+        txtsname.setText(sname);
+        delivery_loc.setText(uaddress);
+       txtsaddress.setText(delivery_loctext);
+
+        recieve_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(slat), Double.valueOf(slong),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
+        delivery_distance.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(Double.valueOf(ulat), Double.valueOf(ulong),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
+        txtproductname.setText(productname);
+        txtprice.setText(price);
+
+        placemandoib = new MarkerOptions().
+                position(new LatLng(Double.valueOf(PreferenceHelper.getCURRENTLAT()),
+                        Double.valueOf(PreferenceHelper.getCURRENTLONG()))).
+                title(" موقعك ");
+
+       placeuser = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getUserLat()),Double.valueOf(data.getData().get(0).getUserLong()))).title(sname);
+        for (int i=0;i<data.getData().get(0).getOrderdetails().size();i++) {
+            placestor = new MarkerOptions().position(new LatLng(Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLatitude()), Double.valueOf(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getLongitude()))).title(data.getData().get(0).getOrderdetails().get(0).getSmallstore().getName());
+        }
 }
 
     @Override
@@ -269,14 +269,14 @@ public class NewOrderFragment extends Fragment implements
             map.addMarker(placestor);
           //  map.addMarker(placemandoib);
             map.addMarker(placeuser);
-//            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-//            builder.include(placestor.getPosition());
-//           // builder.include(placemandoib.getPosition());
-//            builder.include(placeuser.getPosition());
-//            LatLngBounds bounds = builder.build();
-//            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            builder.include(placestor.getPosition());
+           // builder.include(placemandoib.getPosition());
+            builder.include(placeuser.getPosition());
+            LatLngBounds bounds = builder.build();
+            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
            // new FetchURL(NewOrderFragment.this).execute(getUrl(placemandoib.getPosition(), placeuser.getPosition(), "driving"), "driving");
-         //   new FetchURL(NewOrderFragment.this).execute(getUrl(placeuser.getPosition(), placestor.getPosition(), "driving"), "driving");
+            new FetchURL(NewOrderFragment.this).execute(getUrl(placeuser.getPosition(), placestor.getPosition(), "driving"), "driving");
 
         }
         catch (Exception e)

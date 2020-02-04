@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         callPermission();
-        Fragment fragment = new NewOrderFragment();
+        Fragment fragment = new MainFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();        PreferenceHelper preferenceHelper = new PreferenceHelper(MainActivity.this);
@@ -286,12 +286,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gotoNewOrderFragment(Intent intent) {
-      //  MYOrdersModel data = intent.getParcelableExtra("data");
+       MYOrdersModel data = intent.getParcelableExtra("data");
 
       Fragment fragment = new NewOrderFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelable("data",data);
-//        fragment.setArguments(bundle);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data",data);
+        fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).addToBackStack(null).
                 setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
     }
