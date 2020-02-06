@@ -184,7 +184,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         getimage = view.findViewById(R.id.cam);
         send = view.findViewById(R.id.send);
 //        typing = view.findViewById(R.id.typing);
-    recyclerView = view.findViewById(R.id.rvList);
+        recyclerView = view.findViewById(R.id.rvList);
         etMessage = view.findViewById(R.id.chatMSG);
         storeLocation = view.findViewById(R.id.stor_location); //action
         userLocation = view.findViewById(R.id.user_location);  //action

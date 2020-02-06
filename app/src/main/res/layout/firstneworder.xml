@@ -179,7 +179,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintWidth_percent="0.3"
                 android:background="@drawable/distance_back"
-                app:layout_constraintTop_toBottomOf="@+id/recieve_loc"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_loc"
                 android:text=" 6.67 كم  "
                 android:textStyle="bold"
                 android:gravity="center"
@@ -232,11 +232,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/vieww"
                 />
 
-            <TextView
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:id="@+id/cost_value"
-                android:text="65"
+                android:hint="اكتب عرض السعر"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"
@@ -256,19 +256,19 @@
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@+id/cost_value"
                 >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="سوف تستلم من العميل "
-                />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="سوف تستلم من العميل "-->
+<!--                />-->
 
-                <TextView
-                    android:id="@+id/total_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/red"
-                    android:text=" 60  رس  "
-                    />
+<!--                <TextView-->
+<!--                    android:id="@+id/total_value"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/red"-->
+<!--                    android:text=" 60  رس  "-->
+<!--                    />-->
             </LinearLayout>
 
             <Button

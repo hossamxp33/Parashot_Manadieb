@@ -79,10 +79,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Custom
             holder.time.setText(getTime(allMessage.get(position).getCreated()));
         }
 
-        if (allMessage.get(position).getUser().getUser_group_id()==1)
-            holder.sender.setText(R.string.clientt);
-        else  if (allMessage.get(position).getUser().getUser_group_id()==3)
-            holder.sender.setText(R.string.stor);
+//        if (allMessage.get(position).getUser().getUser_group_id()==1)
+//            holder.sender.setText(R.string.clientt);
+//        else  if (allMessage.get(position).getUser().getUser_group_id()==3)
+//            holder.sender.setText(R.string.stor);
 
         holder.itemImage.setOnClickListener(v -> {
             Intent intent = new Intent(context,ImageViewActivity.class);

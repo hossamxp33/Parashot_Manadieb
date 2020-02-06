@@ -95,6 +95,7 @@ public class NewOrderFragment extends Fragment implements
     List<Orderdetail> orderdetailsBeans;
 
     public NewOrderFragment() {
+
     }
 
     @Override
@@ -170,10 +171,10 @@ public class NewOrderFragment extends Fragment implements
         orderId = data.getData().get(0).getId();
         userid = data.getData().get(0).getUserID();
 
-        recieve_distance.setText(Utils.calculateDistance(slat, slong,
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
-        delivery_distance.setText(Utils.calculateDistance(ulat, ulong,
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
+        recieve_distance.setText(BigDecimal.valueOf(Long.parseLong(Utils.calculateDistance(slat, slong,
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"")).toString());
+        delivery_distance.setText(BigDecimal.valueOf(Long.parseLong(Utils.calculateDistance(ulat, ulong,
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"")).toString());
 
         }
         catch (Exception e)
@@ -209,11 +210,11 @@ public class NewOrderFragment extends Fragment implements
         delivery_loc = view.findViewById(R.id.delivery_loc);
         delivery_distance = view.findViewById(R.id.delivery_distance);
 //        txtproductname = view.findViewById(R.id.product_name);
-//        txtprice = view.findViewById(R.id.productPrice);
+        txtprice = view.findViewById(R.id.cost_value);
         slideTitle = view.findViewById(R.id.title);
-//        accept = view.findViewById(R.id.acceptorder);
+       accept = view.findViewById(R.id.send);
 //        refuse = view.findViewById(R.id.refuseorder);
-//        accept.setOnClickListener(this);
+       accept.setOnClickListener(this);
 ////        refuse.setOnClickListener(this);
         nestedScrollView = view.findViewById(R.id.nestedScrool);
         mBottomSheetBehaviour = BottomSheetBehavior.from(nestedScrollView);
@@ -306,7 +307,7 @@ public class NewOrderFragment extends Fragment implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.acceptorder:
+            case R.id.send:
                 openDialogForAddStorage();
                 break;
         }
@@ -314,27 +315,12 @@ public class NewOrderFragment extends Fragment implements
 
     private void openDialogForAddStorage() {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.alert_add_price_offer, null);
-        dialogBuilder.setView(dialogView);
-        final EditText storagetxt = dialogView.findViewById(R.id.dialogEditText);
-        TextView save;
-        final AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.show();
-        save = dialogView.findViewById(R.id.save);
-        save.setOnClickListener(v -> {
-            if (storagetxt.getText().toString().matches(""))
-                storagetxt.setError(getResources().getString(R.string.complet));
-            else {
-                newOrderViewModel.addOffer(orderId, userid, deliveryId, storagetxt.getText().toString());
-                progress.setVisibility(View.VISIBLE);
-                alertDialog.dismiss();
+                newOrderViewModel.addOffer(orderId, userid, deliveryId, txtprice.getText().toString());
+//                progress.setVisibility(View.VISIBLE);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MyOrderFragment()).addToBackStack(null).
                         setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();
-            }
-        });
+
+
     }
 
 }

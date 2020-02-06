@@ -17,6 +17,7 @@ import com.hossam.codesroots.entities.Orderdetail;
 import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.helper.Utils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -49,14 +50,18 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     public void onBindViewHolder(final StoreAdapter.ViewHolder holder, final int position)
     {
         holder.name.setText(storesData.get(position).getStoreName());
-        if (storesData.get(position).getNotes()!=null)
-        holder.descrip.setText(storesData.get(position).getNotes());
-        Glide.with(mcontext).load(storesData.get(position).getPhoto()).into(holder.item_img);
-        holder.distance1.setText(Utils.calculateDistance(storesData.get(position).getStoreLat(),
-                storesData.get(position).getStoreLng(),
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
-        holder.distance2.setText(Utils.calculateDistance(storesData.get(position).getStoreLat(), storesData.get(position).getStoreLng(),
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG())+"");
+        if (storesData.get(position).getNotes()!=null) {
+            holder.descrip.setText(storesData.get(position).getNotes());
+        }
+        Glide.with(mcontext).load(storesData.get(position).getSmallstore().getLogo()).into(holder.item_img);
+        holder.distance1.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(storesData.get(position).getSmallstore().getLatitude(),
+                storesData.get(position).getSmallstore().getLongitude(),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
+        holder.distance2.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(storesData.get(position).getStoreLat(), storesData.get(position).getStoreLng(),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
+
+
+
     }
 
 
