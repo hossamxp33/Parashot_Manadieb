@@ -35,6 +35,7 @@ import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessag
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ChatViewModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ViewModelFactory;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.adapter.ChatListAdapter;
+import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.map.MapingFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -187,7 +188,9 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         recyclerView = view.findViewById(R.id.rvList);
         etMessage = view.findViewById(R.id.chatMSG);
         storeLocation = view.findViewById(R.id.stor_location); //action
-        userLocation = view.findViewById(R.id.user_location);  //action
+        userLocation = view.findViewById(R.id.location);  //action
+        userLocation.setOnClickListener(this);
+
         user_location = view.findViewById(R.id.user_location_txt); // text
         store_location = view.findViewById(R.id.store_location);//text
         progressBarload = view.findViewById(R.id.progressBarload);//text
@@ -318,12 +321,14 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
                 makePhonecall(allData.getOrder().get(0).getSmallstore().getPhone());
                 break;
 
-            case R.id.user_location:
-                Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr="+
-                 PreferenceHelper.getCURRENTLAT()+","+PreferenceHelper.getCURRENTLONG()+
-                        "&daddr="+allData.getOrder().get(0).getUser_lat()+","+allData.getOrder().get(0).getUser_long()));
-                startActivity(i2);
+            case R.id.location:
+                Fragment fragment1 = new MapingFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("roomId",roomId);
+                fragment1.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment1).addToBackStack(null).commit();
                 break;
+
 
             case R.id.stor_location:
 

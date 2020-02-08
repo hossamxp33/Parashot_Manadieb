@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //            startForegroundService(new Intent(this, MyService.class));
 //        } else {
-//            startService(new Intent(this, MyService.class));
+         startService(new Intent(this, MyService.class));
 //        }
         if (isGooglePlayServicesAvailable()) {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
