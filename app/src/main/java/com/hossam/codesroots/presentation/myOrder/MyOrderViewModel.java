@@ -48,14 +48,16 @@ public class MyOrderViewModel extends ViewModel {
         getObservable(deliveryId).subscribeWith(getObserver());
     }
 
-    public void editResult(int order,int statues)
+    public void editResult(int order,int statues,String notes)
     {
-        getObservableEditResult(order,statues).subscribeWith(getObserverEditResult());
+        getObservableEditResult(order,statues,notes).subscribeWith(getObserverEditResult());
     }
+
     public void CheckForOrders (int deliverId)
     {
         getCheckForOrders(deliverId).subscribeWith(getObserverDelivery());
     }
+
     @SuppressLint("CheckResult")
     public Observable<MYOrdersModel> getCheckForOrders(int deliverId) {
 
@@ -111,9 +113,9 @@ public class MyOrderViewModel extends ViewModel {
         };
     }
     @SuppressLint("CheckResult")
-    public Observable<OrderEdit> getObservableEditResult( int orderid,int newStatues) {
+    public Observable<OrderEdit> getObservableEditResult( int orderid,int newStatues,String notes) {
 
-        Observable<OrderEdit> myOrders = ApiClient.getClient().create(ApiInterface.class).editOrderStatuesData(orderid,newStatues);
+        Observable<OrderEdit> myOrders = ApiClient.getClient().create(ApiInterface.class).editOrderStatuesData(orderid,newStatues,notes);
         myOrders.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         return myOrders;

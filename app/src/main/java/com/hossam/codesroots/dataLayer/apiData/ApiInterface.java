@@ -84,7 +84,8 @@ public interface ApiInterface {
     @POST("orders/edit/{orderid}.json")
     Observable<OrderEdit> editOrderStatuesData(
             @Path(value = "orderid") int orderid,
-            @Field("order_status") int order_status
+            @Field("order_status") int order_status,
+            @Field("notes") String notes
     );
 
 

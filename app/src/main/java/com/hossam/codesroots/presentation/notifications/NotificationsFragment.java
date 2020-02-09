@@ -38,7 +38,7 @@ public class NotificationsFragment extends Fragment {
         mViewModel.NotificationsMutableLiveData.observe(this,notifications ->
                 {
                     if (notifications.getData().size()>0)
-                    recyclerView.setAdapter(new NotificationsAdapter(getActivity(),notifications.getData()));
+                    recyclerView.setAdapter(new NotificationsAdapter(getContext(),notifications.getData()));
 
                     else
                         Snackbar.make(view,R.string.no_notification,Snackbar.LENGTH_SHORT).show();

@@ -33,7 +33,7 @@ public class NotificationsViewModel extends ViewModel {
 
     @SuppressLint("CheckResult")
     public Observable<Notifications> getObservable(int userID) {
-        Observable<Notifications> Notifications = apiInterface.getNotifications(userID);
+        Observable<Notifications> Notifications = apiInterface.getNotifications(1);
         Notifications.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         return Notifications;
