@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/delivered"
+        android:checked="true"
+        android:title="تم التوصيل " />
+
+    <item
+        android:id="@+id/check_bill"
+        android:title="اصدار فاتورة" />
+    <item
+        android:id="@+id/cancel_order"
+        android:title="الغاء الطلب" />
+    <item
+        android:id="@+id/add_Complaint"
+        android:title="رفع شكوي " />
+
+</menu>

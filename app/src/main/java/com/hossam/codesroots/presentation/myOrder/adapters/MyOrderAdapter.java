@@ -76,6 +76,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
                 holder.orderStatues.setText(context.getString(R.string.waitdeliver));
                 holder.orderStatues.setTextColor(context.getResources().getColor(R.color.blue));
                 break;
+
+            case "5":
+                holder.orderStatues.setText(context.getString(R.string.cancel));
+                holder.orderStatues.setTextColor(context.getResources().getColor(R.color.blue));
+                break;
         }
 
         if  (orderData.get(position).getUser() != null) {
@@ -108,27 +113,28 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
                 Toast.makeText(context, context.getText(R.string.orderfromgoogle), Toast.LENGTH_SHORT).show();
         });
 
-        holder.action.setOnClickListener(v -> {
-            int newStatues = 0;
-            if (orderData.get(position).getOrderStatus().matches("1"))
-                newStatues = 1;
-            else if (orderData.get(position).getOrderStatus().matches("2"))
-                newStatues = 2;
-            else if (orderData.get(position).getOrderStatus().matches("3"))
-                newStatues = 3;
-            String roomId = orderData.get(position).getRoomID();
-            mViewModel.editResult(orderData.get(position).getId(), newStatues);
-            int finalNewStatues = newStatues;
+//        holder.action.setOnClickListener(v -> {
+//            int newStatues = 0;
+//            if (orderData.get(position).getOrderStatus().matches("1"))
+//                newStatues = 1;
+//            else if (orderData.get(position).getOrderStatus().matches("2"))
+//                newStatues = 2;
+//            else if (orderData.get(position).getOrderStatus().matches("3"))
+//                newStatues = 3;
+//            String roomId = orderData.get(position).getRoomID();
+//            mViewModel.editResult(orderData.get(position).getId(), newStatues,"");
+//            int finalNewStatues = newStatues;
+//
+//            mViewModel.editResult.observe((LifecycleOwner) context, aBoolean -> {
+//                if (aBoolean) {
+//                    if (finalNewStatues == 3)
+//                        PreferenceHelper.setRoomId(roomId);
+//                    orderData.get(position).getOrderStatus();
+//                    notifyDataSetChanged();
+//                }
+//            });
+//        });
 
-            mViewModel.editResult.observe((LifecycleOwner) context, aBoolean -> {
-                if (aBoolean) {
-                    if (finalNewStatues == 3)
-                        PreferenceHelper.setRoomId(roomId);
-                    orderData.get(position).getOrderStatus();
-                    notifyDataSetChanged();
-                }
-            });
-        });
 
         holder.map.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatAndMapActivity.class);

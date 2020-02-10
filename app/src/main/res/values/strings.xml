@@ -117,5 +117,6 @@
     <string name="smslogin">Login with Phone number</string>
     <string name="bylogin">By loging in you agree on</string>
     <string name="saveinfo">Save info</string>
+    <string name="cancel">تم الالغاء</string>
 
 </resources>

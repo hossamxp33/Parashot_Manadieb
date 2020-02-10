@@ -1,8 +1,11 @@
 package com.hossam.codesroots.presentation.chatAndMapActivity.presentation.chat;
 
 import android.Manifest;
+
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -15,12 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +46,7 @@ import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessag
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ChatViewModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ViewModelFactory;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.adapter.ChatListAdapter;
+import com.hossam.codesroots.presentation.myOrder.MyOrderViewModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.map.MapingFragment;
 
 import org.json.JSONException;
@@ -45,6 +57,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -54,7 +67,7 @@ import static android.app.Activity.RESULT_OK;
 import static com.hossam.codesroots.helper.MyService.mSocket;
 
 
-public class ChatingFragment extends Fragment implements View.OnClickListener {
+public class ChatingFragment extends Fragment implements View.OnClickListener,PopupMenu.OnMenuItemClickListener {
     RecyclerView recyclerView;
     ChatListAdapter chatListAdapter;
     private List<chatmessages.MyChatBean> allMessage;
@@ -67,10 +80,12 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
     TextView typing,send;
     String roomId;
     TextView userName,storeName,ordernumber, cost, store_location, user_location;
-    ImageView storeCall,deliveryCall,storeLocation, userLocation;
+    ImageView storeCall,deliveryCall,storeLocation, userLocation,opendialog;
     int orderId;
     String ordercost,notes;
     ProgressBar progressBarload;
+    private MyOrderViewModel orderViewModel;
+    View view1;
     public ChatingFragment() {
         // Required empty public constructor
     }
@@ -85,6 +100,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_chat, container, false);
         findFromXml(view);
+        view1 = view;
         mSocket.on("room_message", onNewMessage);
         roomId = getArguments().getString("roomId");
         mSocket.emit("create_room", roomId);
@@ -96,6 +112,14 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         getimage.setOnClickListener(v -> addimage(view));
         //mSocket.on("typing", onNewTyping);
         chatViewModel = ViewModelProviders.of(this, getViewModelFactory()).get(ChatViewModel.class);
+        orderViewModel = ViewModelProviders.of(this).get(MyOrderViewModel.class);
+
+
+        orderViewModel.editResult.observe(this, aBoolean -> {
+            if (aBoolean) {
+                    Toast.makeText(getContext(),"تم تعديل حالة الطلب بنجاح ",Toast.LENGTH_LONG).show();
+            }
+        });
 
         chatViewModel.getChatData(1, orderId);
 
@@ -179,7 +203,9 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
         cost = view.findViewById(R.id.delivery_cost);
         deliveryCall = view.findViewById(R.id.call);
         storeCall = view.findViewById(R.id.call2);
+        opendialog = view.findViewById(R.id.opendialog);
         deliveryCall.setOnClickListener(this);
+        opendialog.setOnClickListener(this);
 //        storeCall.setOnClickListener(this);
         progress = view.findViewById(R.id.progress);
         getimage = view.findViewById(R.id.cam);
@@ -337,8 +363,52 @@ public class ChatingFragment extends Fragment implements View.OnClickListener {
                         "&daddr="+allData.getOrder().get(0).getSmallstore().getLatitude()+","+allData.getOrder().get(0).getSmallstore().getLongitude()));
                 startActivity(i);
                 break;
+
+            case R.id.opendialog :
+
+                PopupMenu popup = new PopupMenu(getContext(), v);
+                popup.setOnMenuItemClickListener(this);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.order_options, popup.getMenu());
+                popup.show();
+
+                break;
         }
     }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delivered:
+                orderViewModel.editResult(orderId, 3,"");
+
+                return true;
+            case R.id.cancel_order:
+
+                Dialog builder = new Dialog(Objects.requireNonNull(getContext()));
+                builder.setContentView(R.layout.order_cancel_resones);
+                RadioGroup resons =  builder.findViewById(R.id.resons);
+                TextView send =  builder.findViewById(R.id.send);
+                send.setOnClickListener(v -> {
+                    int selectedId = resons.getCheckedRadioButtonId();
+                    RadioButton radioButton = view1.findViewById(selectedId);
+                    RadioButton   radioButton2 = getActivity().findViewById(R.id.reson1);
+                    builder.dismiss();
+                    orderViewModel.editResult(orderId, 4,"بناء ع طلب العميل ");/// cancel order
+
+                });
+                resons.setOnCheckedChangeListener((group, checkedId) -> {
+                    Log.d("resons",resons.getCheckedRadioButtonId()+" ");
+                });
+                builder.show();
+
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
 
     private void makePhonecall(String phone) {
         Intent intent = new Intent(Intent.ACTION_CALL);
