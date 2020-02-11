@@ -8,14 +8,14 @@ public class AddMessage {
      * chat : {"user_id":129,"room_id":"11","post":"hello ahmed","photo":"","name":"err4443eedd","created":"2019-01-14T19:52:18+0300","modified":"2019-01-14T19:52:18+0300","id":1839}
      */
 
-    private String success;
+    private Boolean success;
     private ChatBean chat;
 
-    public String getSuccess() {
+    public Boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 

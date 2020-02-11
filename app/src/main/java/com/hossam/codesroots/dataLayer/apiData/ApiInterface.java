@@ -3,7 +3,9 @@ package com.hossam.codesroots.dataLayer.apiData;
 
 import com.hossam.codesroots.entities.AddOrder;
 import com.hossam.codesroots.entities.AddPaymentRes;
+import com.hossam.codesroots.entities.AppInfo;
 import com.hossam.codesroots.entities.AvailableBanks;
+import com.hossam.codesroots.entities.ContactUsModel;
 import com.hossam.codesroots.entities.LoginResponseModel;
 import com.hossam.codesroots.entities.MYOrdersModel;
 import com.hossam.codesroots.entities.MyAccount;
@@ -40,6 +42,25 @@ public interface ApiInterface {
             @Field(value = "offer") String offer
     );
 
+    @FormUrlEncoded
+    @POST("users/contactus.json")
+    Call<ContactUsModel> contaactUs(
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("email") String email,
+            @Field("message") String message
+    );
+
+
+    @Multipart
+    @POST("complaints/addcomplaint.json")
+    Call<AddMessage> addcomplaint(
+            @Part("user_id") RequestBody user_id,
+            @Part("delivry_id") RequestBody delivery_id,
+            @Part("order_id") RequestBody order_id,
+            @Part("description") RequestBody description,
+            @Part("comment") RequestBody comment
+    );
 
     @GET("orders/getordersfordelivery/{userid}.json")
     @Headers("Accept: Application/json")
@@ -51,6 +72,12 @@ public interface ApiInterface {
     Observable<MYOrdersModel> getActiveDelivery(
             @Path(value = "userid") int userid
     );
+
+
+    @GET("users/getAppinfo.json")
+    @Headers("Accept: Application/json")
+    Call<AppInfo> getAppInfo();
+
 
     @GET("Delivries/getdeliveriesreports/{deliveryid}.json")
     @Headers("Accept: Application/json")

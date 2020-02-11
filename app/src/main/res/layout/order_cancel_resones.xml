@@ -27,51 +27,21 @@
         />
 
 
-    <RadioGroup
-        android:id="@+id/resons"
-        android:layout_width="match_parent"
-        android:layout_margin="9dp"
-        android:layout_height="wrap_content">
 
-
-        <RadioButton
-            android:id="@+id/reson1"
+        <EditText
+            android:id="@+id/resones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/red"
-            android:text="هذا النص يمكن ان يستبدل "
+            android:lines="4"
+            android:hint="@string/resones"
+            android:layout_marginTop="15dp"
             />
-
-        <RadioButton
-            android:id="@+id/reson2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="هذا النص يمكن ان يستبدل "
-            />
-
-        <RadioButton
-            android:id="@+id/reson3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="هذا النص يمكن ان يستبدل "
-            />
-
-        <RadioButton
-            android:id="@+id/reson4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="هذا النص يمكن ان يستبدل "
-            />
-    </RadioGroup>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:textColor="@color/white"
             android:textSize="18dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/send"
             android:background="@drawable/linear_background_for_send"
             android:layout_margin="10dp"

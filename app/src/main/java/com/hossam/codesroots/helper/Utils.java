@@ -358,32 +358,32 @@ public class Utils {
         return myFormatter.format(value);
     }
 
-//    public static boolean FieldValidation(Context context, EditText field, int amount, String msg, View layout) {
-//        if (field.getText().toString().trim().length() > amount) {
-//            return true;
-//        } else {
-//            Snackbar.make(layout, msg, Snackbar.LENGTH_LONG).setAction(context.getString(R.string.close), view -> {
-//            }).setActionTextColor(context.getResources().getColor(android.R.color.white)).show();
-//            return false;
-//        }
-//    }
-//
-//    public static boolean EmailValidation(Context context, EditText field, String msg, View layout) {
-//        String emailPattern = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-//                "\\@" +
-//                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-//                "(" +
-//                "\\." +
-//                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-//                ")+";
-//        if (field.getText().toString().trim().matches(emailPattern)) {
-//            return true;
-//        } else {
-//            Snackbar.make(layout, msg, Snackbar.LENGTH_LONG).setAction(context.getString(R.string.close), view -> {
-//            }).setActionTextColor(context.getResources().getColor(android.R.color.white)).show();
-//            return false;
-//        }
-//    }
+    public static boolean FieldValidation(Context context, EditText field, int amount, String msg, View layout) {
+        if (field.getText().toString().trim().length() > amount) {
+            return true;
+        } else {
+            Snackbar.make(layout, msg, Snackbar.LENGTH_LONG).setAction(context.getString(R.string.close), view -> {
+            }).setActionTextColor(context.getResources().getColor(android.R.color.white)).show();
+            return false;
+        }
+    }
+
+    public static boolean EmailValidation(Context context, EditText field, String msg, View layout) {
+        String emailPattern = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                "\\@" +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                "(" +
+                "\\." +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                ")+";
+        if (field.getText().toString().trim().matches(emailPattern)) {
+            return true;
+        } else {
+            Snackbar.make(layout, msg, Snackbar.LENGTH_LONG).setAction(context.getString(R.string.close), view -> {
+            }).setActionTextColor(context.getResources().getColor(android.R.color.white)).show();
+            return false;
+        }
+    }
 
     static public String PriceFormat(double value) {
         BigDecimal unscaled = new BigDecimal(value);

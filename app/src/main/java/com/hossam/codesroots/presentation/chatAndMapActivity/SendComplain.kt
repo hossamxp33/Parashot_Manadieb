@@ -1,21 +1,24 @@
 package com.delivery24.view.chat
 
+import android.Manifest
 import android.app.Activity
+import android.app.PendingIntent.getActivity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.delivery24.R
-import com.delivery24.helpers.PermissionCheck
-import com.delivery24.helpers.PreferenceHelper
-import com.delivery24.helpers.Utility
-import com.delivery24.helpers.Utils
-import com.delivery24.service.webApi.GetCallBack
-import com.theartofdev.edmodo.cropper.CropImage
+import com.hossam.codesroots.delivery24.R
+import com.hossam.codesroots.helper.PreferenceHelper
+import com.hossam.codesroots.helper.Utils
+import kotlinx.android.synthetic.main.activity_contact_us.*
 import kotlinx.android.synthetic.main.activity_send_complain.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -24,12 +27,25 @@ class SendComplain : AppCompatActivity(), View.OnClickListener {
     lateinit var helper: PreferenceHelper
     internal var delv_id = ""
     internal var ord_id = ""
+    lateinit var vm :SendComplainVM
+    private val LOAD_IMG_REQUEST_CODE = 5555
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_complain)
         helper = PreferenceHelper(this)
+         vm = ViewModelProviders.of(this).get(SendComplainVM::class.java)
 
+        vm.callBack.observe(this, Observer {
+            if (it.success) {
+                Toast.makeText(this, "تم ارسال الشكوي بنجاح", Toast.LENGTH_SHORT).show()
+                et_complain.setText("")
+                etnote.setText("")
+
+            } else
+                Toast.makeText(this, "حدث خطأ حاول مرة أخري", Toast.LENGTH_SHORT).show()
+
+        })
         initialize()
         initToolBar()
     }
@@ -40,10 +56,9 @@ class SendComplain : AppCompatActivity(), View.OnClickListener {
 
         val bundle = intent.extras
         if (bundle != null) {
-            delv_id = bundle.get("delv_id").toString()
-            ord_id = bundle.get("ord_id").toString()
+            delv_id = intent.getIntExtra("delv_id",0).toString()
+            ord_id = intent.getIntExtra("ord_id",0).toString()
         }
-
     }
 
 
@@ -78,18 +93,22 @@ class SendComplain : AppCompatActivity(), View.OnClickListener {
                         uri!!,
                         et_complain.text.toString().trim(),
                         etnote.text.toString().trim(),
-                        helper.userID, delv_id, ord_id
+                        "1", delv_id, ord_id
                     )
                 } else {
                     Toast.makeText(this, getString(R.string.uploadphoto), Toast.LENGTH_LONG).show()
                 }
 
             }
-            R.id.selectedimage -> if (!PermissionCheck.Check_CAMERA(this)) {
-                PermissionCheck.Request_CAMERA(this, 25)
-            } else {
-                CropImage.activity().start(this@SendComplain)
-            }
+            R.id.selectedimage ->
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    val photoPickerIntent = Intent(Intent.ACTION_PICK)
+                    photoPickerIntent.type = "image/*"
+                    startActivityForResult(photoPickerIntent, LOAD_IMG_REQUEST_CODE)
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1234)
+                }
         }
     }
 
@@ -105,15 +124,11 @@ class SendComplain : AppCompatActivity(), View.OnClickListener {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            val result = CropImage.getActivityResult(data)
             if (resultCode == Activity.RESULT_OK) {
-                uri = result.uri
+                uri = data?.data
                 selectedimage.setImageURI(uri)
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                val error = result.error
             }
-        }
+
     }
 
     fun sendComplain(
@@ -124,26 +139,12 @@ class SendComplain : AppCompatActivity(), View.OnClickListener {
         del_id: String,
         order_id: String
     ) {
-        val dialog = Utility.showProgressDialog(this, getString(R.string.loading), false)
-        val vm = ViewModelProviders.of(this).get(SendComplainVM::class.java)
         vm.getResponse(
             ur,
             user_id,
             del_id,
             order_id,
             title,
-            note,
-            GetCallBack { isOk, requestCode, o ->
-                if (isOk) {
-                    uri = null
-                    selectedimage.setImageURI(null)
-                    etnote.setText("")
-                    et_complain.setText("")
-                    Toast.makeText(this, getString(R.string.complainSent), Toast.LENGTH_LONG).show()
-                    Utility.hideProgress(dialog)
-                } else {
-                    Utility.hideProgress(dialog)
-                }
-            })
+            note)
     }
 }

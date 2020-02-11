@@ -5,6 +5,7 @@ import android.os.SystemClock
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.hossam.codesroots.delivery24.R
 
@@ -74,36 +75,34 @@ class ContactUs : AppCompatActivity(), View.OnClickListener {
 //                    return
 
                 sendMessage(
-                    Edname.text.toString().trim(),
-                    Edphone.text.toString().trim(),
-                    Edemail.text.toString().trim(),
-                    Edmsg.text.toString().trim()
+                        Edname.text.toString().trim(),
+                        Edphone.text.toString().trim(),
+                        Edemail.text.toString().trim(),
+                        Edmsg.text.toString().trim()
                 )
             }
         }
     }
 
     fun sendMessage(
-        username: String,
-        mobile: String,
-        email: String,
-        msg: String
+            username: String,
+            mobile: String,
+            email: String,
+            msg: String
     ) {
-//        val dialog = Utility.showProgressDialog(this, getString(R.string.loading), false)
-//        val vm = ViewModelProviders.of(this).get(ContactUsVM::class.java)
-//        vm.getResponse(username, mobile, email, msg, GetCallBack { isOk, requestCode, o ->
-//            if (isOk) {
-//                Toast.makeText(this, getString(R.string.msgsent), Toast.LENGTH_LONG)
-//                    .show()
-//                Edname.setText("")
-//                Edphone.setText("")
-//                Edemail.setText("")
-//                Edmsg.setText("")
-//                Utility.hideProgress(dialog)
-//            } else {
-//                Utility.hideProgress(dialog)
-//            }
-//        })
+        val vm = ViewModelProviders.of(this).get(ContactUsVM::class.java)
+        vm.getResponse(username, mobile, email, message = msg)
+        vm.callBack.observe(this, Observer {
+            if (it.success) {
+                Toast.makeText(this, "تم ارسال رسالتك بنجاح", Toast.LENGTH_SHORT).show()
+                Edname.setText("")
+                Edphone.setText("")
+                Edemail.setText("")
+                Edmsg.setText("")
+            } else
+                Toast.makeText(this, "حدث خطأ حاول مرة أخري", Toast.LENGTH_SHORT).show()
+
+        })
     }
 
 }

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/maincomplain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/send"
+            android:layout_below="@+id/app_bar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/statictext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/complainReason"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/et_complain"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/statictext"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/linear_background_for_comments"
+                    android:gravity="start|center"
+                    android:hint="@string/complainReason"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="7dp"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_complain"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/notes"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etnote"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/note"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/linear_background_for_comments"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:paddingStart="7dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="7dp"
+                    android:paddingBottom="40dp"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/selectedimage"
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:scaleType="center"
+                    android:layout_below="@+id/etnote"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/upload" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="المرفقات "
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/red"
+                    android:layout_below="@+id/selectedimage"
+                    />
+            </RelativeLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/phone_background"
+            android:text="@string/send"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+</layout>

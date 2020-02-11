@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION&&grantResults.length>0) {
             if (grantResults[0] == PackageManager.PERMISSION_DENIED)
                 Toast.makeText(this, "Permission denied by uses", Toast.LENGTH_SHORT).show();
             else if (grantResults[0] == PackageManager.PERMISSION_GRANTED)

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.delivery24.view.chat.SendComplain;
 import com.github.nkzawa.emitter.Emitter;
 import com.google.gson.Gson;
 import com.hossam.codesroots.helper.FileUtils;
@@ -67,25 +69,26 @@ import static android.app.Activity.RESULT_OK;
 import static com.hossam.codesroots.helper.MyService.mSocket;
 
 
-public class ChatingFragment extends Fragment implements View.OnClickListener,PopupMenu.OnMenuItemClickListener {
+public class ChatingFragment extends Fragment implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     RecyclerView recyclerView;
     ChatListAdapter chatListAdapter;
     private List<chatmessages.MyChatBean> allMessage;
     private chatmessages allData;
     EditText etMessage;
     private static final int LOAD_IMG_REQUEST_CODE = 123;
-    ImageView  getimage,userImage;
+    ImageView getimage, userImage;
     ChatViewModel chatViewModel;
     FrameLayout progress;
-    TextView typing,send;
+    TextView typing, send;
     String roomId;
-    TextView userName,storeName,ordernumber, cost, store_location, user_location;
-    ImageView storeCall,deliveryCall,storeLocation, userLocation,opendialog;
+    TextView userName, storeName, ordernumber, cost, store_location, user_location;
+    ImageView storeCall, deliveryCall, storeLocation, userLocation, opendialog;
     int orderId;
-    String ordercost,notes;
+    String ordercost, notes;
     ProgressBar progressBarload;
     private MyOrderViewModel orderViewModel;
     View view1;
+
     public ChatingFragment() {
         // Required empty public constructor
     }
@@ -117,7 +120,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener,Po
 
         orderViewModel.editResult.observe(this, aBoolean -> {
             if (aBoolean) {
-                    Toast.makeText(getContext(),"تم تعديل حالة الطلب بنجاح ",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "تم تعديل حالة الطلب بنجاح ", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -133,7 +136,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener,Po
                     LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                     //mLayoutManager.setReverseLayout(true);
                     if (chatmessages.getOrder() != null) {
-                        if (chatmessages.getOrder().get(0).getSmallstore()!=null) {
+                        if (chatmessages.getOrder().get(0).getSmallstore() != null) {
                             storeName.setText(chatmessages.getOrder().get(0).getSmallstore().getName());
                             store_location.setText(chatmessages.getOrder().get(0).getSmallstore().getAddress());
                         }
@@ -141,13 +144,11 @@ public class ChatingFragment extends Fragment implements View.OnClickListener,Po
                             userName.setText(chatmessages.getOrder().get(0).getUser().getUsername());
                             Glide.with(getContext()).load(chatmessages.getOrder().get(0).getUser().getPhoto()).into(userImage);
 
+                        } catch (Exception e) {
+                            Log.d("exception ", e.getMessage());
                         }
-                     catch (Exception e)
-                     {
-                         Log.d("exception ",e.getMessage());
-                     }
                         //                      ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
-                      //  cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
+                        //  cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
                         //    user_location.setText(chatmessages.getOrder().get(0).getUser_address());
                     }
                     recyclerView.setLayoutManager(mLayoutManager);
@@ -350,21 +351,21 @@ public class ChatingFragment extends Fragment implements View.OnClickListener,Po
             case R.id.location:
                 Fragment fragment1 = new MapingFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("roomId",roomId);
+                bundle.putString("roomId", roomId);
                 fragment1.setArguments(bundle);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment1).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).addToBackStack(null).commit();
                 break;
 
 
             case R.id.stor_location:
 
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr="+
-                        PreferenceHelper.getCURRENTLAT()+","+PreferenceHelper.getCURRENTLONG()+
-                        "&daddr="+allData.getOrder().get(0).getSmallstore().getLatitude()+","+allData.getOrder().get(0).getSmallstore().getLongitude()));
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" +
+                        PreferenceHelper.getCURRENTLAT() + "," + PreferenceHelper.getCURRENTLONG() +
+                        "&daddr=" + allData.getOrder().get(0).getSmallstore().getLatitude() + "," + allData.getOrder().get(0).getSmallstore().getLongitude()));
                 startActivity(i);
                 break;
 
-            case R.id.opendialog :
+            case R.id.opendialog:
 
                 PopupMenu popup = new PopupMenu(getContext(), v);
                 popup.setOnMenuItemClickListener(this);
@@ -380,34 +381,32 @@ public class ChatingFragment extends Fragment implements View.OnClickListener,Po
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delivered:
-                orderViewModel.editResult(orderId, 3,"");
+                orderViewModel.editResult(orderId, 3, "");
 
                 return true;
             case R.id.cancel_order:
 
                 Dialog builder = new Dialog(Objects.requireNonNull(getContext()));
                 builder.setContentView(R.layout.order_cancel_resones);
-                RadioGroup resons =  builder.findViewById(R.id.resons);
-                TextView send =  builder.findViewById(R.id.send);
+                EditText resons = builder.findViewById(R.id.resones);
+                TextView send = builder.findViewById(R.id.send);
                 send.setOnClickListener(v -> {
-                    int selectedId = resons.getCheckedRadioButtonId();
-                    RadioButton radioButton = view1.findViewById(selectedId);
-                    RadioButton   radioButton2 = getActivity().findViewById(R.id.reson1);
                     builder.dismiss();
-                    orderViewModel.editResult(orderId, 4,"بناء ع طلب العميل ");/// cancel order
-
-                });
-                resons.setOnCheckedChangeListener((group, checkedId) -> {
-                    Log.d("resons",resons.getCheckedRadioButtonId()+" ");
+                    orderViewModel.editResult(orderId, 4, resons.getText().toString());/// cancel order
                 });
                 builder.show();
+                return true;
 
+            case R.id.add_Complaint:
+                Intent intent = new Intent(getContext(), SendComplain.class);
+                intent.putExtra("delv_id", 1);
+                intent.putExtra("ord_id", orderId);
+                startActivity(intent);
                 return true;
             default:
                 return false;
         }
     }
-
 
 
     private void makePhonecall(String phone) {

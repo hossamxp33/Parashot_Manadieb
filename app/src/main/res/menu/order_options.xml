@@ -7,9 +7,7 @@
         android:checked="true"
         android:title="تم التوصيل " />
 
-    <item
-        android:id="@+id/check_bill"
-        android:title="اصدار فاتورة" />
+
     <item
         android:id="@+id/cancel_order"
         android:title="الغاء الطلب" />

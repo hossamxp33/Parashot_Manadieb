@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hossam.codesroots.dataLayer.apiData.ApiClient
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface
+import com.hossam.codesroots.entities.AppInfo
 import com.hossam.codesroots.entities.ContactUsModel
 
 import okhttp3.MediaType
@@ -14,23 +15,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ContactUsVM() : ViewModel() {
+class AppInfoVM() : ViewModel() {
 
 
-    val callBack :MutableLiveData<ContactUsModel> = MutableLiveData()
+    val callBack :MutableLiveData<AppInfo> = MutableLiveData()
     val callBackError :MutableLiveData<Throwable> = MutableLiveData()
 
+    init {
+        getResponse()
+    }
     fun getResponse(
-        username: String,
-        mobile: String,
-        mail: String,
-        message: String
     ) {
-        val call = getApiService().contaactUs(username, mobile, mail, message)
-        call.enqueue(object : Callback<ContactUsModel> {
+        val call = getApiService().getAppInfo()
+        call.enqueue(object : Callback<AppInfo> {
             override fun onResponse(
-                call: Call<ContactUsModel>,
-                response: Response<ContactUsModel>
+                call: Call<AppInfo>,
+                response: Response<AppInfo>
             ) {
                 if (response.isSuccessful()) {
                     callBack.postValue(response.body())
@@ -39,9 +39,8 @@ class ContactUsVM() : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<ContactUsModel>, t: Throwable) {
+            override fun onFailure(call: Call<AppInfo>, t: Throwable) {
                 callBackError.postValue( t)
-                callBack.postValue(ContactUsModel(false))
 
             }
         })

@@ -118,5 +118,11 @@
     <string name="bylogin">By loging in you agree on</string>
     <string name="saveinfo">Save info</string>
     <string name="cancel">تم الالغاء</string>
+    <string name="notes">ملاحظات</string>
+    <string name="complainReason">سبب الشكوي</string>
+    <string name="pleasefillMissinginfo">املا البيانات الناقصة</string>
+    <string name="uploadphoto">اختر صورة</string>
+    <string name="close">close</string>
+    <string name="resones">من فضلك أضف سبب الغاء الطلب</string>
 
 </resources>
