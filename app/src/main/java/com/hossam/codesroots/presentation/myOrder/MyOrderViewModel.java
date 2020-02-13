@@ -23,7 +23,7 @@ public class MyOrderViewModel extends ViewModel {
 
     int deliveryId = 1;
     public MyOrderViewModel() {
-        getData();
+      //  getData();
     }
 
     MutableLiveData<MYOrdersModel> myOrders = new MutableLiveData<>();
@@ -43,9 +43,9 @@ public class MyOrderViewModel extends ViewModel {
     }
 
 
-    public void getData ()
+    public void getData (String DeliveyId)
     {
-        getObservable(deliveryId).subscribeWith(getObserver());
+        getObservable(DeliveyId).subscribeWith(getObserver());
     }
 
     public void editResult(int order,int statues,String notes)
@@ -68,7 +68,7 @@ public class MyOrderViewModel extends ViewModel {
         return myOrders;
     }
     @SuppressLint("CheckResult")
-    public Observable<MYOrdersModel> getObservable( int deliverId) {
+    public Observable<MYOrdersModel> getObservable( String deliverId) {
 
         Observable<MYOrdersModel> myOrders = ApiClient.getClient().create(ApiInterface.class).getMyOrders(deliverId);
         myOrders.subscribeOn(Schedulers.io())

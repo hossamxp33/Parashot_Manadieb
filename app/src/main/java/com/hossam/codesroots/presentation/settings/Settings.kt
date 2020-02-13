@@ -21,6 +21,7 @@ import com.hossam.codesroots.delivery24.R
 import com.hossam.codesroots.entities.MYOrdersModel
 import com.hossam.codesroots.entities.MyAccount
 import com.hossam.codesroots.helper.PreferenceHelper
+import com.hossam.codesroots.helper.Utility
 import com.hossam.codesroots.presentation.myAccount.MyAccountViewModel
 import com.hossam.codesroots.presentation.myAccount.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -153,14 +154,11 @@ class Settings : AppCompatActivity(), View.OnClickListener {
                     return
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
-//                Utility.LogoutDialogue(this, R.style.DialogAnimation) { chose ->
-//                    if (chose === DialogClicks.okChose) {
-//                        helper.Logout()
-//                        val i = Intent(this, Default_sign_in::class.java)
-//                        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        startActivity(i)
-//                    }
-//                }
+                helper.Logout()
+                val i = Intent(this, Default_sign_in::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(i)
+
             }
             R.id.aboutapp -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {

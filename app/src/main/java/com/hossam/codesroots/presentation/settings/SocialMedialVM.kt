@@ -1,49 +1,53 @@
-package com.hossam.codesroots.presentation.loginfragment
+package com.hossam.codesroots.presentation.settings
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+
 import com.hossam.codesroots.dataLayer.apiData.ApiClient
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface
 import com.hossam.codesroots.dataLayer.repositries.GetCallBack
 import com.hossam.codesroots.entities.ContactUsModel
-import com.hossam.codesroots.entities.RegisterResponse
 import com.hossam.codesroots.entities.SocialMediaModel
-import com.hossam.codesroots.helper.PreferenceHelper
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 /**
- * Created by Hossam on 12/30/2019.
+ * Created by Hossam on 1/6/2020.
  */
-class RegisterVM(application: Application) : AndroidViewModel(application) {
-
-    val callBacks : MutableLiveData<RegisterResponse> = MutableLiveData()
+class SocialMedialVM(application: Application) : AndroidViewModel(application) {
+    val callBacks : MutableLiveData<SocialMediaModel> = MutableLiveData()
     val callBackError : MutableLiveData<Throwable> = MutableLiveData()
-
     fun getResponse(
-            name: String,  mobile: String,
-            gender: String, callBack: GetCallBack
+        socialToken: String,
+        username: String,
+        mail: String,
+        pass: String,
+        mobile: String,
+        gender: String,
+        callBack: GetCallBack
     ) {
 
-println(PreferenceHelper(getApplication()).userID)
-        val call = getApiService().addUser(name,  mobile, gender,PreferenceHelper(getApplication()).userID)
-        call.enqueue(object : Callback<RegisterResponse> {
+
+        val call = getApiService().socialLogin(socialToken, username, mail, pass, mobile, gender)
+        call.enqueue(object : Callback<SocialMediaModel> {
             override fun onResponse(
-                    call: Call<RegisterResponse>,
-                    response: Response<RegisterResponse>
+                    call: Call<SocialMediaModel>,
+                    response: Response<SocialMediaModel>
             ) {
                 if (response.isSuccessful()) {
                     callBacks.postValue(response.body())
                 } else {
-                    callBacks.postValue(response.body())
+                    callBacks.postValue( response.body())
                 }
             }
 
-            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                callBack.getCallBack(false, 1, t)
+            override fun onFailure(call: Call<SocialMediaModel>, t: Throwable) {
+                callBackError.postValue( t)
+
             }
         })
     }

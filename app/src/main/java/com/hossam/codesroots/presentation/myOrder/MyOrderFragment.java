@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.hossam.codesroots.entities.MyOrderData;
 import com.hossam.codesroots.delivery24.R;
+import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.presentation.myOrder.adapters.MyOrderAdapter;
 
 import java.util.ArrayList;
@@ -48,13 +49,13 @@ public class MyOrderFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(MyOrderViewModel.class);
 
         refreshLayout_user.setOnRefreshListener(() -> {
-            mViewModel.getData();
+            mViewModel.getData(new PreferenceHelper(getContext()).getdeliveryId());
             refreshLayout_user.setRefreshing(false);
         });
 
         mViewModel.editResult.observe(this, aBoolean -> {
             if (aBoolean) {
-                mViewModel.getData();
+                mViewModel.getData(new PreferenceHelper(getContext()).getdeliveryId());
             }
         });
 

@@ -14,7 +14,7 @@ public class PreferenceHelper {
 	private static String photo = "photo";
 	private static String Token = "token";
 	private static String UserId = "userid";
-	private static String DELIVERYiD = "delivery";
+	private static String deliveryId = "delivery";
 	private static String Language = "language";
 	private final static String CURRENTLAT = "latitude";
 	private final static String CURRENTLONG = "longtude";
@@ -147,11 +147,16 @@ public class PreferenceHelper {
 			return 0;
 	}
 
-	public static int getDeliveryId() {
+	public static  String getdeliveryId() {
 		if (app_prefs!=null)
-			return app_prefs.getInt(DELIVERYiD,1);
+			return app_prefs.getString(deliveryId,"1");
 		else
-			return 0;
+			return "0";
+	}
+	public void setdeliveryId(String ID) {
+		Editor edit = app_prefs.edit();
+		edit.putString(deliveryId, ID);
+		edit.apply();
 	}
 
 	public void setLanguage(String language) {
@@ -174,11 +179,6 @@ public class PreferenceHelper {
 		edit.apply();
 	}
 
-	public void setDELIVERYiD(int ID) {
-		Editor edit = app_prefs.edit();
-		edit.putInt(DELIVERYiD, ID);
-		edit.apply();
-	}
 
 	public void setphoto(String uri){
 	Editor edit = app_prefs.edit();

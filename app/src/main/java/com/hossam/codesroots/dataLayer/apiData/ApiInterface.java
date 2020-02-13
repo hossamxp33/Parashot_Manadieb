@@ -6,11 +6,14 @@ import com.hossam.codesroots.entities.AddPaymentRes;
 import com.hossam.codesroots.entities.AppInfo;
 import com.hossam.codesroots.entities.AvailableBanks;
 import com.hossam.codesroots.entities.ContactUsModel;
+import com.hossam.codesroots.entities.EditProfile;
 import com.hossam.codesroots.entities.LoginResponseModel;
 import com.hossam.codesroots.entities.MYOrdersModel;
 import com.hossam.codesroots.entities.MyAccount;
 import com.hossam.codesroots.entities.Notifications;
 import com.hossam.codesroots.entities.OrderEdit;
+import com.hossam.codesroots.entities.RegisterResponse;
+import com.hossam.codesroots.entities.SocialMediaModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.AddMessage;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.ChatList;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessages;
@@ -51,6 +54,35 @@ public interface ApiInterface {
             @Field("message") String message
     );
 
+    @FormUrlEncoded
+    @POST("Delivries/add.json")
+    Call<RegisterResponse> addUser(
+            @Part("name") String username,
+            @Part("phone") String phone,
+            @Part("gender") String gender,
+            @Part("user_id") String user_id
+
+    );
+    @FormUrlEncoded
+    @POST("users/facebooklogin.json")
+    Call<SocialMediaModel> socialLogin(
+            @Field("facebook_id") String facebook_id,
+            @Field("username") String username,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("phone") String phone,
+            @Field("gender") String gender
+    );
+
+    @Multipart
+    @POST("users/facebooklogin.json")
+    Call<EditProfile> editProfile(
+            @Part("username") RequestBody username,
+            @Part("email") RequestBody email,
+            @Part("password") RequestBody password,
+            @Part("phone") RequestBody phone,
+            @Part("gender") RequestBody gender
+    );
 
     @Multipart
     @POST("complaints/addcomplaint.json")
@@ -65,7 +97,7 @@ public interface ApiInterface {
     @GET("orders/getordersfordelivery/{userid}.json")
     @Headers("Accept: Application/json")
     Observable<MYOrdersModel> getMyOrders(
-            @Path(value = "userid") int userid
+            @Path(value = "userid") String userid
     );
     @GET("orders/getActiveDelivery/{userid}.json")
     @Headers("Accept: Application/json")
@@ -82,7 +114,7 @@ public interface ApiInterface {
     @GET("Delivries/getdeliveriesreports/{deliveryid}.json")
     @Headers("Accept: Application/json")
     Observable<MyAccount> getMyAccount(
-            @Path(value = "deliveryid") int userid
+            @Path(value = "deliveryid") String userid
     );
 
 

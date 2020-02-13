@@ -37,12 +37,12 @@ public class MyAccountViewModel extends ViewModel {
 
     public void getData ()
     {
-        getObservable(PreferenceHelper.getDeliveryId()).subscribeWith(getObserver());
+        getObservable(PreferenceHelper.getdeliveryId()).subscribeWith(getObserver());
     }
 
 
     @SuppressLint("CheckResult")
-    public Observable<MyAccount> getObservable(int deliverId) {
+    public Observable<MyAccount> getObservable(String deliverId) {
         Observable<MyAccount> myAccount = apiInterface.getMyAccount(deliverId);
         myAccount.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

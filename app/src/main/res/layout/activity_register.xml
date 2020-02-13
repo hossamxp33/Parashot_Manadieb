@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainregister"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logo"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start|center"
+                android:text="@string/fullname"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ETname"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/fullname"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="7dp"
+                android:background="@drawable/sign_background"
+                android:hint="@string/enterfullname"
+                android:inputType="textPersonName"
+                android:paddingStart="7dp"
+                android:paddingEnd="40dp"
+                android:singleLine="true"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/phones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ETname"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start|center"
+                android:text="@string/phone"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/phones"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="7dp"
+                android:background="@drawable/sign_background"
+                android:hint="@string/enteremail"
+                android:inputType="textEmailAddress"
+                android:paddingStart="7dp"
+                android:paddingEnd="40dp"
+                android:singleLine="true"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phone"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start|center"
+                android:text="@string/gender"
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spGender"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gender"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="start|center"
+                android:minHeight="40dp"
+                android:paddingStart="40dp"
+                android:textSize="13sp" />
+
+
+
+            <RelativeLayout
+                android:id="@+id/signupBT"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/spGender"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/phone_background">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/signup"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
