@@ -42,7 +42,7 @@ public class SocialMediaModel {
 
         private String gender;
         private String token;
-        private String delivery;
+        private Integer delivery;
 
         public int getId() {
             return id;
@@ -59,10 +59,10 @@ public class SocialMediaModel {
         public void setEmail(String email) {
             this.email = email;
         }
-        public void setDelivery(String delivery) {
+        public void setDelivery(Integer delivery) {
             this.delivery = delivery;
         }
-        public String getDelivery() {
+        public Integer getDelivery() {
             return delivery;
         }
 

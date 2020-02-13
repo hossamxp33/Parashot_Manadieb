@@ -57,10 +57,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("Delivries/add.json")
     Call<RegisterResponse> addUser(
-            @Part("name") String username,
-            @Part("phone") String phone,
-            @Part("gender") String gender,
-            @Part("user_id") String user_id
+            @Field("name") String username,
+            @Field("phone") String phone,
+            @Field("gender") String gender,
+            @Field("user_id") String user_id
 
     );
     @FormUrlEncoded
@@ -74,14 +74,13 @@ public interface ApiInterface {
             @Field("gender") String gender
     );
 
-    @Multipart
+    @FormUrlEncoded
     @POST("users/facebooklogin.json")
-    Call<EditProfile> editProfile(
-            @Part("username") RequestBody username,
-            @Part("email") RequestBody email,
-            @Part("password") RequestBody password,
-            @Part("phone") RequestBody phone,
-            @Part("gender") RequestBody gender
+    Call<com.hossam.codesroots.entities.EditProfile> editProfile(
+            @Field("username") String username,
+            @Field("email") String email,
+            @Field("phone") String phone,
+            @Field("gender") String gender
     );
 
     @Multipart

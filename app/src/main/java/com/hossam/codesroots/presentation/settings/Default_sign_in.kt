@@ -205,8 +205,8 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
                     return
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
-                val intent = Intent(this, SMS::class.java)
-                startActivity(intent)
+//                val intent = Intent(this, SMS::class.java)
+//                startActivity(intent)
             }
         }
     }
@@ -225,7 +225,7 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
                 val response = it as SocialMediaModel
 //                Utils.hideKeyboard(this)
                 if (response.data.delivery != null) {
-                    if (response.data!!.getLast() != "1") {
+                    if (response.data!!.getLast() != "1" || response.data.delivery == null) {
                         helper.userID = response.data.id.toString()
                         helper.accessToken = response.data.token
                         val intent = Intent(this, Register::class.java)
@@ -234,7 +234,7 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
                     } else {
                         helper.userID = response.data!!.id.toString()
                         helper.accessToken = response.data!!.token
-                        helper.setdeliveryId(response.data.delivery)
+                        helper.setdeliveryId(response.data.delivery.toString())
 
                         val i = Intent(this, MainActivity::class.java)
                         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -12,13 +12,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 
 import com.google.android.material.snackbar.Snackbar
+import com.hossam.codesroots.dataLayer.repositries.GetCallBack
 import com.hossam.codesroots.delivery24.R
 import com.hossam.codesroots.helper.PreferenceHelper
 import com.hossam.codesroots.helper.Utils
 import com.hossam.codesroots.presentation.loginfragment.RegisterVM
+import kotlinx.android.synthetic.main.activity_contact_us.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.activity_edit_profile.Edemail
+import kotlinx.android.synthetic.main.activity_edit_profile.Edname
 import kotlinx.android.synthetic.main.spinner_item.view.*
 
 import kotlinx.android.synthetic.main.toolbar.*
@@ -44,7 +49,7 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
             Edemail.setText(helper.email)
         }
         if (helper.password != null) {
-            Edpassword.setText(helper.password)
+            //Edpassword.setText(helper.password)
         }
         if (helper.gender != null) {
             gender = helper.gender
@@ -52,29 +57,25 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
         setAdapter()
     }
 
-//    fun updateProfile(
-//        username: String,
-//        mail: String,
-//        pass: String,
-//        mobile: String,
-//        gender: String
-//    ) {
-//        val dialog = Utility.showProgressDialog(this, getString(R.string.loading), false)
-//        val vm = ViewModelProviders.of(this).get(EditProfileVM::class.java)
-//        vm.getResponse(username, mail, pass, mobile, gender, GetCallBack { isOk, requestCode, o ->
-//            if (isOk) {
-//                helper.firstName = username
-//                helper.email = mail
-//                helper.password = pass
-//                helper.gender = gender
-//                Toast.makeText(this, getString(R.string.profileUpdated), Toast.LENGTH_LONG)
-//                    .show()
-//                Utility.hideProgress(dialog)
-//            } else {
-//                Utility.hideProgress(dialog)
-//            }
-//        })
-//    }
+    fun updateProfile(
+        username: String,
+        mail: String,
+        mobile: String,
+        gender: String
+    ) {
+        //val dialog = Utility.showProgressDialog(this, getString(R.string.loading), false)
+        val vm = ViewModelProviders.of(this).get(EditProfileVM::class.java)
+            vm.callBack.observe(this, Observer {
+            if (it.isSuccess) {
+                Toast.makeText(this, getString(R.string.profileUpdated), Toast.LENGTH_LONG)
+
+            } else
+                Toast.makeText(this, "حدث خطأ حاول مرة أخري", Toast.LENGTH_SHORT).show()
+
+        })
+        vm.getResponse(username, mail,  mobile, gender
+        )
+    }
 
     private fun initToolBar() {
         setSupportActionBar(toolbar)
@@ -92,33 +93,25 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
 
-//                if (gender.equals("")) {
-//                    Snackbar.make(
-//                        mainregister,
-//                        getString(R.string.selectgender),
-//                        Snackbar.LENGTH_LONG
-//                    ).setAction(getString(R.string.close)) {}.setActionTextColor(
-//                        getResources().getColor(android.R.color.white)
-//                    ).show()
-//                    return
-//                }
-//                if (!Utils.FieldValidation(
-//                        this,
-//                        Edpassword,
-//                        5,
-//                        getString(R.string.enterpassword),
-//                        mainregister
-//                    )
-//                )
-//                    return
+                if (gender.equals("")) {
+                    Snackbar.make(
+                        mainregister,
+                        getString(R.string.selectgender),
+                        Snackbar.LENGTH_LONG
+                    ).setAction(getString(R.string.close)) {}.setActionTextColor(
+                        getResources().getColor(android.R.color.white)
+                    ).show()
+                    return
+                }
 
-//                updateProfile(
-//                    Edname.text.toString().trim(),
-//                    Edemail.text.toString().trim(),
-//                    Edpassword.text.toString().trim(),
-//                    "",
-//                    gender
-//                )
+
+                updateProfile(
+                    Edname.text.toString().trim(),
+                    Edemail.text.toString().trim(),
+                    //Edpassword.text.toString().trim(),
+                    "",
+                    gender
+                )
             }
         }
     }

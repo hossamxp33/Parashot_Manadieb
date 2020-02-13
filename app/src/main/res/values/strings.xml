@@ -137,4 +137,5 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCTSg5TkWoyhF097h6FIpMduPvOzfw0wvE</string>
     <string name="google_storage_bucket" translatable="false">marakez.appspot.com</string>
     <string name="project_id" translatable="false">marakez</string>
+    <string name="profileUpdated">تم تعديل البيانات بنجاح</string>
 </resources>

@@ -112,40 +112,12 @@
                 android:paddingStart="7dp"
                 android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/spGender"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="start|center"
-                android:text="@string/password"
-                android:textColor="@color/black" />
-
-            <EditText
-                android:id="@+id/Edpassword"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/password"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="7dp"
-                android:background="@drawable/sign_background"
-                android:hint="@string/enterpassword"
-                android:inputType="textPassword"
-                android:paddingStart="7dp"
-                android:paddingEnd="40dp"
-                android:singleLine="true"
-                android:textSize="12sp" />
 
             <RelativeLayout
                 android:id="@+id/signupBT"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_below="@+id/Edpassword"
+                android:layout_below="@+id/spGender"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
