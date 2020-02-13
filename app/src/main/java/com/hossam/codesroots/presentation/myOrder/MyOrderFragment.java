@@ -47,6 +47,7 @@ public class MyOrderFragment extends Fragment {
         txtnotfound = view.findViewById(R.id.txtnotfound);
         refreshLayout_user = view.findViewById(R.id.refreshLayout_user);
         mViewModel = ViewModelProviders.of(this).get(MyOrderViewModel.class);
+        mViewModel.getData(new PreferenceHelper(getContext()).getdeliveryId());
 
         refreshLayout_user.setOnRefreshListener(() -> {
             mViewModel.getData(new PreferenceHelper(getContext()).getdeliveryId());

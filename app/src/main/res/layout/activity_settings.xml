@@ -37,12 +37,12 @@
 
                 <TextView
                     android:id="@+id/BalaARRO"
-                    android:layout_width="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
 
-                    android:rotation="180" />
+                   />
 
             </RelativeLayout>
 
@@ -65,11 +65,11 @@
 
                 <TextView
                     android:id="@+id/OrderCountarrow"
-                    android:layout_width="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:rotation="180" />
+                    android:text="100" />
 
             </RelativeLayout>
 
@@ -92,11 +92,11 @@
 
                 <TextView
                     android:id="@+id/OrderCostarrow"
-                    android:layout_width="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:rotation="180" />
+                     />
 
             </RelativeLayout>
 

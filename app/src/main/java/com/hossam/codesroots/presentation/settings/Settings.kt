@@ -67,8 +67,8 @@ class Settings : AppCompatActivity(), View.OnClickListener {
         try {
             totalBalance!!.setText(myAccount!!.sort.total.toString())
 
-            acceptedOrder!!.setText(myAccount.sort.acceptcount.toString())
-            acceptedOrdeCount!!.text = myAccount.sort.acceptsum.toString()
+            acceptedOrdeCount!!.setText(myAccount.sort.acceptcount.toString())
+            acceptedOrder!!.text = myAccount.sort.acceptsum.toString()
 
 
         } catch (e: Exception) {

@@ -381,7 +381,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delivered:
-                orderViewModel.editResult(orderId, 3, "");
+                orderViewModel.editResult(orderId, 4, "");
 
                 return true;
             case R.id.cancel_order:
@@ -392,7 +392,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
                 TextView send = builder.findViewById(R.id.send);
                 send.setOnClickListener(v -> {
                     builder.dismiss();
-                    orderViewModel.editResult(orderId, 4, resons.getText().toString());/// cancel order
+                    orderViewModel.editResult(orderId, 5, resons.getText().toString());/// cancel order
                 });
                 builder.show();
                 return true;
