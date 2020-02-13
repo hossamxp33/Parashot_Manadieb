@@ -98,6 +98,14 @@ public interface ApiInterface {
     Observable<MYOrdersModel> getMyOrders(
             @Path(value = "userid") String userid
     );
+
+
+    @GET("users/view/{userid}.json")
+    @Headers("Accept: Application/json")
+    Call<EditProfile> getUserInfo(
+            @Path(value = "userid") String userid
+    );
+
     @GET("orders/getActiveDelivery/{userid}.json")
     @Headers("Accept: Application/json")
     Observable<MYOrdersModel> getActiveDelivery(

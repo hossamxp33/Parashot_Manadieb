@@ -39,9 +39,11 @@ public class EditProfile {
          */
 
         private int id;
+        private int gender;
         private String email;
-        private String gender;
         private String token;
+        private String phone;
+        private String username;
 
         public int getId() {
             return id;
@@ -49,6 +51,14 @@ public class EditProfile {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public int getGender() {
+            return gender;
+        }
+
+        public void setGender(int gender) {
+            this.gender = gender;
         }
 
         public String getEmail() {
@@ -59,20 +69,28 @@ public class EditProfile {
             this.email = email;
         }
 
-        public String getGender() {
-            return gender;
-        }
-
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-
         public String getToken() {
             return token;
         }
 
         public void setToken(String token) {
             this.token = token;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
         }
     }
 }

@@ -3,6 +3,7 @@ package com.hossam.codesroots.presentation.myOrder.adapters;
 import androidx.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomView> {
 
@@ -137,10 +139,12 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
 
 
         holder.map.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ChatAndMapActivity.class);
-            intent.putExtra("chatormap", "map");
-            intent.putExtra("roomId", orderData.get(position).getRoomID());
-            intent.putExtra("notes", orderData.get(position).getNotes());
+            String strUri = "http://maps.google.com/maps?q=loc:" +
+                    orderData.get(position).getUserLat() + "," +
+                    orderData.get(position).getUserLong() +
+                    " (" + Objects.requireNonNull(orderData.get(position).getUser()).getUsername() + ")";
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
             context.startActivity(intent);
         });
 
@@ -175,7 +179,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
             orderDate = mView.findViewById(R.id.order_datevalue);
             item_img = mView.findViewById(R.id.item_img);
             action = mView.findViewById(R.id.action);
-            map = mView.findViewById(R.id.delivery_view);
+            map = mView.findViewById(R.id.user_view);
             chat = mView.findViewById(R.id.chating);
         }
     }

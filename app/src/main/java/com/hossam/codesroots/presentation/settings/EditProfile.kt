@@ -32,16 +32,18 @@ import java.util.*
 class EditProfile : AppCompatActivity(), View.OnClickListener {
     private var mLastClickTime: Long = 0
     lateinit var helper: PreferenceHelper
-    private var vm: RegisterVM? = null
+    private lateinit var vm: EditProfileVM
     var gender: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+         vm = ViewModelProviders.of(this).get(EditProfileVM::class.java)
+
+        vm.getUserInfo(PreferenceHelper.getUserId().toString())
         signupBT.setOnClickListener(this)
         helper = PreferenceHelper(this)
         initToolBar()
-
         if (helper.firstName != null && helper.lastName != null) {
             Edname.setText(helper.firstName + " " + helper.lastName)
         }
@@ -55,6 +57,13 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
             gender = helper.gender
         }
         setAdapter()
+
+        vm.callBackInfo.observe(this, Observer {
+            Edname.setText(it.data.username)
+            Edemail.setText(it.data.email)
+            spGender.setSelection(it.data.gender)
+        })
+
     }
 
     fun updateProfile(
@@ -64,17 +73,13 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
         gender: String
     ) {
         //val dialog = Utility.showProgressDialog(this, getString(R.string.loading), false)
-        val vm = ViewModelProviders.of(this).get(EditProfileVM::class.java)
             vm.callBack.observe(this, Observer {
             if (it.isSuccess) {
-                Toast.makeText(this, getString(R.string.profileUpdated), Toast.LENGTH_LONG)
-
+                Toast.makeText(this, getString(R.string.accept), Toast.LENGTH_LONG).show()
             } else
                 Toast.makeText(this, "حدث خطأ حاول مرة أخري", Toast.LENGTH_SHORT).show()
-
         })
-        vm.getResponse(username, mail,  mobile, gender
-        )
+        vm.getResponse(username, mail,  mobile, gender)
     }
 
     private fun initToolBar() {
@@ -103,8 +108,6 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
                     ).show()
                     return
                 }
-
-
                 updateProfile(
                     Edname.text.toString().trim(),
                     Edemail.text.toString().trim(),
@@ -137,7 +140,7 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
             ) {
                 val selectedItemText = parent.getItemAtPosition(position) as String
                 if (position > 0) {
-                    gender = selectedItemText
+                    gender = position.toString()
                 }
             }
 

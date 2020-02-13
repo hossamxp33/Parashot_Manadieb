@@ -17,21 +17,21 @@ import retrofit2.Response
  */
 class EditProfileVM(application: Application) : AndroidViewModel(application) {
 
-    val callBack : MutableLiveData<com.hossam.codesroots.entities.EditProfile> = MutableLiveData()
+    val callBack : MutableLiveData<EditProfile> = MutableLiveData()
+    val callBackInfo : MutableLiveData<EditProfile> = MutableLiveData()
     val callBackError : MutableLiveData<Throwable> = MutableLiveData()
+
     fun getResponse(
         username: String,
         mail: String,
         mobile: String,
         gender: String
     ) {
-
-
         val call = getApiService().editProfile(username, mail, mobile, gender)
         call.enqueue(object : Callback<com.hossam.codesroots.entities.EditProfile> {
             override fun onResponse(
                 call: Call<EditProfile>,
-                response: Response<com.hossam.codesroots.entities.EditProfile>
+                response: Response<EditProfile>
             ) {
                 if (response.isSuccessful()) {
                     callBack.postValue(response.body())
@@ -39,11 +39,26 @@ class EditProfileVM(application: Application) : AndroidViewModel(application) {
                     callBack.postValue(response.body())
                 }
             }
-
-            override fun onFailure(call: Call<com.hossam.codesroots.entities.EditProfile>, t: Throwable) {
+            override fun onFailure(call: Call<EditProfile>, t: Throwable) {
             }
         })
     }
+
+    fun getUserInfo(userId: String  ) {
+        val call = getApiService().getUserInfo(userId)
+        call.enqueue(object : Callback<EditProfile> {
+            override fun onResponse(
+                    call: Call<EditProfile>,
+                    response: Response<EditProfile>
+            ) {
+                    callBackInfo.postValue(response.body())
+            }
+            override fun onFailure(call: Call<EditProfile>, t: Throwable) {
+            }
+        })
+    }
+
+
     private fun getApiService(): ApiInterface {
         return ApiClient.getClient().create(ApiInterface::class.java)
     }

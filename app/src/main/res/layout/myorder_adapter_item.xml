@@ -36,9 +36,11 @@
         app:srcCompat="@drawable/chat" />
 
     <ImageView
-        android:id="@+id/delivery_view"
+        android:id="@+id/user_view"
         android:layout_width="35dp"
         android:layout_height="30dp"
+        android:src="@drawable/map"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@id/chating"
         app:layout_constraintTop_toTopOf="@+id/action" />
 
