@@ -126,7 +126,7 @@
     <string name="resones">من فضلك أضف سبب الغاء الطلب</string>
     <string name="areUsureLgout">Are you sure you want to logout?</string>
     <string name="failedtoLoad">Failed to load api</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">تحميل ...</string>
     <string name="facebook_app_id" translatable="false">626197584833300</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb626197584833300</string>
     <string name="default_web_client_id" translatable="false">629890567348-sj39lpug5862k9lmf8ogamlb7mf1o37v.apps.googleusercontent.com</string>
