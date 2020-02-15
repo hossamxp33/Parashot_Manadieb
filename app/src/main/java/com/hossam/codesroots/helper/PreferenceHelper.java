@@ -1,5 +1,6 @@
 package com.hossam.codesroots.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -15,7 +16,7 @@ public class PreferenceHelper {
 	private static String Token = "token";
 	private static String UserId = "userid";
 	private static String deliveryId = "delivery";
-	private static String Language = "language";
+	private static String Language = "App_Language";
 	private final static String CURRENTLAT = "latitude";
 	private final static String CURRENTLONG = "longtude";
 	private final String CURRENTCATEGRY = "CURRENTCATEGRY";
@@ -36,7 +37,7 @@ public class PreferenceHelper {
 	private final String Phone = "Phone";
 	private final String Gender = "Gender";
 	private final String Password = "Password";
-	private final String language = "Language";
+	private final String language = "App_Language";
 	private final String SocketId = "SocketId";
 
 	private static Context context;
@@ -202,13 +203,23 @@ public class PreferenceHelper {
 		edit.apply();
 	}
 	public String getlanguage() {
-		return app_prefs.getString(language, null);
+		return app_prefs.getString("App_Language", null);
 	}
-
+	public static String getCurrentLanguage(Context context) {
+		String langPref = context.getPackageName() + "App_Language";
+		SharedPreferences prefs = context.getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+		String old = prefs.getString(langPref, "ar");
+		return old;
+	}
 	public void setlanguage(String API_language) {
-		SharedPreferences.Editor edit = app_prefs.edit();
-		edit.putString(language, API_language);
-		edit.apply();
+		String langPref = context.getPackageName() + "App_Language";
+		SharedPreferences prefs = context.getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = app_prefs.edit();
+		editor.putString(langPref, API_language);
+		editor.apply();
+//		SharedPreferences.Editor edit = app_prefs.edit();
+//		edit.putString(language, API_language);
+//		edit.apply();
 	}
 	public String getGender() {
 		return app_prefs.getString(Gender, null);

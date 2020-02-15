@@ -60,7 +60,14 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
         facebook.setOnClickListener(this)
         gmail.setOnClickListener(this)
         phone.setOnClickListener(this)
+        if (PreferenceHelper.getCurrentLanguage(this) == "ar") {
+                    Utility.setLocale(this,"ar");
+            helper.setlanguage("ar")
 
+                }
+        else {
+            Utility.setLocale(this, "en");
+        }
         initFacebook()
         FacebookSdk.sdkInitialize(getApplicationContext());
         configureGoogleSignIn()
