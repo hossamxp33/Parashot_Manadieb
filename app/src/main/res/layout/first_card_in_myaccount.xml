@@ -57,7 +57,7 @@
                     android:layout_weight="0.3"
                     android:gravity="start"
                     android:background="@drawable/linear_background_for_edit"
-                    android:hint="جرد الطلبات الاسبوعي والشهري "
+                    android:hint= "@string/Inventory"
                     android:textColorHint="@color/black"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
@@ -154,7 +154,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="العدد الاسبوعي     "
+                android:text="@string/weeklynumber"
                 android:layout_weight="1.5"
                 />
 
@@ -174,7 +174,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="طلب "
+                    android:text="@string/myOrder"
 
                     />
             </LinearLayout>
@@ -182,7 +182,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="بقيمة "
+                android:text= "@string/amount"
                 android:layout_weight="1"
                 />
             <LinearLayout
@@ -194,13 +194,13 @@
                     android:id="@+id/weekcost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 "
+                    android:text="0"
                     android:textColor="@color/text_numbers"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ربال "
+                    android:text="@string/ryal"
                     />
 
             </LinearLayout>
@@ -218,7 +218,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="العدد الشهري     "
+                android:text="@string/monthlynumber"
                 android:layout_weight="1.5"
                 />
 
@@ -238,7 +238,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="طلب "
+                    android:text="@string/order"
 
                     />
             </LinearLayout>
@@ -246,7 +246,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="بقيمة "
+                android:text="@string/amount"
                 android:layout_weight="1"
                 />
             <LinearLayout
@@ -266,7 +266,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ربال "
+                    android:text="@string/ryal"
                     />
 
             </LinearLayout>
