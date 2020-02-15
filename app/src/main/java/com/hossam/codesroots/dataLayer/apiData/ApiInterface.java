@@ -75,8 +75,10 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("users/facebooklogin.json")
+    @POST("users/edit/{userid}.json")
     Call<com.hossam.codesroots.entities.EditProfile> editProfile(
+            @Path(value = "userid") int userid,
+
             @Field("username") String username,
             @Field("email") String email,
             @Field("phone") String phone,

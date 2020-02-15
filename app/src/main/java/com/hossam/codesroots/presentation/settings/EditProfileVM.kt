@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.hossam.codesroots.dataLayer.apiData.ApiClient
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface
 import com.hossam.codesroots.entities.EditProfile
+import com.hossam.codesroots.helper.PreferenceHelper
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -27,7 +28,7 @@ class EditProfileVM(application: Application) : AndroidViewModel(application) {
         mobile: String,
         gender: String
     ) {
-        val call = getApiService().editProfile(username, mail, mobile, gender)
+        val call = getApiService().editProfile(PreferenceHelper.getUserId(),username, mail, mobile, gender)
         call.enqueue(object : Callback<com.hossam.codesroots.entities.EditProfile> {
             override fun onResponse(
                 call: Call<EditProfile>,

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.hossam.codesroots.delivery24.R
 import com.hossam.codesroots.helper.PreferenceHelper
+import com.hossam.codesroots.presentation.MainActivity
 import com.hossam.codesroots.presentation.settings.Default_sign_in
 import kotlinx.android.synthetic.main.activity_set_lang.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -35,13 +36,13 @@ class SetLang : AppCompatActivity() {
             when (checkedId) {
                 R.id.radioArabic -> {
                     helper.setlanguage("ar")
-                    val i = Intent(this, Default_sign_in::class.java)
+                    val i = Intent(this, MainActivity::class.java)
                     i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(i)
                 }
                 R.id.radioEngish -> {
                     helper.setlanguage("en")
-                    val i = Intent(this, Default_sign_in::class.java)
+                    val i = Intent(this, MainActivity::class.java)
                     i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(i)
                 }

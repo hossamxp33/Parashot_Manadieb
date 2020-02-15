@@ -40,7 +40,7 @@ class ContactUsVM() : ViewModel() {
             }
 
             override fun onFailure(call: Call<ContactUsModel>, t: Throwable) {
-                callBackError.postValue( t)
+                callBackError.postValue(t)
                 callBack.postValue(ContactUsModel(false))
 
             }

@@ -224,7 +224,6 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
             if (it.isSuccess) {
                 val response = it as SocialMediaModel
 //                Utils.hideKeyboard(this)
-                if (response.data.delivery != null) {
                     if (response.data!!.getLast() != "1" || response.data.delivery == null) {
                         helper.userID = response.data.id.toString()
                         helper.accessToken = response.data.token
@@ -242,11 +241,7 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
                         finish()
                     }
 
-                } else {
-                    Toast.makeText(this, "ليس حساب مندوب", Toast.LENGTH_SHORT).show()
 
-
-                }
             }
         })
         vm!!.getResponse(
