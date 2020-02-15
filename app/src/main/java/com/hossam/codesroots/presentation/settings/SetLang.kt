@@ -23,8 +23,8 @@ class SetLang : AppCompatActivity() {
         initToolBar()
 
         val lang = PreferenceHelper.getCurrentLanguage(this)
-
-        if (lang.equals("ar", ignoreCase = true)) {
+println(PreferenceHelper.getCurrentLanguage(this))
+        if (PreferenceHelper.getCurrentLanguage(this).equals("ar")) {
             radioArabic.setChecked(true)
             radioEngish.setChecked(false)
         } else {

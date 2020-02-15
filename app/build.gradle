@@ -31,7 +31,7 @@ repositories {
 android {
     signingConfigs {
         debug {
-            storeFile file('E:\\alaa\\delivery manadeeb\\keystore')
+            storeFile file('/Users/mac/Downloads/Delivery24_manadeb/keystore')
             storePassword '123456'
             keyAlias = 'key0'
             keyPassword '123456'

@@ -214,7 +214,7 @@ public class PreferenceHelper {
 	public void setlanguage(String API_language) {
 		String langPref = context.getPackageName() + "App_Language";
 		SharedPreferences prefs = context.getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
-		SharedPreferences.Editor editor = app_prefs.edit();
+		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString(langPref, API_language);
 		editor.apply();
 //		SharedPreferences.Editor edit = app_prefs.edit();
