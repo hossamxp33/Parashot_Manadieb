@@ -58,7 +58,7 @@
                     android:layout_weight="0.3"
                     android:gravity="start"
                     android:background="@drawable/linear_background_for_edit"
-                    android:hint="سداد حساب التطبيق "
+                    android:hint="@string/pay"
                     android:textColorHint="@color/black"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"

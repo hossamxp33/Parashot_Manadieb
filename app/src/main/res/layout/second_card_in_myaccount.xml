@@ -55,7 +55,7 @@
                     android:layout_weight="0.3"
                     android:gravity="start"
                     android:background="@drawable/linear_background_for_edit"
-                    android:hint="مراجعة حالات الطلبات "
+                    android:hint="@string/Review_application_cases"
                     android:textColorHint="@color/black"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
@@ -78,7 +78,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="طلبات مقبولة "
+                android:text="@string/Acceptable_requests"
                 android:layout_weight="1.5"
                 />
 

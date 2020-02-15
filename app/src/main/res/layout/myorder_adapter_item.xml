@@ -20,16 +20,16 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/king"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/chating"
         android:layout_width="35dp"
-
         android:layout_height="30dp"
         app:layout_constraintEnd_toStartOf="@id/action"
         app:layout_constraintTop_toTopOf="@+id/action"
@@ -52,7 +52,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text=" رقم الطلب  :  "
+        android:text="@string/Ordernumber"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/item_img"
         app:layout_constraintTop_toBottomOf="@+id/guidhorizental" />
@@ -73,7 +73,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="تاريخ الطلب :  "
+        android:text="@string/birthdate"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/item_img"
         app:layout_constraintTop_toBottomOf="@+id/orderId" />
@@ -94,7 +94,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="اسم العميل :  "
+        android:text="@string/clientName"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/item_img"
         app:layout_constraintTop_toBottomOf="@+id/order_date" />
@@ -116,7 +116,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="تكلفة الطلب  :  "
+        android:text="order"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/item_img"
         app:layout_constraintTop_toBottomOf="@+id/clientname" />

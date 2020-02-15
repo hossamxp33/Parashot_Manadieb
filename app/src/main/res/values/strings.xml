@@ -8,9 +8,9 @@
     <string name="storeplace">Store Place</string>
     <string name="storename"> Store Name</string>
     <string name="refuse">Refused</string>
-    <string name="accept">Send Offer</string>
-    <string name="clientname">Delivery location</string>
-    <string name="productname">Receiving location</string>
+    <string name="accept">accept</string>
+    <string name="taslemlocation">Delivery location</string>
+    <string name="recivedlocation">Receiving location</string>
     <string name="productprice">The price of the product</string>
     <string name="paymentway">Payment method</string>
     <string name="neworder">New Order</string>
@@ -139,5 +139,25 @@
     <string name="google_storage_bucket" translatable="false">marakez.appspot.com</string>
     <string name="project_id" translatable="false">marakez</string>
     <string name="profileUpdated">The data has been modified successfully</string>
+    <string name="Inventory">Inventory of weekly and monthly requests</string>
+    <string name="weeklynumber">weekly number</string>
+    <string name="amount">with amount</string>
+    <string name="ryal">SR</string>
+    <string name="monthlynumber">Monthly number</string>
+    <string name="order">Order</string>
+    <string name="pay"> Pay the application account</string>
+    <string name="DeliveryCharge">Delivery Charge</string>
+    <string name="Connecting">  Connecting</string>
+    <string name="Ordernumber">Order number</string>
+    <string name="specify_the_reason">  Please specify the reason for canceling the request:</string>
+    <string name="Review_application_cases">Review application cases</string>
+    <string name="Acceptable_requests"> Acceptable requests</string>
+    <string name="account_details">account details</string>
+    <string name="total_request">Total requests for the month</string>
+    <string name="total">Total</string>
+    <string name="clientName">Client Name :</string>
+    <string name="cost"> order cost :</string>
+
+
 
 </resources>

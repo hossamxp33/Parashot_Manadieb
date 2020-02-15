@@ -90,22 +90,21 @@
                 />
 
             <TextView
-                    android:id="@+id/recieve_loc_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@+id/delimeter"
-                    android:text="موقع الاستلام "
-                    android:textStyle="bold"
-                    android:drawableTint="@color/red"
-                    android:drawableStart="@drawable/location"
-                    android:gravity="center"
-                    android:textSize="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-
+                android:id="@+id/recieve_loc_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/location"
+                android:drawableTint="@color/red"
+                android:gravity="center"
+                android:text="@string/recivedlocation"
                 android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/delimeter"
-                    />
+                android:textSize="16dp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toStartOf="@+id/delimeter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintTop_toTopOf="@+id/delimeter" />
 
             <TextView
                 android:id="@+id/recieve_loc"
@@ -142,18 +141,17 @@
             <TextView
                 android:id="@+id/delivery_loc_title"
                 android:layout_width="0dp"
-                app:layout_constraintTop_toTopOf="@+id/delimeter"
                 android:layout_height="wrap_content"
-                android:text="موقع التسليم  "
-                android:textStyle="bold"
-                android:drawableTint="@color/red"
                 android:drawableStart="@drawable/location"
+                android:drawableTint="@color/red"
                 android:gravity="center"
-                android:textSize="16dp"
+                android:text="@string/taslemlocation"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/delimeter"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@+id/delimeter"
+                app:layout_constraintTop_toTopOf="@+id/delimeter" />
 
 
             <TextView
