@@ -9,7 +9,6 @@
     android:layout_height="160dp"
     android:layout_margin="10dp"
     android:background="@drawable/layout_reduis"
-    android:layoutDirection="rtl"
     android:paddingBottom="5dp"
     android:weightSum="5">
 
@@ -22,7 +21,6 @@
         android:layout_marginStart="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/king"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@id/orderId"
         app:layout_constraintTop_toTopOf="@+id/orderId" />
 
@@ -73,7 +72,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="@string/birthdate"
+        android:text="@string/order_date"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/item_img"
         app:layout_constraintTop_toBottomOf="@+id/orderId" />
@@ -83,6 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:layout_marginStart="10dp"
+
         app:layout_constraintStart_toEndOf="@id/order_date"
         app:layout_constraintTop_toTopOf="@+id/order_date" />
 
@@ -104,6 +105,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:layout_marginStart="10dp"
+
         app:layout_constraintStart_toEndOf="@id/clientname"
         app:layout_constraintTop_toTopOf="@+id/clientname" />
 
@@ -116,7 +119,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="order"
+        android:text="@string/order_cost"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/item_img"
         app:layout_constraintTop_toBottomOf="@+id/clientname" />
@@ -126,6 +129,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:layout_marginStart="10dp"
+
         app:layout_constraintStart_toEndOf="@id/order_cost"
         app:layout_constraintTop_toTopOf="@+id/order_cost" />
 
@@ -161,6 +166,7 @@
         android:layout_weight="1"
         android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
         android:ellipsize="end"
+        android:visibility="invisible"
         android:gravity="center"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"

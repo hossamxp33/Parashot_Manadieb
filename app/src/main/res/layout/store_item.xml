@@ -116,7 +116,7 @@
             app:layout_constraintTop_toBottomOf="@+id/my_location"
             android:textSize="12dp"
             android:layout_height="wrap_content"
-            android:text="أنا"
+            android:text="@string/me"
             />
 
         <TextView
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toTopOf="@+id/my_location"
             app:layout_constraintBottom_toBottomOf="@+id/my_location"
             app:layout_constraintEnd_toStartOf="@+id/recieve_location"
-            android:text="4.5 كم "
+            android:text="4.5  "
             />
 
 
@@ -150,7 +150,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recieve_location"
             android:textSize="12dp"
             android:layout_height="wrap_content"
-            android:text="موقع التسليم"
+            android:text="@string/recie_place"
             />
 
 
@@ -162,7 +162,7 @@
             app:layout_constraintTop_toTopOf="@+id/my_location"
             app:layout_constraintBottom_toBottomOf="@+id/recieve_location"
             app:layout_constraintEnd_toStartOf="@+id/delivery_location"
-            android:text="4.5 كم "
+            android:text=" 4.5  "
             />
 
         <ImageView
@@ -184,7 +184,7 @@
             app:layout_constraintTop_toBottomOf="@+id/delivery_location"
             android:textSize="12dp"
             android:layout_height="wrap_content"
-            android:text="موقع التسليم"
+            android:text="@string/delivery_place"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

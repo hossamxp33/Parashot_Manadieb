@@ -155,6 +155,15 @@
     <string name="total_request">اجمالي طلبات الشهر</string>
     <string name="total">اجمالي</string>
     <string name="clientName"> اسم العميل :</string>
-    <string name="cost"> تكلفة الطلب : </string>
+    <string name="order_cost"> تكلفة الطلب : </string>
+    <string name="order_date">تاريخ الطلب : </string>
+    <string name="TotalBalance">اجمالي الرصيد  </string>
+    <string name="OrderCount">   عدد الطلبات   </string>
+    <string name="OrderCost">تكلفة الطلبات  </string>
+
+    <string name="me">أنا</string>
+    <string name="recie_place">موقع الاستلام</string>
+    <string name="delivery_place">موقع التسليم</string>
+    <string name="KM">كم </string>
 
 </resources>

@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@+id/BalaARRO"
-                    android:text="TotalBalance" />
+                    android:text="@string/TotalBalance" />
 
                 <TextView
                     android:id="@+id/BalaARRO"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@+id/OrderCountarrow"
-                    android:text="OrderCount" />
+                    android:text="@string/OrderCount" />
 
                 <TextView
                     android:id="@+id/OrderCountarrow"
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@+id/OrderCostarrow"
-                    android:text="OrderCost" />
+                    android:text="@string/OrderCost" />
 
                 <TextView
                     android:id="@+id/OrderCostarrow"
@@ -96,6 +96,7 @@
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:text="50"
                      />
 
             </RelativeLayout>
@@ -114,17 +115,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/profarrow"
+                    android:drawableEnd="@drawable/left"
                     android:text="@string/editprofile" />
 
-                <ImageView
-                    android:id="@+id/profarrow"
-                    android:layout_width="10dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/left"
-                    android:rotation="180" />
 
             </RelativeLayout>
 
@@ -143,17 +136,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/langarrow"
+                    android:drawableEnd="@drawable/left"
                     android:text="@string/language" />
-
-                <ImageView
-                    android:id="@+id/langarrow"
-                    android:layout_width="10dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/left"
-                    android:rotation="180" />
 
             </RelativeLayout>
 
@@ -172,17 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/termarrow"
+                    android:drawableEnd="@drawable/left"
                     android:text="@string/terms" />
-
-                <ImageView
-                    android:id="@+id/termarrow"
-                    android:layout_width="10dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/left"
-                    android:rotation="180" />
 
             </RelativeLayout>
 
@@ -201,17 +176,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/usagepolicyarrow"
+                    android:drawableEnd="@drawable/left"
                     android:text="@string/usage" />
 
-                <ImageView
-                    android:id="@+id/usagepolicyarrow"
-                    android:layout_width="10dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/left"
-                    android:rotation="180" />
 
             </RelativeLayout>
 
@@ -230,17 +197,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/rateapparrow"
+                    android:drawableEnd="@drawable/left"
                     android:text="@string/rateapp" />
-
-                <ImageView
-                    android:id="@+id/rateapparrow"
-                    android:layout_width="10dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/left"
-                    android:rotation="180" />
 
             </RelativeLayout>
 
@@ -259,17 +217,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/contactusarrow"
+                    android:drawableEnd="@drawable/left"
                     android:text="@string/contactus" />
 
-                <ImageView
-                    android:id="@+id/contactusarrow"
-                    android:layout_width="10dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/left"
-                    android:rotation="180" />
 
             </RelativeLayout>
 

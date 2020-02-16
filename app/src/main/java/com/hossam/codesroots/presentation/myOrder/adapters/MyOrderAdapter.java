@@ -166,9 +166,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
     class CustomView extends RecyclerView.ViewHolder {
         TextView  clientName, orderStatues, action,orderId,orderCost,orderDate;
         ImageView item_img, chat, map;
-        public final View mView;
+        final View mView;
 
-        public CustomView(@NonNull View itemView) {
+        CustomView(@NonNull View itemView) {
 
             super(itemView);
             mView = itemView;
@@ -193,8 +193,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
             Log.d("newdatein", dateObj.getTime() + "");
             String timestamp = String.valueOf(dateObj.getTime());//  //Example -> in ms
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String dateString = formatter.format(new Date(Long.parseLong(timestamp)));
-            return dateString;
+            return formatter.format(new Date(Long.parseLong(timestamp)));
         } catch (ParseException e) {
             e.printStackTrace();
         }

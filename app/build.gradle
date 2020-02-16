@@ -30,12 +30,12 @@ repositories {
 
 android {
     signingConfigs {
-        debug {
-            storeFile file('E:\\alaa\\delivery manadeeb\\keystore')
-            storePassword '123456'
-            keyAlias = 'key0'
-            keyPassword '123456'
-        }
+//        debug {
+//            storeFile file('E:\\alaa\\delivery manadeeb\\keystore')
+//            storePassword '123456'
+//            keyAlias = 'key0'
+//            keyPassword '123456'
+//        }
     }
     compileSdkVersion 28
     defaultConfig {

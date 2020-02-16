@@ -32,9 +32,6 @@ public class MyOrderFragment extends Fragment {
     MyOrderAdapter myOrderAdapter;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout_user;
-    public static MyOrderFragment newInstance() {
-        return new MyOrderFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

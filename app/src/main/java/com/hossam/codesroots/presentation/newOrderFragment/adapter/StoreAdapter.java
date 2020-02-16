@@ -57,15 +57,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             holder.descrip.setText(storesData.get(position).getNotes());
         }
         Glide.with(mcontext).load(storesData.get(position).getSmallstore().getLogo()).into(holder.item_img);
-        holder.distance1.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(storesData.get(position).getSmallstore().getLatitude(),
+        holder.distance1.setText((Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(storesData.get(position).getSmallstore().getLatitude(),
                 storesData.get(position).getSmallstore().getLongitude(),
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
-        holder.distance2.setText(Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(storesData.get(position).getStoreLat(), storesData.get(position).getStoreLng(),
-                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))));
-
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))))+" "+mcontext.getText(R.string.KM));
+        holder.distance2.setText((Utils.customFormat(BigDecimal.valueOf(Utils.calculateDistance(storesData.get(position).getStoreLat(), storesData.get(position).getStoreLng(),
+                PreferenceHelper.getCURRENTLAT(), PreferenceHelper.getCURRENTLONG()))))+" "+mcontext.getText(R.string.KM));
 
         holder.mView.setOnClickListener(v -> {
-
             String strUri = "http://maps.google.com/maps?q=loc:" +
                     storesData.get(position).getSmallstore().getLatitude() + "," +
                     storesData.get(position).getSmallstore().getLongitude() +

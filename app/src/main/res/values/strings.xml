@@ -148,7 +148,7 @@
     <string name="pay"> Pay the application account</string>
     <string name="DeliveryCharge">Delivery Charge</string>
     <string name="Connecting">  Connecting</string>
-    <string name="Ordernumber">Order number</string>
+    <string name="Ordernumber">Order number : </string>
     <string name="specify_the_reason">  Please specify the reason for canceling the request:</string>
     <string name="Review_application_cases">Review application cases</string>
     <string name="Acceptable_requests"> Acceptable requests</string>
@@ -156,8 +156,15 @@
     <string name="total_request">Total requests for the month</string>
     <string name="total">Total</string>
     <string name="clientName">Client Name :</string>
-    <string name="cost"> order cost :</string>
-
+    <string name="order_date">Order Date :</string>
+    <string name="order_cost">Order Cost :</string>
+    <string name="TotalBalance">TotalBalance</string>
+    <string name="OrderCount">OrderCount</string>
+    <string name="OrderCost">OrderCost</string>
+    <string name="me">Me</string>
+    <string name="recie_place">Receive Place</string>
+    <string name="delivery_place">Delivery Place</string>
+    <string name="KM"> K.M</string>
 
 
 </resources>
