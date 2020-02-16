@@ -44,23 +44,13 @@ class EditProfile : AppCompatActivity(), View.OnClickListener {
         signupBT.setOnClickListener(this)
         helper = PreferenceHelper(this)
         initToolBar()
-        if (helper.firstName != null && helper.lastName != null) {
-            Edname.setText(helper.firstName + " " + helper.lastName)
-        }
-        if (helper.email != null) {
-            Edemail.setText(helper.email)
-        }
-        if (helper.password != null) {
-            //Edpassword.setText(helper.password)
-        }
-        if (helper.gender != null) {
-            gender = helper.gender
-        }
+
         setAdapter()
 
         vm.callBackInfo.observe(this, Observer {
             Edname.setText(it.data.username)
             Edemail.setText(it.data.email)
+
             spGender.setSelection(it.data.gender)
         })
 

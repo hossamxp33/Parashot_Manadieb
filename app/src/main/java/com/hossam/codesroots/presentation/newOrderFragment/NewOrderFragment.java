@@ -315,7 +315,7 @@ public class NewOrderFragment extends Fragment implements
 
     private void openDialogForAddStorage() {
 
-                newOrderViewModel.addOffer(orderId, userid, deliveryId, txtprice.getText().toString());
+                newOrderViewModel.addOffer(orderId, userid,Integer.valueOf(PreferenceHelper.getdeliveryId()), txtprice.getText().toString());
 //                progress.setVisibility(View.VISIBLE);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MyOrderFragment()).addToBackStack(null).
                         setCustomAnimations(R.anim.animation_new_order, R.anim.animation_new_order2).commit();

@@ -29,7 +29,7 @@ class RegisterVM(application: Application) : AndroidViewModel(application) {
     ) {
 
 println(PreferenceHelper(getApplication()).userID)
-        val call = getApiService().addUser(name,  mobile, gender,PreferenceHelper(getApplication()).userID)
+        val call = getApiService().addUser(name,  mobile, gender, PreferenceHelper(getApplication()).userID.toString())
         call.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
                     call: Call<RegisterResponse>,
