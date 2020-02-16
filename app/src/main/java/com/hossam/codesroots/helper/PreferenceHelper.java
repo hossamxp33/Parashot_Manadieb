@@ -29,7 +29,6 @@ public class PreferenceHelper {
 	private final String DurationRequest = "DurationRequest";
 	private final String ImageUri = "ImageUri";
 	private final String FirstTime = "FirstTime";
-	private final String UserID = "UserID";
 	private final String AccessToken = "AccessToken";
 	private final String Email = "Email";
 	private final String FirstName = "FirstName";
@@ -142,10 +141,8 @@ public class PreferenceHelper {
 	}
 
 	public static int getUserId() {
-		if (app_prefs!=null)
-		return app_prefs.getInt(UserId,237);
-		else
-			return 0;
+		return app_prefs.getInt(UserId,0);
+
 	}
 
 	public static  String getdeliveryId() {
@@ -291,13 +288,13 @@ public class PreferenceHelper {
 		edit.apply();
 	}
 
-	public String getUserID() {
-		return app_prefs.getString(UserID, null);
+	public int getUserID() {
+		return app_prefs.getInt(UserId, 0);
 	}
 
-	public void setUserID(String API_UserID) {
+	public void setUserID(Integer API_UserID) {
 		SharedPreferences.Editor edit = app_prefs.edit();
-		edit.putString(UserID, API_UserID);
+		edit.putInt(UserId, API_UserID);
 		edit.apply();
 	}
 
@@ -367,7 +364,7 @@ public class PreferenceHelper {
 		setAccessToken(null);
 		setFirstName(null);
 		setLastName(null);
-		setUserID(null);
+		setUserID(0);
 		setGender(null);
 		setPassword(null);
 		setEmail(null);

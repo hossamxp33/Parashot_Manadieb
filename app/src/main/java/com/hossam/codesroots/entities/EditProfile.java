@@ -39,9 +39,8 @@ public class EditProfile {
          */
 
         private int id;
-        private int gender;
+        private int gender = 0;
         private String email;
-        private String token;
         private String phone;
         private String username;
 
@@ -69,13 +68,13 @@ public class EditProfile {
             this.email = email;
         }
 
-        public String getToken() {
-            return token;
-        }
-
-        public void setToken(String token) {
-            this.token = token;
-        }
+//        public String getToken() {
+//            return token;
+//        }
+//
+//        public void setToken(String token) {
+//            this.token = token;
+//        }
 
         public String getPhone() {
             return phone;

@@ -232,13 +232,13 @@ class Default_sign_in : AppCompatActivity(), View.OnClickListener {
                 val response = it as SocialMediaModel
 //                Utils.hideKeyboard(this)
                     if (response.data!!.getLast() != "1" || response.data.delivery == null) {
-                        helper.userID = response.data.id.toString()
+                        helper.userID = response.data.id
                         helper.accessToken = response.data.token
                         val intent = Intent(this, Register::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        helper.userID = response.data!!.id.toString()
+                        helper.userID = response.data!!.id
                         helper.accessToken = response.data!!.token
                         helper.setdeliveryId(response.data.delivery.toString())
 
