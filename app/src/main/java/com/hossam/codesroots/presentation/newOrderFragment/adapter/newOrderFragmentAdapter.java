@@ -95,10 +95,7 @@ public class newOrderFragmentAdapter extends RecyclerView.Adapter<com.hossam.cod
 
             name =mView.findViewById(R.id.store_name);
             storePlace =mView.findViewById(R.id.store_place);
-            ratingBar =mView.findViewById(R.id.rates);
             item_img = mView.findViewById(R.id.item_img);
-            productrate =mView.findViewById(R.id.productrate);
-            descrip =mView.findViewById(R.id.shop_description);
 
         }
 

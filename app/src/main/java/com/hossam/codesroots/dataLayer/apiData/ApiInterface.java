@@ -16,7 +16,7 @@ import com.hossam.codesroots.entities.RegisterResponse;
 import com.hossam.codesroots.entities.SocialMediaModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.AddMessage;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.ChatList;
-import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessages;
+import com.hossam.codesroots.presentation.chatAndMapActivity.entities.Chatmessages;
 
 
 import io.reactivex.Observable;
@@ -135,7 +135,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("chats/chatBTWusers/{pageid}.json")
-    Call<chatmessages> getChatData(
+    Call<Chatmessages> getChatData(
             @Path("pageid") int page,
             @Field("order_id") int order_id
     );

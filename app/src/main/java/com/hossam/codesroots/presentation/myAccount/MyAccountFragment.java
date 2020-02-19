@@ -40,7 +40,7 @@ public class MyAccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.firstmyccount, container, false);
+        View view = inflater.inflate(R.layout.activity_chat, container, false);
         findViewsFromXml(view);
         banks.setOnClickListener(v -> startActivity(new Intent(getActivity(), BanksActivity.class)));
         payonline.setOnClickListener(v -> payonlineByPaytabs());

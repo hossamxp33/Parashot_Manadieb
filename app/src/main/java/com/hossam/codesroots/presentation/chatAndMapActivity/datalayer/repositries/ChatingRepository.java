@@ -6,7 +6,8 @@ import android.util.Log;
 import com.hossam.codesroots.dataLayer.apiData.ApiInterface;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.AddMessage;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.ChatList;
-import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessages;
+import com.hossam.codesroots.presentation.chatAndMapActivity.entities.Chatmessages;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -18,7 +19,7 @@ import retrofit2.Response;
 public class ChatingRepository {
 
     private ApiInterface apiService;
-    private Consumer<chatmessages> onSuccess;
+    private Consumer<Chatmessages> onSuccess;
     private Consumer<ChatList> onSuccessList;
     private Consumer<AddMessage> onSuccessAdd;
     private Consumer<Boolean> onSuccessAddstatues;
@@ -34,9 +35,9 @@ public class ChatingRepository {
 
     public void chatMessages(int page,int orderid) {
         try {
-            apiService.getChatData(page,orderid).enqueue(new Callback<chatmessages>() {
+            apiService.getChatData(page,orderid).enqueue(new Callback<Chatmessages>() {
                 @Override
-                public void onResponse(Call<chatmessages> call, final Response<chatmessages> response) {
+                public void onResponse(Call<Chatmessages> call, final Response<Chatmessages> response) {
                     if (response.body() != null) {
                             if (onSuccess != null) {
                                 onSuccess.accept(response.body());
@@ -50,7 +51,7 @@ public class ChatingRepository {
                 }
 
                 @Override
-                public void onFailure(Call<chatmessages> call, Throwable t) {
+                public void onFailure(Call<Chatmessages> call, Throwable t) {
                     Log.d("chating fail -> ", call.toString());
                     // TODO: return error
                     if (onError != null) {
@@ -129,7 +130,7 @@ public class ChatingRepository {
     }
 
 
-    public void setOnSuccess(Consumer<chatmessages> onSuccess) {
+    public void setOnSuccess(Consumer<Chatmessages> onSuccess) {
         this.onSuccess = onSuccess;
     }
 

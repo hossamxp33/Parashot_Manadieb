@@ -92,12 +92,6 @@ public class ProductsInsideOrderAdapter extends RecyclerView.Adapter<ProductsIns
           super(v);
             mView=v;
 
-            name =mView.findViewById(R.id.item_name);
-            ratecount =mView.findViewById(R.id.ratecount);
-            ratingBar =mView.findViewById(R.id.rates);
-            item_img = mView.findViewById(R.id.item_img);
-            productrate =mView.findViewById(R.id.productrate);
-            descrip =mView.findViewById(R.id.shop_description);
         }
     }
 }

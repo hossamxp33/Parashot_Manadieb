@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.datalayer.repositries.ChatingRepository;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.AddMessage;
 import com.hossam.codesroots.presentation.chatAndMapActivity.entities.ChatList;
-import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessages;
+import com.hossam.codesroots.presentation.chatAndMapActivity.entities.Chatmessages;
 
 import okhttp3.MultipartBody;
 
@@ -14,7 +14,7 @@ import okhttp3.MultipartBody;
 public class ChatViewModel extends ViewModel {
 
     private ChatingRepository chatingRepository;
-    public  MutableLiveData<chatmessages> chatMessages = new MutableLiveData<chatmessages>();
+    public  MutableLiveData<Chatmessages> chatMessages = new MutableLiveData<Chatmessages>();
     public  MutableLiveData<ChatList> chatList = new MutableLiveData<ChatList>();
     MutableLiveData<Throwable> errorLiveData = new MutableLiveData<>();
     MutableLiveData<Throwable> errorchatListLiveData = new MutableLiveData<>();

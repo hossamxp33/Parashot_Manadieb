@@ -27,12 +27,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.PopupMenu;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +39,8 @@ import com.hossam.codesroots.helper.FileUtils;
 import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.delivery24.R;
 import com.hossam.codesroots.presentation.chatAndMapActivity.Helper.message;
-import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessages;
+import com.hossam.codesroots.presentation.chatAndMapActivity.entities.MyChat;
+import com.hossam.codesroots.presentation.chatAndMapActivity.entities.Chatmessages;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ChatViewModel;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ViewModelFactory;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.adapter.ChatListAdapter;
@@ -56,6 +52,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -72,8 +69,8 @@ import static com.hossam.codesroots.helper.MyService.mSocket;
 public class ChatingFragment extends Fragment implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     RecyclerView recyclerView;
     ChatListAdapter chatListAdapter;
-    private List<chatmessages.MyChatBean> allMessage;
-    private chatmessages allData;
+    private List<MyChat> allMessage;
+    private Chatmessages allData;
     EditText etMessage;
     private static final int LOAD_IMG_REQUEST_CODE = 123;
     ImageView getimage, userImage;
@@ -105,6 +102,11 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
         findFromXml(view);
         view1 = view;
         mSocket.on("room_message", onNewMessage);
+        allMessage = new ArrayList<MyChat>() ;
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(chatListAdapter);
         roomId = getArguments().getString("roomId");
         mSocket.emit("create_room", roomId);
         orderId = getArguments().getInt("orderid", 0);
@@ -128,29 +130,26 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
 
         chatViewModel.chatMessages.observe(this, chatmessages ->
                 {
-                    progressBarload.setVisibility(View.GONE);
+//                    progressBarload.setVisibility(View.GONE);
                     allData = chatmessages;
                     allMessage = chatmessages.getMyChat();
                     chatListAdapter = new ChatListAdapter(getActivity(), chatmessages.getMyChat());
-                    recyclerView.setAdapter(chatListAdapter);
-                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                     //mLayoutManager.setReverseLayout(true);
-                    if (chatmessages.getOrder() != null) {
-                        if (chatmessages.getOrder().get(0).getSmallstore() != null) {
-                            storeName.setText(chatmessages.getOrder().get(0).getSmallstore().getName());
-                            store_location.setText(chatmessages.getOrder().get(0).getSmallstore().getAddress());
-                        }
-                        try {
-                            userName.setText(chatmessages.getOrder().get(0).getUser().getUsername());
-                            Glide.with(getContext()).load(chatmessages.getOrder().get(0).getUser().getPhoto()).into(userImage);
+                    chatmessages.getOrder();
+//                    if (chatmessages.getOrder().get(0).getSmallstore() != null) {
+//                        storeName.setText(chatmessages.getOrder().get(0).getSmallstore().getName());
+//                        store_location.setText(chatmessages.getOrder().get(0).getSmallstore().getAddress());
+//                    }
+                    try {
+                        userName.setText(chatmessages.getOrder().get(0).getUser().getUsername().toString());
+                        Glide.with(getContext()).load(chatmessages.getOrder().get(0).getUser().getPhoto()).into(userImage);
 
-                        } catch (Exception e) {
-                            Log.d("exception ", e.getMessage());
-                        }
-                        //                      ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
-                        //  cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
-                        //    user_location.setText(chatmessages.getOrder().get(0).getUser_address());
+                    } catch (Exception e) {
+                        Log.d("exception ", e.getMessage());
                     }
+                    //                      ordernumber.setText("رقم الطلب : " + chatmessages.getOrder().get(0).getId());
+                    //  cost.setText(chatmessages.getOrder().get(0).getDelivery_price() + "");
+                    //    user_location.setText(chatmessages.getOrder().get(0).getUser_address());
                     recyclerView.setLayoutManager(mLayoutManager);
                     recyclerView.setAdapter(chatListAdapter);
                     recyclerView.scrollToPosition(chatListAdapter.getItemCount() - 1);
@@ -199,11 +198,7 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
     private void findFromXml(View view) {
         userName = view.findViewById(R.id.Delname);
         userImage = view.findViewById(R.id.userImage);
-        storeName = view.findViewById(R.id.storname);
-        ordernumber = view.findViewById(R.id.order_num);
-        cost = view.findViewById(R.id.delivery_cost);
         deliveryCall = view.findViewById(R.id.call);
-        storeCall = view.findViewById(R.id.call2);
         opendialog = view.findViewById(R.id.opendialog);
         deliveryCall.setOnClickListener(this);
         opendialog.setOnClickListener(this);
@@ -213,14 +208,9 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
         send = view.findViewById(R.id.send);
 //        typing = view.findViewById(R.id.typing);
         recyclerView = view.findViewById(R.id.rvList);
-        etMessage = view.findViewById(R.id.chatMSG);
-        storeLocation = view.findViewById(R.id.stor_location); //action
         userLocation = view.findViewById(R.id.location);  //action
         userLocation.setOnClickListener(this);
-
-        user_location = view.findViewById(R.id.user_location_txt); // text
-        store_location = view.findViewById(R.id.store_location);//text
-        progressBarload = view.findViewById(R.id.progressBarload);//text
+etMessage =  view.findViewById(R.id.chatMSG);
 //        send.setEnabled(false);
     }
 
@@ -302,13 +292,15 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
                         time = data.getString("time");
                         fromm = data.getInt("from");
                         photo = data.getString("imageuri");
-                        allMessage.add(new chatmessages.MyChatBean(message, fromm, photo, time, 2));
+                        allMessage.add(new MyChat(null,message,time,null, fromm,photo, photo,null, 1, null));
                         if (chatListAdapter != null)
                             chatListAdapter.notifyDataSetChanged();
                         else
-                            chatListAdapter = new ChatListAdapter(getActivity(), allMessage);
 
-                        recyclerView.scrollToPosition(allMessage.size() - 1);
+                            chatListAdapter = new ChatListAdapter(getActivity(), allMessage);
+                            if  (allMessage.size() > 1) {
+                                recyclerView.scrollToPosition(allMessage.size() - 1);
+                            }
                     } catch (JSONException e) {
                         Log.d("crach", e.getMessage());
                         // return;
@@ -343,10 +335,10 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
             case R.id.call:
                 makePhonecall(allData.getOrder().get(0).getDelivry().getPhone());
                 break;
-
-            case R.id.call2:
-                makePhonecall(allData.getOrder().get(0).getSmallstore().getPhone());
-                break;
+//
+//            case R.id.call2:
+//                makePhonecall(allData.getOrder().get(0).get().getPhone());
+//                break;
 
             case R.id.location:
                 Fragment fragment1 = new MapingFragment();
@@ -357,13 +349,13 @@ public class ChatingFragment extends Fragment implements View.OnClickListener, P
                 break;
 
 
-            case R.id.stor_location:
-
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" +
-                        PreferenceHelper.getCURRENTLAT() + "," + PreferenceHelper.getCURRENTLONG() +
-                        "&daddr=" + allData.getOrder().get(0).getSmallstore().getLatitude() + "," + allData.getOrder().get(0).getSmallstore().getLongitude()));
-                startActivity(i);
-                break;
+//            case R.id.stor_location:
+//
+//                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" +
+//                        PreferenceHelper.getCURRENTLAT() + "," + PreferenceHelper.getCURRENTLONG() +
+//                        "&daddr=" + allData.getOrder().get(0).getSmallstore().getLatitude() + "," + allData.getOrder().get(0).getSmallstore().getLongitude()));
+//                startActivity(i);
+//                break;
 
             case R.id.opendialog:
 

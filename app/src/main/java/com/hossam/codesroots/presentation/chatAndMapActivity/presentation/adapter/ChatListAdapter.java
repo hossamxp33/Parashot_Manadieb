@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hossam.codesroots.helper.PreferenceHelper;
 import com.hossam.codesroots.delivery24.R;
-import com.hossam.codesroots.presentation.chatAndMapActivity.entities.chatmessages;
+import com.hossam.codesroots.presentation.chatAndMapActivity.entities.MyChat;
 import com.hossam.codesroots.presentation.chatAndMapActivity.presentation.ImageViewActivity;
 
 import java.text.ParseException;
@@ -26,10 +26,10 @@ import java.util.List;
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.CustomView> {
 
     private Context context;
-    private List<chatmessages.MyChatBean> allMessage;
+    private List<MyChat> allMessage;
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
-    public ChatListAdapter(FragmentActivity activity, List<chatmessages.MyChatBean> messages) {
+    public ChatListAdapter(FragmentActivity activity, List<MyChat> messages) {
         this.context =  activity;
         allMessage = messages;
      //   preferenceHelper =new PreferenceHelper(context);
